@@ -1,0 +1,387 @@
+{
+  "data": [
+    {
+      "name": "የቤተ ክርስትያን ታሪክ",
+      "thumbnail": "/church-history/church-thumb.jpg",
+      "url": "/church-history",
+      "description": "አልስድህፍ ኢስድፍሃልክስድጅ ህፋልስክድጅፍ ሃድስክጅ ፋስድጅክፍህ አክስጅድህፍ ልካስጅድግፊኦ ኡስድግፊአሱድ ፍላጅድስፍ አልክድስጅ ፋልድክስጅፍህ",
+      "date": "2015 ዓ.ም",
+      "histories": [
+        {
+          "folderName": "early-history",
+          "title": "የጥንቷ ቤተክርስቲያን",
+          "timePeriod": "0-500 ዓ.ም",
+          "desc": "የጥንቷ ቤተክርስቲያን ታሪክ ከኢየሱስ ክርስቶስ ውልደት የጀመረ ሲሆን ሀዋርያት ለወንጌል የከፈሉትን መስዋእትነት የምንመለከትበት ነው፡፡  እናም በቀጥታ ከሀዋርያት እግር ስር ቁጭ ብለው የተማሩ የእምነት አባቶች መፅሀፍ ቅዱስ እንኳ በእጃቸው ሳይገባ ለሰሙትና ለተረዱት እውነት የኖሩበትን ጥግ እና ለነፍሳቸው ፍጹም ሳይሳሱ ስለወንጌል የተከፈለ መስዋእትነት እናይበታለን፡፡ የቤተክርስቲያንም ስደት አብቅቶ ወደንግስና የነበራትንም መንገድ እንዳስስበታለን። ሀዋርያትና የእምነት አባቶች ባደረጉት አስተዋጽኦ እናም በከፈሉት መስዋእትነት ወንጌል ለአለም ደርሷል፡፡",
+          "subFolders": [
+            {
+              "folderName": "introduction",
+              "name": "መግቢያ",
+              "pdfs": [
+                {
+                  "name": "01 መግቢያ",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1rZGe_bk5GdDEOee7Yyy5JyY8Mlb0UfHG/view?usp=drive_link"
+                },
+                {
+                  "name": "02 ሐዋርያቱ",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/1niS-vhpPJ_mmQEEwmnnM_3Y1wE86j3F4/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "influential-people",
+              "name": "ታላላቅ ሰዎች",
+              "pdfs": [
+                {
+                  "name": "01 የቤተክርስቲያን አባቶች",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1SRcQypIYDzckbx7IdiPT5tqyLAmg6s6o/view?usp=drive_link"
+                },
+                {
+                  "name": "02 ስህተት አስተማሪዎች",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/16Z_L99JUepl4zHnl82CjS7sKnaBsKU2J/view?usp=drive_link"
+                },
+                {
+                  "name": "03 አቃቢ እምነት አበው",
+                  "index": 2,
+                  "url": "https://drive.google.com/file/d/1wMEd7ulYYAicPHaYyUoj17m4qMULX8bt/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "main-events",
+              "name": "ዋና ዋና ክስተቶች",
+              "pdfs": [
+                {
+                  "name": "01 ከቆስጣንጢኖስ በፊት",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/12H2AyebrJF43hSPW3j5gvxZ6zynBPXrK/view?usp=drive_link"
+                },
+                {
+                  "name": "02 ከቆስጣንጢኖስ በኋላ",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/1vx43Y6aDebATJlFyorSDNGoFv250lblH/view?usp=drive_link"
+                },
+                {
+                  "name": "03 መጽሐፍ ቅዱስ",
+                  "index": 2,
+                  "url": "https://drive.google.com/file/d/1h0VXy2Cdykui8r0CynTtWG1onhDYrlD2/view?usp=drive_link"
+                }
+              ]
+            }
+          ],
+          "images": ["timeline.jpg", "map.jpg"],
+          "cardImage": "early-history.jpg"
+        },
+        {
+          "folderName": "medieval-times",
+          "title": "የመካከለኛው ዘመን",
+          "timePeriod": "500 - 1500 ዓ.ም",
+          "desc": "የጨለማው ዘመን ተብሎ በታሪክ ተመራማሪዎች የሚጠራው የመካከለኛው ዘመን ቤተክርስቲያን በምድራዊ ክብር ጫፍ የረገጠችበት ነገር ግን በሰማያዊ ትልዕኮዋ ታላቅ ውድቀትን ያስተናገደችበት ዘመን ነው፡፡ ዛሬ ድረስ ክርስትናን በርዞ ያስቀሩ እንደ አፀደነፍስ፣ የሃጥያት ስርየት ወረቀትና አምልኮተ-ምስል ያሉ ኢ-መፅሐፍቅዱሳዊ ትምህርቶች የተነሱበት ዘመን ነበር፡፡ ቤተክርስቲያን በታላቁ ክፍፍል ለሁለት የተከፈለችበትና በዚያም ዘመን ሆነ ከዚያም በኋላ ከገጠሟት ፈተናዎች ሁሉ ዋነኛ የሆነው እስልምና የተወለደበትና የተንሰራፋበት ዘመን ነው፡፡",
+          "subFolders": [
+            {
+              "folderName": "roman-catholic",
+              "name": "የቅድስቷ ሮም ካቶሊክ",
+              "pdfs": [
+                {
+                  "name": "01 ታላቁ ጎርጎሪዎስ",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1CXlBlk84lHCVs6GZvg_QR3lTrF3WuUta/view?usp=drive_link"
+                },
+                {
+                  "name": "02 አንድነት ፍልጋ",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/1AZemc9CdjGJX43ARRPt2uDn7JsmWQGu5/view?usp=drive_link"
+                },
+                {
+                  "name": "03 ቤተክርስቲያን እና መንግስት",
+                  "index": 2,
+                  "url": "https://drive.google.com/file/d/1asJJsEZa9MbRVtgBq_Ef1eT4CqRev9kR/view?usp=drive_link"
+                },
+                {
+                  "name": "04 ስኮላስቲሲዝም",
+                  "index": 3,
+                  "url": "https://drive.google.com/file/d/1yfbmHEzOIt7BY_akXEb4pybhyreYnDY-/view?usp=drive_link"
+                },
+                {
+                  "name": "05 አሰቃቂው ሞት",
+                  "index": 4,
+                  "url": "https://drive.google.com/file/d/1eJLRc9wPgKp8ogaRGE6YTJROkR1DdvxE/view?usp=drive_link"
+                },
+                {
+                  "name": "06 የጳጳሳት ክፍፍል",
+                  "index": 5,
+                  "url": "https://drive.google.com/file/d/1l5V0OLAVBnwre37L-_s_eszJMwPiK13W/view?usp=drive_link"
+                },
+                {
+                  "name": "07 የተሃድሶ ፈርቀዳጆች",
+                  "index": 6,
+                  "url": "https://drive.google.com/file/d/1MxBx42bvzCmz-LEQybtGWY1DWicvFxRF/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "eastern-orthodox",
+              "name": "ምስራቅ ኦርቶዶክስ",
+              "pdfs": [
+                {
+                  "name": "01 ታላቁ ክፍፍል",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1v1CXSgGowgz8NyI--c4RPIf3HSSpTib-/view?usp=drive_link"
+                },
+                {
+                  "name": "02 አምልኮተ ምስል",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/1Y7bfy7IevWh9iTiyZe3kc9Cv3WHjg-wU/view?usp=drive_link"
+                },
+                {
+                  "name": "03 የቤተክርስቲያን ጉባኤዎች",
+                  "index": 2,
+                  "url": "https://drive.google.com/file/d/16Teb32wPRHTnrv6FsN-OfCz-Ig6KxkFX/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "islam",
+              "name": "እስልምና",
+              "pdfs": [
+                {
+                  "name": "01 የእስልምና አጀማመር",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1D-pP2TLET2pnOs6VXFI67KzqnJ1eVQQd/view?usp=drive_link"
+                },
+                {
+                  "name": "02 እስልምና በሰሜን አፍሪካ",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/1Utjlt0xDuStVc3ogkzNT0gjsDJt6u_fC/view?usp=drive_link"
+                },
+                {
+                  "name": "03 እስልምና በምዕራብ አውሮፓ",
+                  "index": 2,
+                  "url": "https://drive.google.com/file/d/10cdHoggntXQS7FH9kR7mqZAE7KrL0SUS/view?usp=drive_link"
+                },
+                {
+                  "name": "04 እስልምና በምስራቅ አውሮፓ",
+                  "index": 3,
+                  "url": "https://drive.google.com/file/d/1Oz56divwoQeHgXWnFYNiTQm26q0nEC6n/view?usp=drive_link"
+                },
+                {
+                  "name": "05 የመስቀል ጦርነቶች",
+                  "index": 4,
+                  "url": "https://drive.google.com/file/d/12s6Wz62DdgVKAMZZ-tk4BcJE-jXV8ZV2/view?usp=drive_link"
+                }
+              ]
+            }
+          ],
+          "images": ["timeline.jpg", "map.png"],
+          "cardImage": "medieval-times.jpg"
+        },
+        {
+          "folderName": "reformation",
+          "title": "የተሃድሶ ዘመን",
+          "timePeriod": "1500 - 1650 ዓ.ም",
+          "desc": "የተሃድሶ ዘመን እግዚአብሔር ሰዎችን በመጠቀም ቤተክርስቲያንን በመካከለኛው ዘመን ከነበረችበት ጨለማ ያወጣበት ጊዜ ነው። ቤተክርስቲያን ውስጥ በጊዜ ቆይታ ሰተት ብለው ገብተው እንደ ዶግማ  ይታዩ የነበሩ ልምምዶች ከቃሉ አንፃር ጥያቄ ይነሳበቸው ጀመር። በተሃድሶ ዘመን ላይ የእግዚአብሔር ቃል እንደ ባለስልጣን ቤተክርስቲያን ውስጥ ቦታ ማግኘት የጀመረበት ጊዜ ነበር።  ስለዚህ ከቃሉ አንፃር ሲታዩ ሃሰት የሆኑ ልምምዶችን ጠርገው ለማውጣት ተሃድሶ አምጪዎች ዋጋን ከፍለው በተለይም የፕሮቴስታንት ቤተክርስቲያን አሁን ላላት መልክ መሰረት መጣል የተጀመረበት ወቅት ነበር።",
+          "subFolders": [
+            {
+              "folderName": "protestant",
+              "name": "ፕሮቴስታንት",
+              "pdfs": [
+                {
+                  "name": "01 ፕሮቴስታንት",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1Uh2A8P9Q-zowfeW9NLCMGGVrcXOUwS_B/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "anabaptist",
+              "name": "ዳግም-መጥምቃውያን",
+              "pdfs": [
+                {
+                  "name": "01 ዳግም-መጥምቃውያን",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1Uh2A8P9Q-zowfeW9NLCMGGVrcXOUwS_B/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "anglican",
+              "name": "አንግሊካን ቤተ ክርስቲያን",
+              "pdfs": [
+                {
+                  "name": "01 አንግሊካን ቤተ ክርስቲያን",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1Uh2A8P9Q-zowfeW9NLCMGGVrcXOUwS_B/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "reformed",
+              "name": "ተሃድሶአዊያን",
+              "pdfs": [
+                {
+                  "name": "01 ተሃድሶአዊያን",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1Uh2A8P9Q-zowfeW9NLCMGGVrcXOUwS_B/view?usp=drive_link"
+                }
+              ]
+            }
+          ],
+          "images": ["timeline.jpg", "map.jpg"],
+          "cardImage": "reformation.jpg"
+        },
+        {
+          "folderName": "modern",
+          "title": "አዲሱ ዘመን",
+          "timePeriod": "1650 ዓ.ም - አሁን",
+          "desc": "ዘመናዊቷ ቤተ ክርስቲያን ወደ እውነተኛ ዓላማዋ የተመለሰችበት ዘመን ይህ ነው፡፡ ትኩረቷም አማኞችን ወደ ማነጽ እና በእምነት ላልሆኑት ወንጌልን ወደ መስበክ የዞረበት ጊዜ ነበር፡፡ ክርስትናም ከተለያዩ ርዕዮተ ዓለሞች እና አሰቃቂ ክስተቶች የገጠሙት ፈተናዎች ቢኖሩም የአማኙ ቁጥር እየጨመረና ስብከተ ወንጌል ወደ መላው ዓለም እየገሰገሰ ነበር።",
+          "subFolders": [
+            {
+              "folderName": "revival",
+              "name": "መንፈሳዊ መነቃቃት",
+              "pdfs": [
+                {
+                  "name": "01 መንፈሳዊ መነቃቃት",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1F5dbGc-tiehXZZUHeDRxfO07HHkXVUfM/view?usp=drive_link"
+                },
+                {
+                  "name": "02 ሁለተኛው ታላቁ መነቃቃት",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/1-lgVavcVsMzI1S8vMzFgK7lNESxVotJr/view?usp=drive_link"
+                },
+                {
+                  "name": "03 ዌልስ መነቃቃት",
+                  "index": 2,
+                  "url": "https://drive.google.com/file/d/1GQOWpFkAKXPlKvGwvJTQVz9cAKLuu5wU/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "missionary-works",
+              "name": "የወንጌል ተልዕኮ",
+              "pdfs": [
+                {
+                  "name": "01 የወንጌል ተልዕኮ",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/11ldFSB2LMkOd3CqJNp56VrwpZPppRgAl/view?usp=drive_link"
+                },
+                {
+                  "name": "02 የአሜሪካ የውጭ ተልዕኮ ኮሚሽነሮች ቦርድ",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/11MjamszBh1HRJrbMvJbJEc53luLRSgwR/view?usp=drive_link"
+                },
+                {
+                  "name": "03 የአሜሪካ ትራክት ማህበር",
+                  "index": 2,
+                  "url": "https://drive.google.com/file/d/1TH5-8wd7IlCaFxmEhFDEokC6k6juLfaa/view?usp=drive_link"
+                },
+                {
+                  "name": "04 የባርነትና መጠጥ ሱስ ተቃውሞ",
+                  "index": 3,
+                  "url": "https://drive.google.com/file/d/1vyh4nPYyqEMZr-Q87dvwRthuHGGKN-lu/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "christianity-challenges",
+              "name": "ክርስቲያኖች የሚያጋጥሟቸው ፈተናዎች",
+              "pdfs": [
+                {
+                  "name": "01 ፈተናዎች",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1Za9KihRdK8j-PnqS6sgusmkz9sHRAyzI/view?usp=drive_link"
+                },
+                {
+                  "name": "02 አንደኛው የዓለም ጦርነት",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/1RaHQMttgNfz-ljDJF0R8hcEPQF8cUb-y/view?usp=drive_link"
+                }
+              ]
+            }
+          ],
+          "images": ["timeline.jpg", "map.jpg"],
+          "cardImage": "modern.jpg"
+        },
+        {
+          "folderName": "ethiopian-history",
+          "title": "የኢትዮጵያ ቤ/ክ ታሪክ",
+          "timePeriod": "0 ዓ.ም - አሁን",
+          "desc": "ክርስትና ሀ ብሎ ከገባበት ከ አክሱም ዘመን ጀምሮ አሁን ያለንበት የሚዳስስ ሲሆን ኢትዮጵያ ውስጥ ክርስትና ቀደም ብሎ የገባ ቢሆንም በእስልምና ወረራ ምክንያት ክርስትናን በፍጥነት ማስፋፋት አልተቻለም ነበር፡፡ በዚያን ጊዜ ቀደም ብለው የገቡ ፕሮቴስታንት ሚስዮናውያን አላማቸው ኦርቶዶክስ ቤተክርስቲያን ውስጥ ተሀድሶን ማምጣት ነበር፡፡  ምክንያቱም መጀመርያ የገባው ክርስትና ከ አጼ ዘርዐ ያእቆብ በኃላ መልኩን አጥቶ ስለነበር ፡፡ በጊዜው የነበሩ ሚስዮናውያን ከወንጌል ስርጭትም በተጨማሪ ብዙ የእርዳታ ስራዎችን ይሰሩ ነበር፡፡ ክርስትና በደርግ ጊዜ እጅግ የተጨቆነ ቢሆንም ግን አማኞች እጅግ የበረቱና ቆራጥ ነበሩ፡፡ አሁን ደግሞ እጂግ ብዙ ነጻነትን እና በሮችን ያገኘ ቢሆንም በዛው ልክ ደግሞ ለብዙ ፈተናዎች እና ውድቀት እየተጋለጥን ያለንበት ሁኔታ ላይ ነን፡፡",
+          "subFolders": [
+            {
+              "folderName": "early-ethiopian-history",
+              "name": "ጥንታዊ ክርስትና በኢትዮጵያ",
+              "pdfs": [
+                {
+                  "name": "01 የጥንት ክርስትናን ኢትዮጵያ",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1XuyPBAPMDvyPJbAasS2MWKmE5XKhz33g/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "medieval-ethiopian-history",
+              "name": "የመካከለኛው ዘመን ክርስትና በኢትዮጵያ",
+              "pdfs": [
+                {
+                  "name": "01 መካከለኛ ዘመን ክርስትና በኢትዮጵያ",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1XuyPBAPMDvyPJbAasS2MWKmE5XKhz33g/view?usp=drive_link"
+                },
+                {
+                  "name": "02 እስልምና በኢትዮጵያ",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/1XuyPBAPMDvyPJbAasS2MWKmE5XKhz33g/view?usp=drive_link"
+                },
+                {
+                  "name": "03 ካቶሊክ ቤተክርስቲያን በኢትዮጵያ",
+                  "index": 2,
+                  "url": "https://drive.google.com/file/d/1XuyPBAPMDvyPJbAasS2MWKmE5XKhz33g/view?usp=drive_link"
+                }
+              ]
+            },
+            {
+              "folderName": "missionary-churches",
+              "name": "ሚሲዮናዊ አብያተ ክርስቲያናት",
+              "pdfs": [
+                {
+                  "name": "01 የመጀመሪያዎቹ ሚስዮናውያን በኢትዮጵያ",
+                  "index": 0,
+                  "url": "https://drive.google.com/file/d/1XuyPBAPMDvyPJbAasS2MWKmE5XKhz33g/view?usp=drive_link"
+                },
+                {
+                  "name": "02 የመጀመሪያዎቹ ቤተክርስቲያናት በኢትዮጵያ",
+                  "index": 1,
+                  "url": "https://drive.google.com/file/d/1XuyPBAPMDvyPJbAasS2MWKmE5XKhz33g/view?usp=drive_link"
+                },
+                {
+                  "name": "03 ደርግ እና ቤተክርስቲያን",
+                  "index": 2,
+                  "url": "https://drive.google.com/file/d/1XuyPBAPMDvyPJbAasS2MWKmE5XKhz33g/view?usp=drive_link"
+                },
+                {
+                  "name": "04 የአምልኮ ነፃነት በኢትዮጵያ",
+                  "index": 3,
+                  "url": "https://drive.google.com/file/d/1XuyPBAPMDvyPJbAasS2MWKmE5XKhz33g/view?usp=drive_link"
+                }
+              ]
+            }
+          ],
+          "images": ["timeline.jpg", "map.jpg"],
+          "cardImage": "ethiopian-history.jpg"
+        }
+      ]
+    },
+    {
+      "name": "የመጽሐፍ ቅዱስ ታሪክ",
+      "thumbnail": "/bible-history/bible-thumb.jpg",
+      "url": "/bible-history",
+      "description": "አልስድህፍ ኢስድፍሃልክስድጅ ህፋልስክድጅፍ ሃድስክጅ ፋስድጅክፍህ አክስጅድህፍ ልካስጅድግፊኦ ኡስድግፊአሱድ ፍላጅድስፍ አልክድስጅ ፋልድክስጅፍህ",
+      "date": "2016 ዓ.ም",
+      "histories": []
+    }
+  ]
+}
