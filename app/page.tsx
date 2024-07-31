@@ -14,7 +14,7 @@ export default function Page() {
   const slides = jsonData.data;
 
   return (
-    <div className="font-sans">
+    <div className="">
       <LandingSection slides={SLIDES} options={OPTIONS} />
       <HistoriesSection slides={slides}/>
     </div>

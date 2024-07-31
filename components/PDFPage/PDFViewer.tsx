@@ -22,12 +22,14 @@ const options = {
 
 const resizeObserverOptions = {};
 
-const maxWidth = 800;
+const maxWidth = 1800;
 
 type PDFFile = string | File | null;
 
-export default function Sample() {
-  const [file, setFile] = useState<PDFFile>("/early-history/introduction/1.pdf");
+export default function Sample({ filename }: { filename: string }) {
+  const [file, setFile] = useState<PDFFile>(
+    filename || "/early-history/introduction/1.pdf"
+  );
   const [numPages, setNumPages] = useState<number>();
   const [containerRef, setContainerRef] = useState<HTMLElement | null>(null);
   const [containerWidth, setContainerWidth] = useState<number>();
@@ -60,30 +62,33 @@ export default function Sample() {
 
   return (
     <div className="Example">
-      <header>
+      {/* <header>
         <h1>react-pdf sample page</h1>
-      </header>
+      </header> */}
       <div className="Example__container">
-        <div className="Example__container__load">
+        {/* <div className="Example__container__load">
           <label htmlFor="file">Load from file:</label>{" "}
           <input id="file" onChange={onFileChange} type="file" />
-        </div>
-        <div className="Example__container__document" ref={setContainerRef}>
+        </div> */}
+        <div className="w-full" ref={setContainerRef}>
           <Document
             file={file}
             onLoadSuccess={onDocumentLoadSuccess}
             options={options}
-            className="bg-red-400"
+            className="flex flex-col justify-center items-center"
           >
             {Array.from(new Array(numPages), (el, index) => (
               <Page
                 key={`page_${index + 1}`}
                 pageNumber={index + 1}
                 width={
-                  containerWidth ? Math.min(containerWidth, maxWidth) : maxWidth
+                  containerWidth && containerWidth > maxWidth
+                    ? maxWidth
+                    : containerWidth
                 }
-                className="bg-green-400 text-red-600"
-                _className="text-red"
+                className="bg-green-400 my-2 rounded-3xl "
+                _className="rounded-3xl"
+                // _className="text-red"
               />
             ))}
           </Document>

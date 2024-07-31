@@ -57,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en-US">
       <body
-        className={`${nokiaBold.variable} ${nokiaLight.variable} ${droid.variable} ${yanon.variable} ${klavika.variable} `}
+        className={`${nokiaBold.variable} ${nokiaLight.variable} ${droid.variable} ${yanon.variable} ${klavika.variable} font-sans`}
       >
         <Navbar />
         {children}

@@ -9,11 +9,11 @@ export default function HistoryComponent({ history }: { history: string }) {
   //   console.log("history", history);
   //   console.log("histories", histories);
   return (
-    <div className="flex flex-col max-w-screen-2xl mx-auto items-start w-full justify-start mt-32 ">
+    <div className="flex flex-col max-w-screen-2xl mx-auto items-start w-full justify-center ">
       <HistoryDetailComponent
         history={currentHistory}
       />
-      <div className="flex flex-wrap md:mt-8 gap-5 ">
+      <div className="flex flex-wrap align md:mt-8 gap-10 px-10 py-20 w-full justify-center">
         {currentHistory?.histories.map((card, index) => (
           <div
             key={index}
@@ -31,10 +31,10 @@ export default function HistoryComponent({ history }: { history: string }) {
               </div>
 
               <div className="p-6">
-                <h2 className="text-2xl font-Nokia font-semibold">
+                <h2 className="text-2xl font-semibold">
                   {card.title}
                 </h2>
-                <p className="text-gray-600 font-Klavika">{card.timePeriod}</p>
+                <p className="text-gray-600 font-yanon font-semibold">{card.timePeriod}</p>
               </div>
             </Link>
           </div>

@@ -1,21 +1,25 @@
-body {
+/* body {
   margin: 0;
   background-color: #525659;
   font-family:
     Segoe UI,
     Tahoma,
     sans-serif;
-}
+} */
 
 .Example input,
 .Example button {
   font: inherit;
 }
 
+canvas{
+  border-radius: 1.5rem !important;
+}
+
 .Example header {
   background-color: #323639;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  /* padding: 20px; */
   color: white;
 }
 
@@ -28,8 +32,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 0;
-  padding: 10px;
+  /* margin: 10px 0; */
+  /* padding: 10px; */
 }
 
 .Example__container__load {
@@ -39,8 +43,8 @@ body {
 
 .Example__container__document {
   width: 100%;
-  max-width: calc(100% - 2em);
-  margin: 1em 0;
+  /* max-width: calc(100% - 2em); */
+  /* margin: 1em 0; */
 }
 
 .Example__container__document .react-pdf__Document {
@@ -50,16 +54,30 @@ body {
 }
 
 .Example__container__document .react-pdf__Page {
-  margin: 1em 0;
+  /* margin: 1em 0; */
+  width: 100%;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  background-color: red !important;
+  /* background-color: red !important; */
+  border-radius: 100px;
+
+  /* background-color: red;
+  color: aqua; */
+}
+
+.react-pdf__Page canvas {
+  /* margin: 1em 0; */
+  width: 95%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  border-radius: 1.5rem !important;
 
   /* background-color: red;
   color: aqua; */
 }
 
 .Example__container__document .react-pdf__Page__textContent .textLayer {
-  background-color: red;
+  /* background-color: red; */
+  border-radius: 100px;
+  width: 100%;
 
   /* background-color: red; */
   /* color: aqua; */
@@ -68,13 +86,15 @@ body {
 }
 
 .Example__container__document .react-pdf__message {
-  padding: 20px;
+  /* padding: 20px; */
   color: white;
-  background-color: red;
+  /* background-color: red; */
   color: aqua;
+  border-radius: 100px;
+  width: 100%;
 }
 
-.mukera{
+.mukera {
   color: brown !important;
   background-color: burlywood !important;
 }

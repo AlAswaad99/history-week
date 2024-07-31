@@ -12,8 +12,8 @@ export default function HistoryDetailComponent({ history }: { history: any }) {
   }, []);
 
   return (
-    <motion.div layoutId={`card-${history.url}`} className="">
-      <div className="flex">
+    <motion.div layoutId={`card-${history.url}`} className="bg-white rounded-3xl py-20 px-10 lg:mt-32 lg:pt-20 pt-32 ">
+      <div className="flex lg:flex-row flex-col">
         <div className="rounded-3xl">
           <Image
             src={history.thumbnail}
@@ -23,8 +23,8 @@ export default function HistoryDetailComponent({ history }: { history: any }) {
             className="w-full rounded-3xl"
           />
         </div>
-        <div className="px-6 py-4">
-          <div className="font-bold text-4xl mt-6">{history.name}</div>
+        <div className="px-6 my-6">
+          <div className="font-bold text-4xl">{history.name}</div>
           <div className="text-sm mt-2">
             <span className="font-yanon font-semibold">{history.date}</span>
           </div>
