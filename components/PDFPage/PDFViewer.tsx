@@ -86,7 +86,7 @@ export default function Sample({ filename }: { filename: string }) {
                     ? maxWidth
                     : containerWidth
                 }
-                className="bg-green-400 my-2 rounded-3xl "
+                className="bg-green-400 lg:mb-4 mb-2 rounded-3xl "
                 _className="rounded-3xl"
                 // _className="text-red"
               />

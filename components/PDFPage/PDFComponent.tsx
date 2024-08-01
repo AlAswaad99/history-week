@@ -1,9 +1,31 @@
 "use client";
-import { DownloadCloud } from "lucide-react";
+import { ChevronDownIcon, DownloadCloud, ListCollapse, Share2Icon } from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTrigger,
+} from "../../components/ui/drawer";
 import jsonData from "../../public/data.json";
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "../ui/breadcrumb";
+import { Button } from "../ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 import Sample from "./PDFViewer";
 
 function PDFComponent() {
@@ -67,57 +89,188 @@ function PDFComponent() {
 
       fetchData();
     }
-  }, [period, section, id, router]);
+  }, [period, section, id]);
 
   console.log("periodInfo", periodInfo);
   console.log("periodEvent", periodEvent);
-  console.log("periodEventsPDFs", periodEventsPDFs);
+  console.log("periodEventsPDFss", periodEventsPDFs);
   return (
     <>
       {periodInfo && periodEvent && periodEventsPDFs && (
-        <div className="flex min-h-screen flex-col xl:flex-row w-full mx-auto  xl:pt-32 ">
-          <div className="flex flex-col xl:flex-row w-full xl:pt-0 pt-24 ">
-            <div className=" min-w-96 text-ellipsis xl:block xl:static flex xl:mr-4 p-4 xl:overflow-x-visible overflow-x-auto ">
-              {periodEventsPDFs.map((card: any, index: number) => (
-                <div
-                  key={index}
-                  className={`p-4 px-8 cursor-pointer flex justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
-                    index === currentIndex
-                      ? "bg-orange-100 hover:bg-orange-100"
-                      : "hover:bg-gray-200"
-                  }`}
-                  onClick={() => {
-                    router.replace(`/${history}/${period}/${section}/${index}`);
-                    setCurrentIndex(index);
-                    setPDFSource(
-                      `/${history}/${period}/${section}/${index}.pdf`
-                    );
-                  }}
-                >
-                  <div className="font-Nokia">{card.name}</div>
-                  <Link
-                    id="download-button"
-                    className=" w-1/3 flex justify-end z-10 "
-                    href={`/${history}/${period}/${section}/${index}.pdf`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    download={`${card.name}.pdf`}
+        <div className="w-full mt-28">
+          <Breadcrumb className="w-full flex justify-start md:mb-8">
+            <BreadcrumbList>
+              <BreadcrumbItem className="sm:flex hidden">
+                <BreadcrumbEllipsis />
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="sm:flex hidden" />
+              <BreadcrumbItem>
+                <BreadcrumbLink href={`/${history}`}>
+                  {/* {currentHistory?.name} */}
+                  <BreadcrumbEllipsis />
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href={`/${history}/${period}`}>
+                  {periodInfo.title}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                {/* <BreadcrumbPage>{periodEventsPDFs[id].name}</BreadcrumbPage> */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="flex items-center gap-1">
+                    {periodEventsPDFs[id].name}
+                    <ChevronDownIcon />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="start">
+                    {periodEventsPDFs.map((card: any, index: number) => (
+                      <DropdownMenuItem
+                        key={index}
+                        onClick={() => {
+                          router.push(
+                            `/${history}/${period}/${section}/${index}`
+                          );
+                        }}
+                      >
+                        {card.name}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <div className="flex min-h-screen flex-col xl:flex-row w-full mx-auto pb-20 ">
+            <div className="flex flex-col xl:flex-row w-full h-full xl:pt-0 ">
+              <div className=" min-w-96 text-ellipsis xl:block xl:static hidden xl:mr-4 p-4 xl:overflow-x-visible overflow-x-auto rounded-3xl bg-white items-stretch h-1/2">
+                {periodEventsPDFs.map((card: any, index: number) => (
+                  <div
+                    key={index}
+                    className={`p-4 px-8 cursor-pointer flex justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
+                      index === currentIndex
+                        ? "bg-orange-100 hover:bg-orange-100"
+                        : "hover:bg-gray-200"
+                    }`}
+                    onClick={() => {
+                      router.replace(
+                        `/${history}/${period}/${section}/${index}`
+                      );
+                      setCurrentIndex(index);
+                      setPDFSource(
+                        `/${history}/${period}/${section}/${index}.pdf`
+                      );
+                    }}
                   >
-                    <div className="hover:bg-black/25 p-2 rounded-full">
-                      {/* <Image
+                    <div className="font-sans">{card.name}</div>
+                    <Link
+                      id="download-button"
+                      className=" w-1/3 flex justify-end z-10 "
+                      href={`/${history}/${period}/${section}/${index}.pdf`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download={`${card.name}.pdf`}
+                    >
+                      <div className="hover:bg-black/25 p-2 rounded-full">
+                        {/* <Image
                         src="/downloads.png"
                         alt="Download"
                         width={20}
                         height={20}
                       /> */}
-                      <DownloadCloud />
-                    </div>
-                  </Link>
+                        <DownloadCloud />
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+              <Drawer>
+                <div className="xl:hidden fixed flex justify-end bottom-0 right-0 z-50 w-full p-4 gap-x-2">
+                  <div className="flex justify-start w-full gap-1">
+                    <ShareButton />
+                    <Link
+                      id="download-button"
+                      className=" z-10 p-2 bg-orange-500 text-white  rounded-full "
+                      href={`/${history}/${period}/${section}/${id}.pdf`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      download={`${periodEventsPDFs[id].name}.pdf`}
+                    >
+                      <div className="hover:bg-black/25 p-2 rounded-full">
+                        {/* <Image
+                        src="/downloads.png"
+                        alt="Download"
+                        width={20}
+                        height={20}
+                      /> */}
+                        <DownloadCloud />
+                      </div>
+                    </Link>
+                  </div>
+
+                  <DrawerTrigger className="py-2 px-10 flex items-center gap-x-1 bg-orange-500 text-white rounded-full">
+                    <ListCollapse />
+                    ማውጫ
+                  </DrawerTrigger>
                 </div>
-              ))}
-            </div>
-            <div className="w-full">
-              <Sample filename={pdfSource} />
+                <DrawerContent>
+                  <DrawerHeader>
+                    {periodEventsPDFs.map((card: any, index: number) => (
+                      <div
+                        key={index}
+                        className={`p-4 px-8 cursor-pointer flex justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
+                          index === currentIndex
+                            ? "bg-orange-100 hover:bg-orange-100"
+                            : "hover:bg-gray-200"
+                        }`}
+                        onClick={() => {
+                          router.replace(
+                            `/${history}/${period}/${section}/${index}`
+                          );
+                          setCurrentIndex(index);
+                          setPDFSource(
+                            `/${history}/${period}/${section}/${index}.pdf`
+                          );
+                        }}
+                      >
+                        <div className="font-sans">{card.name}</div>
+                        <Link
+                          id="download-button"
+                          className=" w-1/3 flex justify-end z-10 "
+                          href={`/${history}/${period}/${section}/${index}.pdf`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          download={`${card.name}.pdf`}
+                        >
+                          <div className="hover:bg-black/25 p-2 rounded-full">
+                            {/* <Image
+                        src="/downloads.png"
+                        alt="Download"
+                        width={20}
+                        height={20}
+                      /> */}
+                            <DownloadCloud />
+                          </div>
+                        </Link>
+                      </div>
+                    ))}
+                    {/* <DrawerTitle>Are you absolutely sure?</DrawerTitle>
+                  <DrawerDescription>
+                    This action cannot be undone.
+                  </DrawerDescription> */}
+                  </DrawerHeader>
+                  <DrawerFooter>
+                    <Button className="rounded-3xl py-5 bg-orange-500">
+                      ሁሉንም አውርድ
+                    </Button>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
+
+              <div className="w-full">
+                <Sample filename={pdfSource} />
+              </div>
             </div>
           </div>
         </div>
@@ -125,5 +278,53 @@ function PDFComponent() {
     </>
   );
 }
+
+const ShareButton = () => {
+  const router = useRouter();
+  const [copySuccess, setCopySuccess] = useState("");
+
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(currentUrl).then(
+      () => {
+        setCopySuccess("Link copied!");
+        setTimeout(() => setCopySuccess(""), 2000);
+      },
+      (err) => {
+        console.error("Failed to copy: ", err);
+      }
+    );
+  };
+
+  const shareLink = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: document.title,
+          text: "Check out this link:",
+          url: currentUrl,
+        });
+      } catch (err) {
+        console.error("Error sharing: ", err);
+      }
+    } else {
+      copyToClipboard();
+    }
+  };
+
+  return (
+    <button
+      className="bg-orange-500 text-white  py-2 px-4 rounded-full shadow-md flex items-center"
+      onClick={shareLink}
+    >
+      <Share2Icon />
+      {}
+    </button>
+    // {copySuccess && (
+    //   <span className="ml-4 text-green-500">{copySuccess}</span>
+    // )}
+  );
+};
 
 export default PDFComponent;

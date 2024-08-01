@@ -6,8 +6,10 @@ import type {
 } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useEffect, useRef } from "react";
+import PageScroller from "../Blocks/PageScroller";
 
 const TWEEN_FACTOR_BASE = 0.5;
 
@@ -31,7 +33,15 @@ type PropType = {
 
 const LandingSection: React.FC<PropType> = (props) => {
   const { options } = props;
+  const section1Ref = useRef(null);
+  // const section2Ref = useRef(null);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   const slides = [
     "/church-history/banner.jpg",
     "/church-history/modern/modern.jpg",
@@ -135,7 +145,7 @@ const LandingSection: React.FC<PropType> = (props) => {
 
   return (
     <div className="w-full h-screen ">
-      <div className=" w-full h-screen md:px-20 px-10 z-10 bg-black/50 absolute flex text-white items-center pb-20 justify-between">
+      <div className=" w-full h-screen lg:px-20 px-4 z-10 bg-black/50 absolute flex text-white items-center pb-20 justify-between">
         <div className="max-w-screen-2xl mx-auto w-full flex justify-between items-center">
           <div className=" ">
             <h1 className="md:text-7xl text-4xl w-1/2 mt-32 text-white">
@@ -151,8 +161,9 @@ const LandingSection: React.FC<PropType> = (props) => {
               </Link>
             </div>
           </div>
-          <div className="lg:flex hidden ">
-            <p style={{ writingMode: "vertical-lr" }}>Scroll to see more</p>
+          <div className="lg:flex lg:flex-col lg:justify-center gap-4 hidden bg-red-500  items-center" onClick={()=>scrollToSection("histories")}>
+            {/* <p style={{ writingMode: "vertical-lr" }}>Scroll to see more</p> */}
+            <PageScroller direction="down" next="histories" />
           </div>
         </div>
       </div>
@@ -164,9 +175,11 @@ const LandingSection: React.FC<PropType> = (props) => {
               <div className="embla__slide w-screen" key={index}>
                 <div className="embla__parallax w-full">
                   <div className="embla__parallax__layer w-full">
-                    <img
+                    <Image
                       className="embla__slide__img embla__parallax__img w-full"
                       src={v}
+                      width={1200}
+                      height={1200}
                       alt="Your alt text"
                     />
                   </div>

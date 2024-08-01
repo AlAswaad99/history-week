@@ -43,8 +43,8 @@ export default function HistoriesSection({ slides }: { slides: any[] }) {
     }
   };
   return (
-    <div className="w-full max-w-screen-xl 2xl:max-w-screen-2xl mx-auto md:mt-24 mt-10 md:px-20 xl:px-0 px-10 mb-10 ">
-      <div className="flex justify-between items-end mb-4">
+    <div className="w-full max-w-screen-xl 2xl:max-w-screen-2xl mx-auto md:mt-24 mt-10 lg:px-20 px-4 xl:px-0 mb-10 " id="histories">
+      <div className="flex justify-between md:pl-0 pl-2 items-end mb-4">
         <div className="w-full">
           <p className="text-xl">Histories</p>
           <h1 className="md:text-5xl text-2xl  md:mt-4 mt-2 text-black">
@@ -71,7 +71,7 @@ export default function HistoriesSection({ slides }: { slides: any[] }) {
       <AnimatePresence mode="popLayout">
         <div
           ref={scrollRef}
-          className="flex md:flex-nowrap flex-wrap gap-4 overflow-x-scroll pb-6 scrollbar-hide"
+          className="flex md:flex-nowrap md:justify-start justify-center flex-wrap gap-4 overflow-x-scroll pb-6 scrollbar-hide"
         >
           {slides.map((v, index) => (
             <HistoryCard

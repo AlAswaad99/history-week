@@ -12,28 +12,33 @@ export default function HistoryDetailComponent({ history }: { history: any }) {
   }, []);
 
   return (
-    <motion.div layoutId={`card-${history.url}`} className="bg-white rounded-3xl py-20 px-10 lg:mt-32 lg:pt-20 pt-32 ">
-      <div className="flex lg:flex-row flex-col">
-        <div className="rounded-3xl">
-          <Image
-            src={history.thumbnail}
-            alt={history.name}
-            width={1200}
-            height={1200}
-            className="w-full rounded-3xl"
-          />
-        </div>
-        <div className="px-6 my-6">
-          <div className="font-bold text-4xl">{history.name}</div>
-          <div className="text-sm mt-2">
-            <span className="font-yanon font-semibold">{history.date}</span>
+    <>
+      {history && <motion.div
+        layoutId={`card-${history.url}`}
+        className=" "
+      >
+        <div className="flex lg:flex-row flex-col">
+          <div className="rounded-3xl">
+            <Image
+              src={history.thumbnail}
+              alt={history.name}
+              width={1200}
+              height={1200}
+              className="w-full rounded-3xl"
+            />
           </div>
-          <p className="text-gray-700 text-base mt-4 font-droid">
-            {history.description}
-          </p>
+          <div className="lg:px-6 px-2 my-6">
+            <div className="font-bold text-4xl">{history.name}</div>
+            <div className="text-sm mt-2">
+              <span className="font-yanon font-semibold">{history.date}</span>
+            </div>
+            <p className="text-gray-700 text-base mt-4 font-droid">
+              {history.description}
+            </p>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>}
+    </>
   );
 }
 

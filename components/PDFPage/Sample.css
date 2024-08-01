@@ -37,7 +37,7 @@ canvas{
 }
 
 .Example__container__load {
-  margin-top: 1em;
+  /* margin-top: 1em; */
   color: white;
 }
 

@@ -1,10 +1,18 @@
 "use client";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Home } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import jsonData from "../../public/data.json";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "../ui/breadcrumb";
 
 const PeriodComponent = () => {
   const { history, period } = useParams<{ history: string; period: string }>();
@@ -55,24 +63,44 @@ const PeriodComponent = () => {
   return (
     <>
       {periodInfo && periodEvents && (
-        <div className="flex flex-col mx-auto items-center w-full mt-32 justify-center py-8 lg:pt-0">
-          <div className="w-full p-4 ">
-            <h2 className="text-4xl font-semibold mb-4 font-sans">
+        <div className="flex flex-col mx-auto items-center w-full md:px-0 px-4 mt-28 justify-center pb-16 lg:pt-0">
+          <div className="w-full ">
+            <Breadcrumb className="w-full flex justify-start mb-0 md:mb-8">
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink href="/">
+                    <Home />
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink href={`/${history}`}>
+                    {currentHistory?.name}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage> {periodInfo.title}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+            <h2 className="md:mb-1 md:mt-0 mt-4 font-sans">{currentHistory?.name}</h2>
+            <h2 className="text-4xl font-semibold mb-2 font-sans">
               {periodInfo.title}
             </h2>
-            <p className="text-gray-600 mb-4 md:text-lg font-droid">
+            <p className="text-gray-600 mb-4 md:text-lg font-droid text-justify">
               {periodInfo.desc}
             </p>
           </div>
           {mainImage && (
-            <div className="w-full p-4">
+            <div className="w-full">
               <Image
                 src={`/${history}/${mainImage}`}
                 alt="Main"
-                width={800}
-                height={600}
+                width={1800}
+                height={1600}
                 className="w-full h-full rounded-3xl object-cover mb-4 cursor-pointer"
-                onClick={() => openFullscreen(mainImage)}
+                onClick={() => openFullscreen(`/${history}/${mainImage}`)}
               />
               <div className="flex justify-start w-full">
                 {periodInfo.images.map((image: string, index: number) => (
@@ -83,7 +111,7 @@ const PeriodComponent = () => {
                       alt={`Thumbnail ${index + 1}`}
                       width={264}
                       height={264}
-                      className=" gap-10 rounded-2xl   object-fill h-full w-full  cursor-pointer"
+                      className=" gap-10 rounded-2xl object-fill h-full w-full  cursor-pointer"
                       onClick={() => handleImageClick(image)}
                     />
                   </div>
@@ -97,7 +125,7 @@ const PeriodComponent = () => {
                 key={zindex}
                 href={`/${history}/${period}/${card.folderName}/0`}
               >
-                <div className="mx-4 bg-white cursor-pointer rounded-3xl shadow-md transition duration-300 transform hover:shadow-lg hover:scale-105 flex flex-col justify-between">
+                <div className="bg-white cursor-pointer rounded-3xl shadow-md transition duration-300 transform hover:shadow-lg hover:scale-105 flex flex-col justify-between hover:bg-orange-100">
                   <div>
                     <div className="flex items-center justify-between p-6">
                       <h2 className="text-2xl font-semibold font-Nokia">
@@ -131,17 +159,20 @@ const FullscreenImage = ({
 }) => {
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-90 flex items-center justify-center z-50"
+      className="fixed top-0 left-0 w-screen h-full bg-black bg-opacity-90 flex items-center justify-center z-50"
       onClick={onClose}
     >
-      <Image
-        src={`/${imageUrl}`}
-        alt="Fullscreen"
-        width={800}
-        height={600}
-        className="max-w-full max-h-full z-100 cursor-pointer"
-        onClick={() => {}}
-      />
+      <div className="md:w-3/4 w-full">
+        <Image
+          src={`${imageUrl}`}
+          alt="Fullscreen"
+          width={1800}
+          height={1600}
+          className="w-full z-100 cursor-pointer"
+          onClick={() => {}}
+        />
+      </div>
+
       <button
         className="absolute top-4 right-4 text-lg text-white"
         onClick={onClose}
