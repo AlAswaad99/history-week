@@ -17,6 +17,16 @@ const nextConfig = {
       },
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/1080/**',
+      },
+    ],
+  },
   /**
    * Critical: prevents ''import', and 'export' cannot be used outside of module code" error
    * See https://github.com/vercel/next.js/pull/66817

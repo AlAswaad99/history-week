@@ -43,48 +43,53 @@ export default function HistoriesSection({ slides }: { slides: any[] }) {
     }
   };
   return (
-    <div className="w-full max-w-screen-xl 2xl:max-w-screen-2xl mx-auto md:mt-24 mt-10 lg:px-20 px-4 xl:px-0 mb-10 " id="histories">
-      <div className="flex justify-between md:pl-0 pl-2 items-end mb-4">
-        <div className="w-full">
-          <p className="text-xl">Histories</p>
-          <h1 className="md:text-5xl text-2xl  md:mt-4 mt-2 text-black">
-            ካጅድፍ ክስድጅፍ
-          </h1>
-        </div>{" "}
-        <div className="lg:flex w-full justify-end hidden gap-3">
-          <button
-            type="button"
-            onClick={scrollLeft}
-            className="p-4 rounded-full border-2 border-orange-500 bg-transparent"
-          >
-            {<ChevronLeftIcon size={25} className=" text-orange-500" />}
-          </button>
-          <button
-            type="button"
-            onClick={scrollLeft}
-            className="p-4 rounded-full bg-orange-500"
-          >
-            {<ChevronRightIcon size={25} className=" text-white" />}
-          </button>
+    <div
+      className="w-full mx-auto md:py-24 py-10 lg:px-20 px-4 xl:px-0 mb-10 "
+      id="histories"
+    >
+      <div className="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto">
+        <div className="flex justify-between md:pl-0 pl-2 items-end mb-4">
+          <div className="w-full">
+            <p className="text-xl">Histories</p>
+            <h1 className="md:text-5xl text-2xl  md:mt-4 mt-2 text-black">
+              ካጅድፍ ክስድጅፍ
+            </h1>
+          </div>{" "}
+          <div className="lg:flex w-full justify-end hidden gap-3">
+            <button
+              type="button"
+              onClick={scrollLeft}
+              className="p-4 rounded-full border-2 border-[#1e1b47] bg-transparent"
+            >
+              {<ChevronLeftIcon size={25} className=" text-[#1e1b47]" />}
+            </button>
+            <button
+              type="button"
+              onClick={scrollLeft}
+              className="p-4 rounded-full bg-[#1e1b47]"
+            >
+              {<ChevronRightIcon size={25} className=" text-white" />}
+            </button>
+          </div>
         </div>
+        <AnimatePresence mode="popLayout">
+          <div
+            ref={scrollRef}
+            className="flex md:flex-nowrap md:justify-start justify-center flex-wrap gap-4 overflow-x-scroll pb-6 scrollbar-hide"
+          >
+            {slides.map((v, index) => (
+              <HistoryCard
+                key={index}
+                img={v.thumbnail}
+                description={v.description}
+                title={v.name}
+                url={v.url}
+                date={v.date}
+              />
+            ))}
+          </div>
+        </AnimatePresence>
       </div>
-      <AnimatePresence mode="popLayout">
-        <div
-          ref={scrollRef}
-          className="flex md:flex-nowrap md:justify-start justify-center flex-wrap gap-4 overflow-x-scroll pb-6 scrollbar-hide"
-        >
-          {slides.map((v, index) => (
-            <HistoryCard
-              key={index}
-              img={v.thumbnail}
-              description={v.description}
-              title={v.name}
-              url={v.url}
-              date={v.date}
-            />
-          ))}
-        </div>
-      </AnimatePresence>
     </div>
   );
 }

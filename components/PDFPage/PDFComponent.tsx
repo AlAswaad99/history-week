@@ -1,5 +1,11 @@
 "use client";
-import { ChevronDownIcon, DownloadCloud, ListCollapse, Share2Icon } from "lucide-react";
+import {
+  ChevronDownIcon,
+  DownloadCloud,
+  Home,
+  ListCollapse,
+  Share2Icon,
+} from "lucide-react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -10,6 +16,7 @@ import {
   DrawerHeader,
   DrawerTrigger,
 } from "../../components/ui/drawer";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 import jsonData from "../../public/data.json";
 import {
   Breadcrumb,
@@ -51,6 +58,7 @@ function PDFComponent() {
   const [currentIndex, setCurrentIndex] = useState(Number.parseInt(id));
   const [pdfSource, setPDFSource] = useState<string>("");
   const folderName = period?.replace("/", "");
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
     if (period && section) {
@@ -98,16 +106,23 @@ function PDFComponent() {
     <>
       {periodInfo && periodEvent && periodEventsPDFs && (
         <div className="w-full mt-28">
-          <Breadcrumb className="w-full flex justify-start md:mb-8">
+          <Breadcrumb className="w-full flex justify-start md:mb-8 pl-4 md:pl-0">
             <BreadcrumbList>
               <BreadcrumbItem className="sm:flex hidden">
-                <BreadcrumbEllipsis />
+                {/* <BreadcrumbEllipsis /> */}
+                {isDesktop && (
+                  <BreadcrumbLink href="/">
+                    <Home />
+                  </BreadcrumbLink>
+                )}
+                {!isDesktop && <BreadcrumbEllipsis />}
               </BreadcrumbItem>
               <BreadcrumbSeparator className="sm:flex hidden" />
               <BreadcrumbItem>
                 <BreadcrumbLink href={`/${history}`}>
                   {/* {currentHistory?.name} */}
-                  <BreadcrumbEllipsis />
+                  {isDesktop && currentHistory?.name}
+                  {!isDesktop && <BreadcrumbEllipsis />}
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -150,7 +165,7 @@ function PDFComponent() {
                     key={index}
                     className={`p-4 px-8 cursor-pointer flex justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
                       index === currentIndex
-                        ? "bg-orange-100 hover:bg-orange-100"
+                        ? "bg-[#1e1b47]/20 hover:bg-[#1e1b47]/20"
                         : "hover:bg-gray-200"
                     }`}
                     onClick={() => {
@@ -186,12 +201,12 @@ function PDFComponent() {
                 ))}
               </div>
               <Drawer>
-                <div className="xl:hidden fixed flex justify-end bottom-0 right-0 z-50 w-full p-4 gap-x-2">
-                  <div className="flex justify-start w-full gap-1">
+                <div className="xl:hidden fixed flex justify-between bottom-16 right-0 z-50 w-full px-4 ">
+                  <div className="flex justify-start w-full gap-1 ">
                     <ShareButton />
                     <Link
                       id="download-button"
-                      className=" z-10 p-2 bg-orange-500 text-white  rounded-full "
+                      className=" z-10 p-2 bg-[#1e1b47] text-white  rounded-full "
                       href={`/${history}/${period}/${section}/${id}.pdf`}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -209,7 +224,7 @@ function PDFComponent() {
                     </Link>
                   </div>
 
-                  <DrawerTrigger className="py-2 px-10 flex items-center gap-x-1 bg-orange-500 text-white rounded-full">
+                  <DrawerTrigger className="py-2 px-10 flex items-center gap-x-1 bg-[#1e1b47] text-white rounded-full">
                     <ListCollapse />
                     ማውጫ
                   </DrawerTrigger>
@@ -221,7 +236,7 @@ function PDFComponent() {
                         key={index}
                         className={`p-4 px-8 cursor-pointer flex justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
                           index === currentIndex
-                            ? "bg-orange-100 hover:bg-orange-100"
+                            ? "bg-[#1e1b47]/20 hover:bg-[#1e1b47]/20"
                             : "hover:bg-gray-200"
                         }`}
                         onClick={() => {
@@ -261,7 +276,7 @@ function PDFComponent() {
                   </DrawerDescription> */}
                   </DrawerHeader>
                   <DrawerFooter>
-                    <Button className="rounded-3xl py-5 bg-orange-500">
+                    <Button className="rounded-3xl py-5 bg-[#1e1b47]">
                       ሁሉንም አውርድ
                     </Button>
                   </DrawerFooter>
@@ -315,7 +330,7 @@ const ShareButton = () => {
 
   return (
     <button
-      className="bg-orange-500 text-white  py-2 px-4 rounded-full shadow-md flex items-center"
+      className="bg-[#1e1b47] text-white  py-2 px-4 rounded-full shadow-md flex items-center"
       onClick={shareLink}
     >
       <Share2Icon />

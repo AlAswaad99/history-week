@@ -125,7 +125,7 @@ const PeriodComponent = () => {
                 key={zindex}
                 href={`/${history}/${period}/${card.folderName}/0`}
               >
-                <div className="bg-white cursor-pointer rounded-3xl shadow-md transition duration-300 transform hover:shadow-lg hover:scale-105 flex flex-col justify-between hover:bg-orange-100">
+                <div className="bg-white cursor-pointer rounded-3xl shadow-md transition duration-300 transform hover:shadow-lg hover:scale-105 flex flex-col justify-between hover:bg-[#1e1b47]/20">
                   <div>
                     <div className="flex items-center justify-between p-6">
                       <h2 className="text-2xl font-semibold font-Nokia">

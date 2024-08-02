@@ -1,4 +1,5 @@
 import type { EmblaOptionsType } from "embla-carousel";
+import GalleriesSection from "../components/LandingPage/GalleriesSection";
 import HistoriesSection from "../components/LandingPage/HistoriesSection";
 import LandingSection from "../components/LandingPage/LandingSection";
 import jsonData from '../public/data.json';
@@ -17,6 +18,7 @@ export default function Page() {
     <div className="">
       <LandingSection slides={SLIDES} options={OPTIONS} />
       <HistoriesSection slides={slides}/>
+      <GalleriesSection slides={slides}/>
     </div>
   );
 }

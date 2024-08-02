@@ -7,7 +7,6 @@ import type {
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useCallback, useEffect, useRef } from "react";
 import PageScroller from "../Blocks/PageScroller";
 
@@ -39,7 +38,9 @@ const LandingSection: React.FC<PropType> = (props) => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const yOffset = -80; // Your offset value
+      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
   const slides = [
@@ -148,20 +149,24 @@ const LandingSection: React.FC<PropType> = (props) => {
       <div className=" w-full h-screen lg:px-20 px-4 z-10 bg-black/50 absolute flex text-white items-center pb-20 justify-between">
         <div className="max-w-screen-2xl mx-auto w-full flex justify-between items-center">
           <div className=" ">
-            <h1 className="md:text-7xl text-4xl w-1/2 mt-32 text-white">
+            <h1 className="md:text-7xl text-4xl w-1/2  text-white">
               ካጅድፍ ካስድጅህፍካስ ድጅፍህ ክስድጅፍ
             </h1>
             <h1 className="mt-8 font-extralight font-nokia_light text-white">
               አልስዲጅፍህ አስድፍሃልድስክጅፍ ሃልስክድጅፍህ አድስክጅፍ ሃልድስክጅፍ ሃልስድክጅፍሃስድክጅፍሃ
               ስድክጅፍሃልድስክጅፍህ
             </h1>
-            <div className="lg:w-1/5 w-1/2 mt-8 py-2 rounded-3xl text-center bg-orange-500">
+            {/* <div className="lg:w-1/5 w-1/2 mt-8 py-2 rounded-3xl text-center bg-[#1e1b47]">
               <Link href={"/"} className=" ">
                 <p>Start</p>
               </Link>
-            </div>
+            </div> */}
           </div>
-          <div className="lg:flex lg:flex-col lg:justify-center gap-4 hidden bg-red-500  items-center" onClick={()=>scrollToSection("histories")}>
+          <div className="lg:flex lg:flex-col lg:justify-center gap-4 hidden  items-center" onClick={()=>scrollToSection("histories")}>
+            {/* <p style={{ writingMode: "vertical-lr" }}>Scroll to see more</p> */}
+            <PageScroller direction="down" next="histories" />
+          </div>
+          <div className="lg:hidden flex justify-center gap-4 absolute bottom-0 left-0 right-0 mb-10  items-center" onClick={()=>scrollToSection("histories")}>
             {/* <p style={{ writingMode: "vertical-lr" }}>Scroll to see more</p> */}
             <PageScroller direction="down" next="histories" />
           </div>
