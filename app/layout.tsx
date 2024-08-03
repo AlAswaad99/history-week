@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import Footer from "../components/Blocks/Footer";
 import Navbar from "../components/Blocks/Navbar";
+import { Toaster } from "../components/ui/sonner";
 import "./globals.css";
 
 // const nokiaBold = localFont({ src: "../public/fonts/NokiaBOLD.ttf", variable:"--font-nokia-bold" });
@@ -61,6 +62,8 @@ export default function RootLayout({
         className={`${nokiaBold.variable} ${nokiaLight.variable} ${droid.variable} ${yanon.variable} ${klavika.variable} font-sans`}
       >
         <Navbar />
+        <Toaster />
+
         {children}
         <Footer />
       </body>

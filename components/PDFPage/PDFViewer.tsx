@@ -75,7 +75,7 @@ export default function Sample({ filename }: { filename: string }) {
             file={file}
             onLoadSuccess={onDocumentLoadSuccess}
             options={options}
-            className="flex flex-col justify-center items-center"
+            className="flex flex-col justify-center items-center min-h-screen"
           >
             {Array.from(new Array(numPages), (el, index) => (
               <Page

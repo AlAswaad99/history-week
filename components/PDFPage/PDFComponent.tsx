@@ -9,6 +9,7 @@ import {
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import {
   Drawer,
   DrawerContent,
@@ -58,6 +59,7 @@ function PDFComponent() {
   const [currentIndex, setCurrentIndex] = useState(Number.parseInt(id));
   const [pdfSource, setPDFSource] = useState<string>("");
   const folderName = period?.replace("/", "");
+  const [isloading, setisLoading] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
@@ -100,6 +102,7 @@ function PDFComponent() {
   }, [period, section, id]);
 
   const handleDownloadAll = async (directory: string) => {
+    setisLoading(true);
     const response = await fetch(
       `/api/download-all?dir=${encodeURIComponent(directory)}`
     );
@@ -112,8 +115,14 @@ function PDFComponent() {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+      toast.success("Download Finished");
+
+      setisLoading(false);
     } else {
       console.error("Failed to download files");
+      toast.error("Failed to download files");
+
+      setisLoading(false);
     }
   };
 
@@ -125,7 +134,7 @@ function PDFComponent() {
       {periodInfo && periodEvent && periodEventsPDFs && (
         <div className="w-full mt-28">
           <Breadcrumb className="w-full flex justify-start md:mb-8 pl-4 md:pl-0">
-            <BreadcrumbList>
+            <BreadcrumbList className="w-full">
               <BreadcrumbItem className="sm:flex hidden">
                 {/* <BreadcrumbEllipsis /> */}
                 {isDesktop && (
@@ -301,17 +310,18 @@ function PDFComponent() {
                   <DrawerFooter>
                     <Button
                       className="rounded-3xl py-5 bg-[#1e1b47]"
+                      disabled={isloading}
                       onClick={() => {
                         handleDownloadAll(`/${history}/${period}/${section}`);
                       }}
                     >
-                      ሁሉንም አውርድ
+                      ሁሉንም አውርድ {isloading ? "..." : ""}
                     </Button>
                   </DrawerFooter>
                 </DrawerContent>
               </Drawer>
 
-              <div className="w-full">
+              <div className="w-full  -mt-10 md:-mt-0">
                 <Sample filename={pdfSource} />
               </div>
             </div>
