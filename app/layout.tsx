@@ -47,6 +47,46 @@ const klavika = localFont({
   src: "../public/fonts/klavika-regular.ttf",
 });
 
+const habeshaDistort = localFont({
+  variable: "--font-habesha-distort",
+  src: "../public/fonts/habesha-serif-distort.ttf",
+});
+
+const habeshaBlack = localFont({
+  variable: "--font-habesha-black",
+  src: "../public/fonts/habesha-serif-black.ttf",
+});
+
+const habeshaBold = localFont({
+  variable: "--font-habesha-bold",
+  src: "../public/fonts/habesha-serif-bold.ttf",
+});
+
+const habeshalight = localFont({
+  variable: "--font-habesha-light",
+  src: "../public/fonts/habesha-serif-light.ttf",
+});
+
+const habeshaOutline = localFont({
+  variable: "--font-habesha-outline",
+  src: "../public/fonts/habesha-serif-outline.ttf",
+});
+
+const habeshaRegular = localFont({
+  variable: "--font-habesha-regular",
+  src: "../public/fonts/habesha-serif-regular.ttf",
+});
+
+const habeshaThin = localFont({
+  variable: "--font-habesha-thin",
+  src: "../public/fonts/habesha-serif-thin.ttf",
+});
+
+const habeshaTypewriter = localFont({
+  variable: "--font-habesha-typewriter",
+  src: "../public/fonts/habesha-serif-typewriter.ttf",
+});
+
 export const metadata = {
   title: "History Week",
 };
@@ -59,7 +99,7 @@ export default function RootLayout({
   return (
     <html lang="en-US">
       <body
-        className={`${nokiaBold.variable} ${nokiaLight.variable} ${droid.variable} ${yanon.variable} ${klavika.variable} font-sans`}
+        className={`${nokiaBold.variable} ${nokiaLight.variable} ${droid.variable} ${yanon.variable} ${klavika.variable} ${habeshaDistort.variable} ${habeshaBlack.variable} ${habeshaBold.variable} ${habeshalight.variable} ${habeshaOutline.variable} ${habeshaRegular.variable} ${habeshaThin.variable} ${habeshaTypewriter.variable} font-sans`}
       >
         <Navbar />
         <Toaster />

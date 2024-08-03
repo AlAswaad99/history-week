@@ -40,7 +40,7 @@ const LandingSection: React.FC<PropType> = (props) => {
     if (element) {
       const yOffset = -80; // Your offset value
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
   const slides = [
@@ -146,15 +146,19 @@ const LandingSection: React.FC<PropType> = (props) => {
 
   return (
     <div className="w-full h-screen ">
-      <div className=" w-full h-screen lg:px-20 px-4 z-10 bg-black/50 absolute flex text-white items-center pb-20 justify-between">
-        <div className="max-w-screen-2xl mx-auto w-full flex justify-between items-center">
-          <div className=" ">
-            <h1 className="md:text-7xl text-4xl w-1/2  text-white">
-              ካጅድፍ ካስድጅህፍካስ ድጅፍህ ክስድጅፍ
+      <div className=" w-full h-screen lg:px-20 px-4 z-10 bg-black/50 rounded-b-3xl absolute flex text-white items-center pb-20 justify-between">
+        <div className="max-w-screen-2xl mx-auto w-full flex justify-between items-end h-full">
+          <div className="mb-20">
+            <h1 className="lg:text-[20rem] text-9xl font-habesha-bold text-white">
+              ታሪክ
             </h1>
-            <h1 className="mt-8 font-extralight font-nokia_light text-white">
-              አልስዲጅፍህ አስድፍሃልድስክጅፍ ሃልስክድጅፍህ አድስክጅፍ ሃልድስክጅፍ ሃልስድክጅፍሃስድክጅፍሃ
-              ስድክጅፍሃልድስክጅፍህ
+            <h2 className="lg:text-8xl text-5xl font-habesha-regular  mb-16 m-0 p-0">
+              የእግዚአብሔር <br className="lg:hidden block" /> እጅ ፅሑፍ
+            </h2>
+            <h1 className="mt-4 md:w-2/3 md:text-lg text-sm font-extralight font-droid text-white opacity-60">
+              "የዱሮውን ዘመን አስብ፥ የብዙ ትውልድንም ዓመታት አስተውል፤ አባትህን ጠይቅ፥ ያስታውቅህማል፤
+              ሽማግሌዎችህን ጠይቅ፥ ይነግሩህማል።" <br className="lg:hidden block" />-{" "}
+              <span className="font-bold">ዘዳግም 32:7</span>
             </h1>
             {/* <div className="lg:w-1/5 w-1/2 mt-8 py-2 rounded-3xl text-center bg-[#1e1b47]">
               <Link href={"/"} className=" ">
@@ -162,18 +166,18 @@ const LandingSection: React.FC<PropType> = (props) => {
               </Link>
             </div> */}
           </div>
-          <div className="lg:flex lg:flex-col lg:justify-center gap-4 hidden  items-center" onClick={()=>scrollToSection("histories")}>
-            {/* <p style={{ writingMode: "vertical-lr" }}>Scroll to see more</p> */}
-            <PageScroller direction="down" next="histories" />
-          </div>
-          <div className="lg:hidden flex justify-center gap-4 absolute bottom-0 left-0 right-0 mb-10  items-center" onClick={()=>scrollToSection("histories")}>
+          
+          <div
+            className="flex justify-center gap-4 absolute bottom-0 left-0 right-0 mb-10  items-center"
+            onClick={() => scrollToSection("histories")}
+          >
             {/* <p style={{ writingMode: "vertical-lr" }}>Scroll to see more</p> */}
             <PageScroller direction="down" next="histories" />
           </div>
         </div>
       </div>
 
-      <div className="embla">
+      <div className="embla rounded-3xl">
         <div className="embla__viewport " ref={emblaRef}>
           <div className="embla__container h-screen ">
             {slides.map((v, index) => (

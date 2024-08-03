@@ -31,6 +31,16 @@ export const theme = {
       droid: ['var(--font-droid)'],
       yanon: ['var(--font-yanon)'],
       klavika: ['var(--font-klavika)'],
+      'habesha-distort': ['var(--font-habesha-distort)'],
+      'habesha-black': ['var(--font-habesha-black)'],
+      'habesha-bold': ['var(--font-habesha-bold)'],
+      'habesha-light': ['var(--font-habesha-light)'],
+      'habesha-outline': ['var(--font-habesha-outline)'],
+      'habesha-regular': ['var(--font-habesha-regular)'],
+      'habesha-thin': ['var(--font-habesha-thin)'],
+      'habesha-typewriter': ['var(--font-habesha-typewriter)'],
+
+
     },
     keyframes: {
       "accordion-down": {

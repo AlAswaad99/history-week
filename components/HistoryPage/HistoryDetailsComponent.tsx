@@ -48,7 +48,7 @@ export default function HistoryDetailComponent({
                   href={`/${url}/${history.histories[0].folderName}`}
                   className=" "
                 >
-                  <p>Start</p>
+                  <p>ይጎብኙ</p>
                 </Link>
               </div>
             </div>

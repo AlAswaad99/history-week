@@ -17,7 +17,7 @@ import Link from "next/link";
 
 const GalleriesComponent = ({ slides }: { slides: any[] }) => {
   return (
-    <div className="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto text-center rounded-3xl pb-10 mt-28">
+    <div className="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto text-center rounded-3xl px-4 lg:px-0 pb-10 mt-28">
       <div className="w-full ">
         {/* <div className="w-full ">
           <p className="text-xl">Histories</p>
@@ -44,7 +44,7 @@ const GalleriesComponent = ({ slides }: { slides: any[] }) => {
                 <div className="absolute inset-0 bg-black opacity-50 group-hover:opacity-60 duration-500"></div>
                 <div className="absolute bottom-8 left-8 text-start lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
                   <h3 className="text-xl lg:text-2xl font-semibold">{journey.name}</h3>
-                  <p className="text-sm lg:text-lg">{journey.date}</p>
+                  <p className="text-sm lg:text-lg">ፎቶዎች</p>
                 </div>
                 <div className="absolute bottom-8 right-8 lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
                   <button

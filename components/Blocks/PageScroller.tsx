@@ -39,18 +39,18 @@ const PageScroller = ({ next, direction }: { next: string; direction: string;}) 
         //   </div>
         // </a>
         <div className="h-16 cursor-pointer">
-          <div className="w-7 z-50 h-20 rounded-3xl border-2 border-secondary flex justify-center items-center p-2">
+          <div className="w-7 z-50 h-16 rounded-3xl border-2 border-secondary flex justify-center items-center p-2">
             <motion.div
               animate={{
-                y: [0, 31, 0],
+                y: [0, 35, 0],
               }}
               transition={{
-                duration: 1.3,
+                duration: 1.7,
                 repeat: Infinity,
                 repeatType: "loop",
-                ease: [0.17, 0.67, 0.83, 0.67],
+                ease: "easeInOut",
               }}
-              className={`w-2 h-2 rounded-full bg-white `}
+              className={`w-3 h-3 -mt-8 rounded-full bg-white `}
             />
           </div>
         </div>

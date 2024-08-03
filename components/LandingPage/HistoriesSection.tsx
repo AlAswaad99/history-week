@@ -50,9 +50,9 @@ export default function HistoriesSection({ slides }: { slides: any[] }) {
       <div className="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto">
         <div className="flex justify-between md:pl-0 pl-2 items-end mb-4">
           <div className="w-full">
-            <p className="text-xl">Histories</p>
-            <h1 className="md:text-5xl text-2xl  md:mt-4 mt-2 text-black">
-              ካጅድፍ ክስድጅፍ
+            {/* <p className="text-xl">Histories</p> */}
+            <h1 className="md:text-5xl text-2xl font-habesha-bold  md:mt-4 mt-2 text-black">
+            የታሪክ ሙዚየሞች
             </h1>
           </div>{" "}
           <div className="lg:flex w-full justify-end hidden gap-3">

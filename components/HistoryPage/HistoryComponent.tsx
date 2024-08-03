@@ -77,7 +77,7 @@ export default function HistoryComponent({ history }: { history: string }) {
         <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-60 duration-500"></div>
         <div className="absolute bottom-8 left-8 text-start lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
           <h3 className="text-xl lg:text-2xl font-semibold">{currentHistory!.name}</h3>
-          <p className="text-sm lg:text-lg">{currentHistory!.date}</p>
+          <p className="text-sm lg:text-lg">ፎቶዎች</p>
         </div>
         <div className="absolute bottom-8 right-8 lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
           <button
