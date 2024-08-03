@@ -47,7 +47,7 @@ const klavika = localFont({
 });
 
 export const metadata = {
-  title: "react-pdf sample page",
+  title: "History Week",
 };
 
 export default function RootLayout({
