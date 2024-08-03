@@ -69,8 +69,8 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export const config = {
-  api: {
-    bodyParser: false, // Disabling body parsing as it's not required
-  },
-};
+// export const config = {
+//   api: {
+//     bodyParser: false, // Disabling body parsing as it's not required
+//   },
+// };
