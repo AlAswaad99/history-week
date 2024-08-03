@@ -44,7 +44,11 @@ const PeriodComponent = () => {
 
       setPeriodInfo(tempPeriod);
       setPeriodEvents(tempPeriod.subFolders);
-      setMainImage(`${folderName}/${tempPeriod.images[0]}`);
+      setMainImage(
+        tempPeriod.images.length > 0
+          ? `${folderName}/${tempPeriod.images[0]}`
+          : ""
+      );
     }
   }, [period, router]);
 
@@ -84,7 +88,9 @@ const PeriodComponent = () => {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
-            <h2 className="md:mb-1 md:mt-0 mt-4 font-sans">{currentHistory?.name}</h2>
+            <h2 className="md:mb-1 md:mt-0 mt-4 font-sans">
+              {currentHistory?.name}
+            </h2>
             <h2 className="text-4xl font-semibold mb-2 font-sans">
               {periodInfo.title}
             </h2>

@@ -61,7 +61,7 @@ export default function Sample({ filename }: { filename: string }) {
   }
 
   return (
-    <div className="Example">
+    <div className="Example pb-16">
       {/* <header>
         <h1>react-pdf sample page</h1>
       </header> */}

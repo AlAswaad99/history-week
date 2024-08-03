@@ -99,6 +99,24 @@ function PDFComponent() {
     }
   }, [period, section, id]);
 
+  const handleDownloadAll = async (directory: string) => {
+    const response = await fetch(
+      `/api/download-all?dir=${encodeURIComponent(directory)}`
+    );
+    if (response.ok) {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = section + ".zip";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } else {
+      console.error("Failed to download files");
+    }
+  };
+
   console.log("periodInfo", periodInfo);
   console.log("periodEvent", periodEvent);
   console.log("periodEventsPDFss", periodEventsPDFs);
@@ -135,7 +153,7 @@ function PDFComponent() {
               <BreadcrumbItem>
                 {/* <BreadcrumbPage>{periodEventsPDFs[id].name}</BreadcrumbPage> */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center gap-1 text-[#1e1b47]">
+                  <DropdownMenuTrigger className="flex items-center gap-1 text-ellipsis text-[#1e1b47]">
                     {periodEventsPDFs[id].name}
                     <ChevronDownIcon />
                   </DropdownMenuTrigger>
@@ -148,6 +166,11 @@ function PDFComponent() {
                             `/${history}/${period}/${section}/${index}`
                           );
                         }}
+                        className={
+                          card.name === periodEventsPDFs[id].name
+                            ? "text-[#1e1b47]"
+                            : ""
+                        }
                       >
                         {card.name}
                       </DropdownMenuItem>
@@ -157,8 +180,8 @@ function PDFComponent() {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          <div className="flex min-h-screen flex-col xl:flex-row w-full mx-auto pb-20 ">
-            <div className="flex flex-col xl:flex-row w-full h-full xl:pt-0 ">
+          <div className="flex min-h-screen flex-col xl:flex-row w-full mx-auto  ">
+            <div className="flex flex-col xl:flex-row w-full h-full xl:pt-0">
               <div className=" min-w-96 text-ellipsis xl:block xl:static hidden xl:mr-4 p-4 xl:overflow-x-visible overflow-x-auto rounded-3xl bg-white items-stretch h-1/2">
                 {periodEventsPDFs.map((card: any, index: number) => (
                   <div
@@ -201,7 +224,7 @@ function PDFComponent() {
                 ))}
               </div>
               <Drawer>
-                <div className="xl:hidden sticky flex justify-between bottom-16 right-0 top-20 z-50 w-full px-4 ">
+                <div className="xl:hidden sticky flex justify-between bottom-10 right-0 top-[calc(100vh-4rem)] z-50 w-full px-4 mb-2">
                   <div className="flex justify-start w-full gap-1 ">
                     <ShareButton />
                     <Link
@@ -234,7 +257,7 @@ function PDFComponent() {
                     {periodEventsPDFs.map((card: any, index: number) => (
                       <div
                         key={index}
-                        className={`p-4 px-8 cursor-pointer flex justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
+                        className={`p-4 px-8 cursor-pointer text-start flex flex-1 justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
                           index === currentIndex
                             ? "bg-[#1e1b47]/20 hover:bg-[#1e1b47]/20"
                             : "hover:bg-gray-200"
@@ -249,10 +272,10 @@ function PDFComponent() {
                           );
                         }}
                       >
-                        <div className="font-sans">{card.name}</div>
+                        <div className="font-sans w-full ">{card.name}</div>
                         <Link
                           id="download-button"
-                          className=" w-1/3 flex justify-end z-10 "
+                          className=" flex justify-end z-10 "
                           href={`/${history}/${period}/${section}/${index}.pdf`}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -276,7 +299,12 @@ function PDFComponent() {
                   </DrawerDescription> */}
                   </DrawerHeader>
                   <DrawerFooter>
-                    <Button className="rounded-3xl py-5 bg-[#1e1b47]">
+                    <Button
+                      className="rounded-3xl py-5 bg-[#1e1b47]"
+                      onClick={() => {
+                        handleDownloadAll(`/${history}/${period}/${section}`);
+                      }}
+                    >
                       ሁሉንም አውርድ
                     </Button>
                   </DrawerFooter>
