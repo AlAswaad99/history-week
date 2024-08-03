@@ -25,25 +25,25 @@ const nokiaBold = localFont({
 const nokiaLight = localFont({
   weight: "100",
   variable: "--font-nokia-light",
-  src: "../public/fonts/NOKIAPUREHEADLINE_ULTRALIGHT.otf",
+  src: "../public/fonts/nokia-pure-headline.otf",
 });
 
 const droid = localFont({
   weight: "400", // Adjust weight if necessary
   variable: "--font-droid",
-  src: "../public/fonts/DROIDSANSETHIOPIC-REGULAR.ttf",
+  src: "../public/fonts/droid-sans-ethiopic-regular.ttf",
 });
 
 const yanon = localFont({
   weight: "400", // Adjust weight if necessary
   variable: "--font-yanon",
-  src: "../public/fonts/YANONEKAFFEESATZ-REGULAR.ttf",
+  src: "../public/fonts/yanon-kaffee-satz-regular.ttf",
 });
 
 const klavika = localFont({
   weight: "400", // Adjust weight if necessary
   variable: "--font-klavika",
-  src: "../public/fonts/KLAVIKAREGULAR-OSF.ttf",
+  src: "../public/fonts/klavika-regular.ttf",
 });
 
 export const metadata = {
