@@ -72,7 +72,7 @@ function Footer() {
   //   }, []);
 
   return (
-    <footer className="bg-[#1e1b47] text-white text-center md:no-underline underline hover:underline p-4 font-Nokia font-thin">
+    <footer className="bg-[#1e1b47] text-white text-center md:no-underline underline hover:underline p-4 font-Nokia font-thin text-sm">
       <Link href="#">
         &copy; {ethiopianDate.ethiopianYear} ቤቴል የዓለም ብርሃን መሠረተ ክርስቶስ ቤተክርስቲያን
       </Link>

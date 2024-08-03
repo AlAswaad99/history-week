@@ -135,7 +135,7 @@ function PDFComponent() {
               <BreadcrumbItem>
                 {/* <BreadcrumbPage>{periodEventsPDFs[id].name}</BreadcrumbPage> */}
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center gap-1">
+                  <DropdownMenuTrigger className="flex items-center gap-1 text-[#1e1b47]">
                     {periodEventsPDFs[id].name}
                     <ChevronDownIcon />
                   </DropdownMenuTrigger>
@@ -201,7 +201,7 @@ function PDFComponent() {
                 ))}
               </div>
               <Drawer>
-                <div className="xl:hidden fixed flex justify-between bottom-16 right-0 z-50 w-full px-4 ">
+                <div className="xl:hidden sticky flex justify-between bottom-16 right-0 top-20 z-50 w-full px-4 ">
                   <div className="flex justify-start w-full gap-1 ">
                     <ShareButton />
                     <Link

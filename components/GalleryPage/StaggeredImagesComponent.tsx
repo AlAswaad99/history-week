@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
-const GalleryComponent = () => {
+const StaggeredImagesComponent = () => {
   // const [images] = useState(
   //   Array.from({ length: 50 }).map((_, index) => ({
   //     src: `https://picsum.photos/1080/${Math.floor(
@@ -204,4 +204,4 @@ const CustomGallery = ({
   );
 };
 
-export default GalleryComponent;
+export default StaggeredImagesComponent;

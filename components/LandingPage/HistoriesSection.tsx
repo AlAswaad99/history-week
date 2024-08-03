@@ -44,7 +44,7 @@ export default function HistoriesSection({ slides }: { slides: any[] }) {
   };
   return (
     <div
-      className="w-full mx-auto md:py-24 py-10 lg:px-20 px-4 xl:px-0 mb-10 "
+      className="w-full mx-auto md:py-24 py-10 lg:px-20 px-4 xl:px-0 "
       id="histories"
     >
       <div className="max-w-screen-xl 2xl:max-w-screen-2xl mx-auto">
