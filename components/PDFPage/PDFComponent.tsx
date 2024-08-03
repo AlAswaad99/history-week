@@ -115,12 +115,12 @@ function PDFComponent() {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      toast.success("Download Finished");
+      toast.success("ትዕዛዝዎ ተሳክቷል");
 
       setisLoading(false);
     } else {
       console.error("Failed to download files");
-      toast.error("Failed to download files");
+      toast.error("ትዕዛዝዎ አልተሳካም");
 
       setisLoading(false);
     }

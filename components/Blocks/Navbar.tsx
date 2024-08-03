@@ -14,7 +14,7 @@ export default function Navbar() {
               loading="lazy"
               width={200}
               height={200}
-              className="object-fill h-12 ml-0.5 w-full"
+              className="object-fill lg:h-12 h-7  ml-0.5 w-full"
             />
           </div>
         </Link>
