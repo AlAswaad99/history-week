@@ -19,7 +19,7 @@ import "./globals.css";
 const nokiaBold = localFont({
   weight: "400",
   variable: "--font-nokia-bold",
-  src: "../public/fonts/NokiaBOLD.ttf",
+  src: "../public/fonts/nokia-bold.ttf",
 });
 
 const nokiaLight = localFont({
