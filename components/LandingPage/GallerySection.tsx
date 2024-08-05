@@ -50,7 +50,7 @@ const GallerySection = ({ slides }: { slides: any[] }) => {
             </Link>
           ))} */}
           {/* <Link href={`/gallery`}> */}
-          <div className="relative overflow-hidden group cursor-pointer rounded-t-3xl h-full min-h-96">
+          <div className="relative overflow-hidden group cursor-pointer rounded-t-3xl h-full min-h-96 max-h-[40rem]">
             <Image
               src="/gallery/collage.jpg"
               alt="Gallery"

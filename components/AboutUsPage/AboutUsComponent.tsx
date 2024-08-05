@@ -1,3 +1,4 @@
+import { Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -35,7 +36,8 @@ const AboutUsComponent = () => {
               rel="noopener noreferrer"
               className="text-[#1e1b47] hover:underline text-xl"
             >
-              <Image src={"/insta.svg"} alt="instagram" width={40} height={40}/>
+              {/* <Image src={"/insta.svg"} alt="instagram" width={40} height={40}/> */}
+              <Instagram size={45}/>
             </Link>
             <Link
               href="https://fb.watch/m_DT72_uom/"
@@ -43,7 +45,12 @@ const AboutUsComponent = () => {
               rel="noopener noreferrer"
               className="text-[#1e1b47] hover:underline text-xl"
             >
-              <Image src={"/facebook.svg"} alt="facebook" width={40} height={40}/>{" "}
+              <Image
+                src={"/facebook.svg"}
+                alt="facebook"
+                width={40}
+                height={40}
+              />{" "}
             </Link>
             <Link
               href="https://youtube.com/@bethelmkc?si=qVVqiPFnphfCui_c"
@@ -51,7 +58,12 @@ const AboutUsComponent = () => {
               rel="noopener noreferrer"
               className="text-[#1e1b47] hover:underline text-xl"
             >
-              <Image src={"/youtube.svg"} alt="youtube" width={60} height={60}/>{" "}
+              <Image
+                src={"/youtube.svg"}
+                alt="youtube"
+                width={60}
+                height={60}
+              />{" "}
             </Link>
           </div>
         </div>
