@@ -44,12 +44,43 @@ const LandingSection: React.FC<PropType> = (props) => {
     }
   };
   const slides = [
-    "/church-history/banner.jpg",
-    "/church-history/modern/modern.jpg",
-    "/church-history/early-history/early-history.jpg",
-    "/church-history/reformation/reformation.jpg",
-    // Add more image paths as needed
+    "/gallery/photo_1_2024-08-05_06-12-20.jpg",
+    "/gallery/photo_1_2024-08-05_06-12-27.jpg",
+    "/gallery/photo_1_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_2_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_2_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_3_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_3_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_4_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_5_2024-08-05_06-12-39.jpg",
   ];
+
+  function shuffle(array: any[]) {
+    let currentIndex = array.length;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+  }
+
+  shuffle(slides);
+
+  // const slides = [
+  //   "/church-history/banner.jpg",
+  //   "/church-history/modern/modern.jpg",
+  //   "/church-history/early-history/early-history.jpg",
+  //   "/church-history/reformation/reformation.jpg",
+  //   // Add more image paths as needed
+  // ];
 
   //
 
@@ -166,7 +197,7 @@ const LandingSection: React.FC<PropType> = (props) => {
               </Link>
             </div> */}
           </div>
-          
+
           <div
             className="flex justify-center gap-4 absolute bottom-0 left-0 right-0 mb-10  items-center"
             onClick={() => scrollToSection("histories")}

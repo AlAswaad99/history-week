@@ -52,7 +52,7 @@ const GallerySection = ({ slides }: { slides: any[] }) => {
           {/* <Link href={`/gallery`}> */}
           <div className="relative overflow-hidden group cursor-pointer rounded-t-3xl h-full min-h-96">
             <Image
-              src="/church-history/banner.jpg"
+              src="/gallery/collage.jpg"
               alt="Gallery"
               width={1200}
               height={800}
@@ -61,7 +61,7 @@ const GallerySection = ({ slides }: { slides: any[] }) => {
             <div className="absolute inset-0 bg-black group-hover:opacity-70 transition-opacity duration-300 md:opacity-20 opacity-60"></div>
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white lg:opacity-0 transition-opacity duration-300 group-hover:opacity-100 gap-8">
-              <h3 className="lg:text-8xl text-5xl font-habesha-bold font-semibold">የሙዚየም አልበም</h3>
+              <h3 className="lg:text-8xl text-5xl font-habesha-bold font-semibold px-4">የሙዚየም አልበም</h3>
               <Link
                 href={`/gallery`}
                 className="lg:w-1/6 w-1/2 py-2 rounded-3xl text-center bg-[#1e1b47] text-white hover:bg-[#1e1b47] hover:text-white"

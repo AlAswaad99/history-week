@@ -11,95 +11,17 @@ const StaggeredImagesComponent = () => {
   //     )}`,
   //   }))
   // );
-
-  var images = [
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
-    {
-      src: "bible-history/BIBLE MUSEUM_Poster_1.5m x 1.5m.jpg",
-    },
-    {
-      src: "church-history/banner.jpg",
-    },
+  const images = [
+    "/gallery/photo_1_2024-08-05_06-12-20.jpg",
+    "/gallery/photo_1_2024-08-05_06-12-27.jpg",
+    "/gallery/photo_1_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_2_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_2_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_3_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_3_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_4_2024-08-05_06-12-39.jpg",
+    "/gallery/photo_5_2024-08-05_06-12-39.jpg",
   ];
-
-  images = images.concat(images).concat(images).concat(images).concat(images);
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
@@ -124,19 +46,19 @@ const StaggeredImagesComponent = () => {
   };
 
   return (
-    <div className="md:pt-40 w-full pt-20">
+    <div className="md:pt-40 w-full pt-24 pb-4 px-4 max-w-screen-xl 2xl:max-w-screen-2xl mx-auto">
       <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-        <Masonry gutter="4px" className="">
+        <Masonry gutter="1rem" className="">
           {images.map((image, index) => (
             <div
               key={index}
               className=" relative w-full h-full cursor-pointer"
               onClick={() => openImage(index)}
             >
-              <div className="absolute rounded-3xl  inset-0 bg-black opacity-50"></div>
+              <div className="absolute rounded-3xl inset-0 bg-black opacity-50"></div>
 
               <Image
-                src={`/${image.src}`}
+                src={`${image}`}
                 alt={`Image ${index}`}
                 width={1080}
                 height={1920}
@@ -168,7 +90,7 @@ const CustomGallery = ({
   nextImage,
   prevImage,
 }: {
-  images: { src: string }[];
+  images: string[];
   currentIndex: number;
   closeImage: () => void;
   nextImage: () => void;
@@ -191,7 +113,7 @@ const CustomGallery = ({
           </span>
           <div className="relative z-40 h-3/4 w-[90%] max-h-screen max-w-screen ">
             <Image
-              src={`/${images[currentIndex]!.src}`}
+              src={`${images[currentIndex]!}`}
               alt={`Image ${currentIndex}`}
               layout="fill"
               objectFit="contain"

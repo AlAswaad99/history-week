@@ -88,10 +88,10 @@ const PeriodComponent = () => {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
-            <h2 className="md:mb-1 md:mt-0 mt-4 font-sans">
+            <h2 className="md:mb-1 md:mt-0 mt-4 font-habesha-light">
               {currentHistory?.name}
             </h2>
-            <h2 className="text-4xl font-semibold mb-2 font-sans">
+            <h2 className="text-4xl font-semibold mb-2 font-habesha-bold">
               {periodInfo.title}
             </h2>
             <p className="text-gray-600 mb-4 md:text-lg font-droid text-justify">
@@ -134,7 +134,7 @@ const PeriodComponent = () => {
                 <div className="bg-white cursor-pointer rounded-3xl shadow-md transition duration-300 transform hover:shadow-lg hover:scale-105 flex flex-col justify-between hover:bg-[#1e1b47]/20">
                   <div>
                     <div className="flex items-center justify-between p-6">
-                      <h2 className="text-2xl font-semibold font-Nokia">
+                      <h2 className="text-2xl font-semibold font-habesha-bold">
                         {card.name}
                       </h2>
                       <ChevronRight />

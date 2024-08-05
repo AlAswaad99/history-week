@@ -1,4 +1,4 @@
-import { Images } from "lucide-react";
+import { Images, InfoIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,9 +18,15 @@ export default function Navbar() {
             />
           </div>
         </Link>
+        <div className="flex gap-6 flex-row-reverse items-center">
         <Link href="/gallery">
           <Images size={30} />
         </Link>
+        <Link href="/about">
+          <InfoIcon size={30} />
+        </Link>
+        </div>
+       
       </div>
     </nav>
   );

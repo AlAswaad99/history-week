@@ -32,7 +32,7 @@ const GalleriesComponent = ({ slides }: { slides: any[] }) => {
               key={journey.name}
               className="relative max-h-[30rem] mb-8 overflow-hidden group rounded-3xl transition-all duration-500 lg:w-3/4 w-full hover:w-full"
             >
-             
+              <Link href={`/gallery${journey.url}`}>
                 <Image
                   src={journey.thumbnail}
                   alt={journey.name}
@@ -43,8 +43,10 @@ const GalleriesComponent = ({ slides }: { slides: any[] }) => {
                 />
                 <div className="absolute inset-0 bg-black opacity-50 group-hover:opacity-60 duration-500"></div>
                 <div className="absolute bottom-8 left-8 text-start lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
-                  <h3 className="text-xl lg:text-2xl font-semibold">{journey.name}</h3>
-                  <p className="text-sm lg:text-lg">ፎቶዎች</p>
+                  <h3 className="text-xl lg:text-2xl font-semibold font-habesha-bold">
+                    {journey.name}
+                  </h3>
+                  <p className="text-sm lg:text-lg font-habesha-light">ፎቶዎች</p>
                 </div>
                 <div className="absolute bottom-8 right-8 lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
                   <button
@@ -58,6 +60,7 @@ const GalleriesComponent = ({ slides }: { slides: any[] }) => {
                     {/* {<ChevronRightIcon size={25} className=" text-white" />} */}
                   </button>
                 </div>
+              </Link>
             </div>
           ))}
         </div>

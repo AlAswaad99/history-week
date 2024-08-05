@@ -18,7 +18,7 @@ export default function HistoryCard({
   return (
     <motion.div
       className="hover z-20 rounded-3xl overflow-hidden shadow-lg max-w-96 bg-white"
-      transition={{ ease: 'easeInOut', duration: 0.5 }}
+      transition={{ ease: "easeInOut", duration: 0.5 }}
       layoutId={`card-${url}`} // Unique identifier for the layout transition
     >
       <Link href={url}>
@@ -32,14 +32,16 @@ export default function HistoryCard({
           />
         </div>
         <div className="px-6 py-4 items-end h-full">
-          <div className={`font-bold lg:text-4xl mt-6 text-2xl flex items-end`}>
+          <div
+            className={`font-bold font-habesha-bold lg:text-4xl mt-6 text-2xl flex items-end`}
+          >
             {title}
           </div>
           <div className="md:text-sm text-xs ">
             <span className="font-yanon font-semibold"> {date}</span>
           </div>
           <p className="text-gray-700 text-xs mt-4 font-droid">
-            {description}
+            {description.split("<br/>")[0]}
           </p>
         </div>
       </Link>

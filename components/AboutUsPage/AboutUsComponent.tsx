@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const AboutUsComponent = () => {
   return (
-    <div className="bg-gray-200 md:pt-0 min-h-screen flex lg:flex-row flex-col lg:justify-center mt-24 lg:mt-0 items-center">
-      <div className=" relative w-full lg:h-screen bg-red-400">
+    <div className="bg-gray-200 md:pt-0 min-h-screen flex lg:flex-row flex-col lg:justify-center mt-14 lg:mt-0 items-center">
+      <div className=" relative w-full lg:h-screen ">
         {/* <div className="absolute inset-0 bg-black opacity-50"></div> */}
 
         <div className="w-full h-full">
@@ -13,7 +13,7 @@ const AboutUsComponent = () => {
             alt="Church Image"
             width={1200}
             height={800}
-            className="w-full h-full lg:object-cover object-cover shadow-lg"
+            className="w-full h-full lg:object-cover lg:rounded-r-3xl rounded-b-3xl lg:rounded-bl-none object-cover shadow-lg"
           />
         </div>
       </div>
@@ -51,7 +51,7 @@ const AboutUsComponent = () => {
               rel="noopener noreferrer"
               className="text-[#1e1b47] hover:underline text-xl"
             >
-              <Image src={"/youtube.svg"} alt="youtube" width={60} height={80}/>{" "}
+              <Image src={"/youtube.svg"} alt="youtube" width={60} height={60}/>{" "}
             </Link>
           </div>
         </div>

@@ -35,7 +35,7 @@ export default function HistoryComponent({ history }: { history: string }) {
         </BreadcrumbList>
       </Breadcrumb>
       <HistoryDetailComponent history={currentHistory} url={history} />
-      <div className="flex flex-wrap align my-4 gap-10 px-10 py-10 md:w-full w-screen md:justify-start justify-center bg-white rounded-3xl md:-mx-0 -mx-4">
+      <div className="flex flex-wrap align my-4 gap-10 px-10 py-10 md:w-full md:justify-start justify-center bg-white rounded-3xl ">
         {currentHistory?.histories.map((card, index) => (
           <div
             key={index}
@@ -53,7 +53,7 @@ export default function HistoryComponent({ history }: { history: string }) {
               </div>
 
               <div className="p-6">
-                <h2 className="text-2xl font-semibold">{card.title}</h2>
+                <h2 className="text-2xl font-semibold font-habesha-bold ">{card.title}</h2>
                 <p className="text-gray-600 font-yanon font-semibold">
                   {card.timePeriod}
                 </p>
@@ -66,31 +66,35 @@ export default function HistoryComponent({ history }: { history: string }) {
         key={currentHistory!.name}
         className="relative max-h-[30rem] mb-8 overflow-hidden group rounded-3xl transition-all duration-500 w-full hover:w-full"
       >
-        <Image
-          src={currentHistory!.thumbnail}
-          alt={currentHistory!.name}
-          //   layout="responsive"
-          width={1200}
-          height={800}
-          className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-60 duration-500"></div>
-        <div className="absolute bottom-8 left-8 text-start lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
-          <h3 className="text-xl lg:text-2xl font-semibold">{currentHistory!.name}</h3>
-          <p className="text-sm lg:text-lg">ፎቶዎች</p>
-        </div>
-        <div className="absolute bottom-8 right-8 lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
-          <button
-            type="button"
-            // onClick={scrollLeft}
-            className="lg:p-5 p-3 rounded-full bg-[#1e1b47]"
-          >
-            <Link href={`/gallery${currentHistory!.url}`}>
-              <ChevronRightIcon size={28} className=" text-white" />
-            </Link>
-            {/* {<ChevronRightIcon size={25} className=" text-white" />} */}
-          </button>
-        </div>
+        <Link href={`/gallery${currentHistory!.url}`}>
+          <Image
+            src={"/gallery/collage.jpg"}
+            alt={currentHistory!.name}
+            //   layout="responsive"
+            width={1200}
+            height={800}
+            className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-60 duration-500"></div>
+          <div className="absolute bottom-8 left-8 text-start lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
+            <h3 className="text-xl lg:text-2xl font-semibold font-habesha-bold">
+              {currentHistory!.name}
+            </h3>
+            <p className="text-sm lg:text-lg font-habesha-light">ፎቶዎች</p>
+          </div>
+          <div className="absolute bottom-8 right-8 lg:opacity-0 block group-hover:opacity-100 transition-all duration-500 text-white">
+            <button
+              type="button"
+              // onClick={scrollLeft}
+              className="lg:p-5 p-3 rounded-full bg-[#1e1b47]"
+            >
+              <Link href={`/gallery${currentHistory!.url}`}>
+                <ChevronRightIcon size={28} className=" text-white" />
+              </Link>
+              {/* {<ChevronRightIcon size={25} className=" text-white" />} */}
+            </button>
+          </div>
+        </Link>
       </div>
       {/* <Link
         href={`/gallery${currentHistory!.url}`}

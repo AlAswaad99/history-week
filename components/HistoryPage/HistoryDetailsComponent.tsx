@@ -26,7 +26,7 @@ export default function HistoryDetailComponent({
           className="lg:p-4 rounded-3xl lg:bg-white "
         >
           <div className="flex lg:flex-row flex-col">
-            <div className="rounded-3xl">
+            <div className="rounded-3xl w-full">
               <Image
                 src={history.thumbnail}
                 alt={history.name}
@@ -35,13 +35,18 @@ export default function HistoryDetailComponent({
                 className="w-full rounded-3xl"
               />
             </div>
-            <div className="lg:px-6 px-2 my-2">
-              <div className="font-bold text-4xl">{history.name}</div>
+            <div className="lg:px-6 px-2 my-2 w-full">
+              <div className="font-bold text-4xl font-habesha-bold">
+                {history.name}
+              </div>
               <div className="text-sm mt-2">
                 <span className="font-yanon font-semibold">{history.date}</span>
               </div>
               <p className="text-gray-700 text-base mt-4 font-droid">
-                {history.description}
+                {history.description.split("<br/>")[0]}
+              </p>
+              <p className="text-gray-700 text-base mt-4 font-droid">
+                {history.description.split("<br/>")[1]}
               </p>
               <div className="w-1/3 lg:mt-8 mt-2 py-2 rounded-3xl text-center bg-[#1e1b47] text-white">
                 <Link
