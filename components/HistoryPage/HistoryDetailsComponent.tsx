@@ -48,7 +48,7 @@ export default function HistoryDetailComponent({
               <p className="text-gray-700 text-base mt-4 font-droid">
                 {history.description.split("<br/>")[1]}
               </p>
-              <div className="w-1/3 lg:mt-8 mt-2 py-2 rounded-3xl text-center bg-[#1e1b47] text-white">
+              <div className="md:w-1/3 w-1/2 lg:mt-8 mt-4 mb-8 py-2 rounded-3xl text-center bg-[#1e1b47] text-white">
                 <Link
                   href={`/${url}/${history.histories[0].folderName}`}
                   className=" "

@@ -44,15 +44,23 @@ const LandingSection: React.FC<PropType> = (props) => {
     }
   };
   const slides = [
-    "/gallery/photo_1_2024-08-05_06-12-20.jpg",
-    "/gallery/photo_1_2024-08-05_06-12-27.jpg",
-    "/gallery/photo_1_2024-08-05_06-12-39.jpg",
-    "/gallery/photo_2_2024-08-05_06-12-39.jpg",
-    "/gallery/photo_2_2024-08-05_06-12-39.jpg",
-    "/gallery/photo_3_2024-08-05_06-12-39.jpg",
-    "/gallery/photo_3_2024-08-05_06-12-39.jpg",
-    "/gallery/photo_4_2024-08-05_06-12-39.jpg",
-    "/gallery/photo_5_2024-08-05_06-12-39.jpg",
+    // "/gallery/church-history/photo_1_2024-08-05_06-12-20.jpg",
+    // "/gallery/church-history/photo_1_2024-08-05_06-12-27.jpg",
+    // "/gallery/church-history/photo_1_2024-08-05_06-12-39.jpg",
+    // "/gallery/church-history/photo_2_2024-08-05_06-12-39.jpg",
+    // "/gallery/church-history/photo_2_2024-08-05_06-12-39.jpg",
+    "/gallery/church-history/photo_2_2024-08-05_06-12-20.jpg",
+    "/gallery/church-history/photo_3_2024-08-05_06-12-39.jpg",
+    "/gallery/church-history/photo_2024-08-06_04-46-41.jpg",
+    "/gallery/church-history/photo_2024-08-06_04-46-43.jpg",
+    "/gallery/church-history/photo_2024-08-06_04-46-44.jpg",
+    "/gallery/church-history/IMG_3925-min.jpg",
+    "/gallery/church-history/photo_3_2024-08-05_06-12-39.jpg",
+    // "/gallery/church-history/photo_4_2024-08-05_06-12-39.jpg",
+    // "/gallery/church-history/photo_5_2024-08-05_06-12-39.jpg",
+    "/gallery/bible-history/photo_7_2024-08-06_04-59-32.jpg",
+    "/gallery/bible-history/photo_5_2024-08-06_04-59-32.jpg",
+    "/gallery/bible-history/photo_11_2024-08-06_04-59-32.jpg",
   ];
 
   function shuffle(array: any[]) {

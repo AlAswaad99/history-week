@@ -68,7 +68,7 @@ export default function HistoryComponent({ history }: { history: string }) {
       >
         <Link href={`/gallery${currentHistory!.url}`}>
           <Image
-            src={"/gallery/collage.jpg"}
+            src={`/gallery${currentHistory!.url}/collage.jpg`}
             alt={currentHistory!.name}
             //   layout="responsive"
             width={1200}
