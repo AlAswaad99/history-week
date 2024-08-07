@@ -22,6 +22,11 @@ const StaggeredImagesComponent = () => {
     "/gallery/church-history/IMG_3906-min.jpg",
     "/gallery/church-history/IMG_3907-min.jpg",
     "/gallery/church-history/IMG_3909-min.jpg",
+    "/gallery/church-history/photo_2024-08-06_04-46-25.jpg",
+    "/gallery/church-history/photo_2024-08-06_04-46-31.jpg",
+    "/gallery/church-history/photo_2024-08-06_04-46-41.jpg",
+    "/gallery/church-history/photo_2024-08-06_04-46-43.jpg",
+    "/gallery/church-history/photo_2024-08-06_04-46-44.jpg",
     "/gallery/church-history/IMG_3911-min.jpg",
     "/gallery/church-history/IMG_3913-min.jpg",
     "/gallery/church-history/IMG_3923-min.jpg",
@@ -36,11 +41,6 @@ const StaggeredImagesComponent = () => {
     "/gallery/church-history/photo_3_2024-08-05_06-12-39.jpg",
     "/gallery/church-history/photo_4_2024-08-05_06-12-39.jpg",
     "/gallery/church-history/photo_5_2024-08-05_06-12-39.jpg",
-    "/gallery/church-history/photo_2024-08-06_04-46-25.jpg",
-    "/gallery/church-history/photo_2024-08-06_04-46-31.jpg",
-    "/gallery/church-history/photo_2024-08-06_04-46-41.jpg",
-    "/gallery/church-history/photo_2024-08-06_04-46-43.jpg",
-    "/gallery/church-history/photo_2024-08-06_04-46-44.jpg"
   ];
 
   const bibleHistoryImageUrls = [
@@ -57,13 +57,14 @@ const StaggeredImagesComponent = () => {
     "/gallery/bible-history/photo_11_2024-08-06_04-59-32.jpg",
     "/gallery/bible-history/photo_12_2024-08-06_04-59-32.jpg",
     "/gallery/bible-history/photo_13_2024-08-06_04-59-32.jpg",
-    "/gallery/bible-history/photo_14_2024-08-06_04-59-32.jpg"
+    "/gallery/bible-history/photo_14_2024-08-06_04-59-32.jpg",
   ];
-  
 
-
-    console.log('history', history)
-  const images = history === 'church-history' ? churchHistoryImageUrls : bibleHistoryImageUrls;
+  console.log("history", history);
+  const images =
+    history === "church-history"
+      ? churchHistoryImageUrls
+      : bibleHistoryImageUrls;
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
