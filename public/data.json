@@ -178,6 +178,102 @@
           ],
           "images": [],
           "cardImage": "internal-evidence.jpg"
+        },
+        {
+          "folderName": "external-evidence",
+          "title": "ውጫዊ  ማረጋገጫ",
+          "timePeriod": "External Evidence",
+          "desc": "ስሙ እንደሚያመለክተው፣ በመጽሐፍ ቅዱስ ውስጥ የተዘገቡት ክስተቶችና ክንውኖች በርግጥም ታሪካዊ መሆናቸውን ለማረጋገጥ ከመጽሐፍ ቅዱስ ውጭ የሆኑ ማስረጃዎችን የምናቀርብበት መንገድ ነው። ይህን የምናደርገው ታሪክንና አርኪኦሎጂን በመመልከት ሲሆን እነዚህ ሁለት መስኮች የመጽሐፍ ቅዱስን ሐተታ አስተማማኝነት ከሌሎች መሰል ጥንታዊ ዘገባዎች እና ከአርኪኦሎጂ ግኝቶች ጋር በማነፃፀር የምንፈትሽባቸው መንገዶች ናቸው። በመጽሐፍ ቅዱስ ውስጥ ተፈጽመዋል የተባሉት ክስተቶች አፈ-ታሪክ ሳይሆኑ በእውነትም ታሪካዊ መሆናቸውን በዚህ ጥናት ውስጥ በሚገባ እናሳያለን፡፡",
+          "subFolders": [
+            {
+              "folderName": "creation-and-flood-accounts",
+              "name": "የፍጥረትና የጥፋት ውሀ ዘገባ",
+              "pdfs": [
+                {
+                  "name": "01 የፍጥረትና የጥፋት ውሀ ዘገባ",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "folderName": "post-diluvian",
+              "name": "ከጥፋት ውሀ በኃላ",
+              "pdfs": [
+                {
+                  "name": "01 ከጥፋት ውሀ በኃላ",
+                  "index": 0
+                }
+              ]
+            },
+            {
+              "folderName": "exodus-to-judges",
+              "name": "ከዘጸአት እስከ መሳፍንት",
+              "pdfs": [
+                {
+                  "name": "01 ዘጸአት",
+                  "index": 0
+                },
+                {
+                  "name": "02 ኢያሱ እና መሳፍንት",
+                  "index": 1
+                }
+              ]
+            },
+            {
+              "folderName": "rise-and-fall-of-kingdoms",
+              "name": "የመንግስታት መነሳትና መውደቅ",
+              "pdfs": [
+                {
+                  "name": "01 ወጥ መንግስት",
+                  "index": 0
+                },
+                {
+                  "name": "02 የተከፋፈለ መንግስት",
+                  "index": 1
+                },
+                {
+                  "name": "03 ምርኮና ከ ግዞት መልስ",
+                  "index": 2
+                }
+              ]
+            },
+            {
+              "folderName": "jesus-and-his-disciples",
+              "name": "ኢየሱስ እና ሐዋርያቱ",
+              "pdfs": [
+                {
+                  "name": "01 ስለ ኢየሱስ",
+                  "index": 0
+                },
+                {
+                  "name": "02 የአርኪዮሎጂ ማስረጃ",
+                  "index": 1
+                },
+                {
+                  "name": "03 የሐዋርያት ዘመን",
+                  "index": 2
+                },
+                {
+                  "name": "04 ሮም",
+                  "index": 3
+                },
+                {
+                  "name": "05 ቆሮንጦስ",
+                  "index": 4
+                },
+                {
+                  "name": "06 ኤፌሶን",
+                  "index": 5
+                },
+                {
+                  "name": "07 ፊልጲስዩስ እና ተሰሎንቄ",
+                  "index": 6
+                }
+              ]
+            }
+          ],
+          "images": [],
+          "cardImage": "external-evidence.jpg"
         }
       ]
     },
