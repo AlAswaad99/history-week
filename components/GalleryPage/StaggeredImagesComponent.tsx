@@ -1,4 +1,5 @@
 "use client";
+import { X } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState } from "react";
@@ -136,6 +137,8 @@ const CustomGallery = ({
     onSwipedLeft: nextImage,
     onSwipedRight: prevImage,
     preventScrollOnSwipe: true,
+    // swipeDuration: 200,
+    // trackTouch: true,
     trackMouse: true,
   });
 
@@ -147,10 +150,10 @@ const CustomGallery = ({
           onClick={closeImage}
         >
           <span
-            className="absolute top-5 right-10 z-40 text-white text-5xl cursor-pointer"
+            className="absolute top-32 right-4 z-40 text-white text-5xl cursor-pointer"
             onClick={closeImage}
           >
-            &times;
+            <X size={30}/>
           </span>
           <div className="relative z-40 h-3/4 w-[90%] max-h-screen max-w-screen">
             <Image
