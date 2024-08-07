@@ -3,15 +3,9 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { useSwipeable } from "react-swipeable";
 
 const StaggeredImagesComponent = () => {
-  // const [images] = useState(
-  //   Array.from({ length: 50 }).map((_, index) => ({
-  //     src: `https://picsum.photos/1080/${Math.floor(
-  //       Math.random() * (1300 - 200 + 1) + 200
-  //     )}`,
-  //   }))
-  // );
   const { history } = useParams<{
     history: string;
   }>();
@@ -60,7 +54,6 @@ const StaggeredImagesComponent = () => {
     "/gallery/bible-history/photo_14_2024-08-06_04-59-32.jpg",
   ];
 
-  console.log("history", history);
   const images =
     history === "church-history"
       ? churchHistoryImageUrls
@@ -139,10 +132,15 @@ const CustomGallery = ({
   nextImage: () => void;
   prevImage: () => void;
 }) => {
-  return (
-    <div>
-      <div className="flex flex-wrap justify-between "></div>
+  const handlers = useSwipeable({
+    onSwipedLeft: nextImage,
+    onSwipedRight: prevImage,
+    preventScrollOnSwipe: true,
+    trackMouse: true,
+  });
 
+  return (
+    <div {...handlers}>
       {currentIndex !== null && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-30"
@@ -154,7 +152,7 @@ const CustomGallery = ({
           >
             &times;
           </span>
-          <div className="relative z-40 h-3/4 w-[90%] max-h-screen max-w-screen ">
+          <div className="relative z-40 h-3/4 w-[90%] max-h-screen max-w-screen">
             <Image
               src={`${images[currentIndex]!}`}
               alt={`Image ${currentIndex}`}
