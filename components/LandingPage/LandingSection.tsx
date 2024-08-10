@@ -57,10 +57,10 @@ const LandingSection: React.FC<PropType> = (props) => {
     "/gallery/church-history/IMG_3925-min.jpg",
     "/gallery/church-history/photo_3_2024-08-05_06-12-39.jpg",
     // "/gallery/church-history/photo_4_2024-08-05_06-12-39.jpg",
-    // "/gallery/church-history/photo_5_2024-08-05_06-12-39.jpg",
-    "/gallery/bible-history/photo_7_2024-08-06_04-59-32.jpg",
-    "/gallery/bible-history/photo_5_2024-08-06_04-59-32.jpg",
-    "/gallery/bible-history/photo_11_2024-08-06_04-59-32.jpg",
+    "/gallery/bible-history/photo_2024-08-10_23-33-17.jpg",
+    "/gallery/bible-history/photo_2024-08-10_23-37-53.jpg",
+    "/gallery/bible-history/photo_2024-08-10_23-37-30.jpg",
+    "/gallery/bible-history/photo_2024-08-10_23-33-31.jpg",
   ];
 
   function shuffle(array: any[]) {
