@@ -88,7 +88,7 @@ const PeriodComponent = () => {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
-            <h2 className="md:mb-1 md:mt-0 mt-4 font-habesha-light">
+            <h2 className="md:mb-1 md:mt-0 mt-4 font-habesha-light md:text-sm text-xs">
               {currentHistory?.name}
             </h2>
             <h2 className="text-4xl font-semibold mb-2 font-habesha-bold">

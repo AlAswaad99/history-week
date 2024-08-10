@@ -191,46 +191,57 @@ function PDFComponent() {
           </Breadcrumb>
           <div className="flex min-h-screen flex-col xl:flex-row w-full mx-auto  ">
             <div className="flex flex-col xl:flex-row w-full h-full xl:pt-0">
-              <div className=" min-w-96 text-ellipsis xl:block xl:static hidden xl:mr-4 p-4 xl:overflow-x-visible overflow-x-auto rounded-3xl bg-white items-stretch h-1/2">
-                {periodEventsPDFs.map((card: any, index: number) => (
-                  <div
-                    key={index}
-                    className={`p-4 px-8 cursor-pointer flex justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
-                      index === currentIndex
-                        ? "bg-[#1e1b47]/20 hover:bg-[#1e1b47]/20"
-                        : "hover:bg-gray-200"
-                    }`}
-                    onClick={() => {
-                      router.replace(
-                        `/${history}/${period}/${section}/${index}`
-                      );
-                      setCurrentIndex(index);
-                      setPDFSource(
-                        `/${history}/${period}/${section}/${index}.pdf`
-                      );
-                    }}
-                  >
-                    <div className="font-sans">{card.name}</div>
-                    <Link
-                      id="download-button"
-                      className=" w-1/3 flex justify-end z-10 "
-                      href={`/${history}/${period}/${section}/${index}.pdf`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      download={`${card.name}.pdf`}
+              <div className=" min-w-96 text-ellipsis xl:block xl:sticky xl:top-28 hidden xl:mr-4 xl:overflow-x-visible overflow-x-auto  items-stretch h-1/2 ">
+                <div className=" py-4 px-4 rounded-3xl bg-white">
+                  {periodEventsPDFs.map((card: any, index: number) => (
+                    <div
+                      key={index}
+                      className={` p-4 px-4 cursor-pointer flex justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
+                        index === currentIndex
+                          ? "bg-[#1e1b47]/20 hover:bg-[#1e1b47]/20"
+                          : "hover:bg-gray-200"
+                      }`}
+                      onClick={() => {
+                        router.replace(
+                          `/${history}/${period}/${section}/${index}`
+                        );
+                        setCurrentIndex(index);
+                        setPDFSource(
+                          `/${history}/${period}/${section}/${index}.pdf`
+                        );
+                      }}
                     >
-                      <div className="hover:bg-black/25 p-2 rounded-full">
-                        {/* <Image
+                      <div className="font-sans">{card.name}</div>
+                      <Link
+                        id="download-button"
+                        className=" w-1/3 flex justify-end z-10 "
+                        href={`/${history}/${period}/${section}/${index}.pdf`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download={`${card.name}.pdf`}
+                      >
+                        <div className="hover:bg-black/25 p-2 rounded-full">
+                          {/* <Image
                         src="/downloads.png"
                         alt="Download"
                         width={20}
                         height={20}
                       /> */}
-                        <DownloadCloud />
-                      </div>
-                    </Link>
-                  </div>
-                ))}
+                          <DownloadCloud />
+                        </div>
+                      </Link>
+                    </div>
+                  ))}
+                  <Button
+                    className="rounded-3xl w-full mt-4 mb-0 py-5 bg-[#1e1b47]"
+                    disabled={isloading}
+                    onClick={() => {
+                      handleDownloadAll(`/${history}/${period}/${section}`);
+                    }}
+                  >
+                    ሁሉንም አውርድ {isloading ? "..." : ""}
+                  </Button>
+                </div>
               </div>
               <Drawer>
                 <div className="xl:hidden sticky flex justify-between bottom-10 right-0 top-[calc(100vh-4rem)] z-50 w-full px-4 mb-2">
