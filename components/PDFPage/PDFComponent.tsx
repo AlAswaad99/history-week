@@ -255,20 +255,20 @@ function PDFComponent() {
                       rel="noopener noreferrer"
                       download={`${periodEventsPDFs[id].name}.pdf`}
                     >
-                      <div className="hover:bg-black/25 p-2 rounded-full">
+                      <div className="hover:bg-black/25 p-2 rounded-full text-xs">
                         {/* <Image
                         src="/downloads.png"
                         alt="Download"
                         width={20}
                         height={20}
                       /> */}
-                        <DownloadCloud />
+                        <DownloadCloud size={20} />
                       </div>
                     </Link>
                   </div>
 
-                  <DrawerTrigger className="py-2 px-10 flex items-center gap-x-1 bg-[#1e1b47] text-white rounded-full">
-                    <ListCollapse />
+                  <DrawerTrigger className="py-2 px-10 flex items-center gap-x-1 bg-[#1e1b47] text-xs text-white rounded-full">
+                    <ListCollapse size={20}/>
                     ማውጫ
                   </DrawerTrigger>
                 </div>
@@ -382,7 +382,7 @@ const ShareButton = () => {
       className="bg-[#1e1b47] text-white  py-2 px-4 rounded-full shadow-md flex items-center"
       onClick={shareLink}
     >
-      <Share2Icon />
+      <Share2Icon size={20} />
       {}
     </button>
     // {copySuccess && (

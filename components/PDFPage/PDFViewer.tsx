@@ -9,6 +9,7 @@ import "react-pdf/dist/esm/Page/TextLayer.css";
 import "./Sample.css";
 
 import type { PDFDocumentProxy } from "pdfjs-dist";
+import Spinner from "../Blocks/Spinner";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -74,6 +75,7 @@ export default function Sample({ filename }: { filename: string }) {
           <Document
             file={file}
             onLoadSuccess={onDocumentLoadSuccess}
+            loading={<Spinner />}
             options={options}
             className="flex flex-col justify-center items-center min-h-screen"
           >
@@ -81,6 +83,7 @@ export default function Sample({ filename }: { filename: string }) {
               <Page
                 key={`page_${index + 1}`}
                 pageNumber={index + 1}
+                loading={<Spinner />}
                 width={
                   containerWidth && containerWidth > maxWidth
                     ? maxWidth
