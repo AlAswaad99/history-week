@@ -196,9 +196,9 @@ const LandingSection: React.FC<PropType> = (props) => {
             >
               ታሪክ
             </TextEffect>
-            <h2 className="lg:text-8xl text-5xl font-habesha-regular  mb-16 m-0 p-0">
-              <TextEffect>የእግዚአብሔር</TextEffect>
-              <br className="lg:hidden block" /> <TextEffect>እጅ ፅሑፍ</TextEffect>
+            <h2 className="lg:text-8xl text-5xl font-habesha-regular mb-20 m-0 p-0">
+              <TextEffect className="lg:mt-0 mt-4">የእግዚአብሔር</TextEffect>
+              <br className="lg:hidden block" /> <TextEffect className=" lg:-mt-0 -mt-10">እጅ ፅሑፍ</TextEffect>
             </h2>
             <h1 className="mt-4 md:w-2/3 md:text-lg text-sm font-extralight font-droid text-white opacity-60">
               "የዱሮውን ዘመን አስብ፥ የብዙ ትውልድንም ዓመታት አስተውል፤ አባትህን ጠይቅ፥ ያስታውቅህማል፤
