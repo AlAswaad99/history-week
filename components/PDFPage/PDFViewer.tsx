@@ -45,16 +45,6 @@ export default function Sample({ filename }: { filename: string }) {
 
   useResizeObserver(containerRef, resizeObserverOptions, onResize);
 
-  function onFileChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    const { files } = event.target;
-
-    const nextFile = files?.[0];
-
-    if (nextFile) {
-      setFile(nextFile);
-    }
-  }
-
   function onDocumentLoadSuccess({
     numPages: nextNumPages,
   }: PDFDocumentProxy): void {

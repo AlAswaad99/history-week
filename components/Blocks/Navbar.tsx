@@ -6,8 +6,8 @@ export default function Navbar() {
   return (
     <nav className="fixed lg:px-20 px-4 top-0 z-50 py-4 bg-[#1e1b47]/90 backdrop-blur-sm text-white left-0 right-0 self-center flex justify-between rounded-b-3xl">
       <div className="w-full flex max-w-screen-2xl mx-auto items-center justify-between">
-        <Link className="bg-white rounded-full" href="/">
-          <div className=" p-2">
+        <Link className="bg-white rounded-full max-w-16 " href="/">
+          <div className="p-2">
             <Image
               src="/logo.png"
               alt="mkc logo"

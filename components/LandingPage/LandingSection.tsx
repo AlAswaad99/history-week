@@ -9,6 +9,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import React, { useCallback, useEffect, useRef } from "react";
 import PageScroller from "../Blocks/PageScroller";
+import { TextEffect } from "../ui/text-effect";
 
 const TWEEN_FACTOR_BASE = 0.5;
 
@@ -188,11 +189,16 @@ const LandingSection: React.FC<PropType> = (props) => {
       <div className=" w-full h-screen lg:px-20 px-4 z-10 bg-black/50 rounded-b-3xl absolute flex text-white items-center pb-20 justify-between">
         <div className="max-w-screen-2xl mx-auto w-full flex justify-between items-end h-full">
           <div className="mb-20">
-            <h1 className="lg:text-[20rem] text-9xl font-habesha-bold text-white">
+            <TextEffect
+              preset="blur"
+              per="char"
+              className="lg:text-[20rem] text-9xl font-habesha-bold text-white"
+            >
               ታሪክ
-            </h1>
+            </TextEffect>
             <h2 className="lg:text-8xl text-5xl font-habesha-regular  mb-16 m-0 p-0">
-              የእግዚአብሔር <br className="lg:hidden block" /> እጅ ፅሑፍ
+              <TextEffect>የእግዚአብሔር</TextEffect>
+              <br className="lg:hidden block" /> <TextEffect>እጅ ፅሑፍ</TextEffect>
             </h2>
             <h1 className="mt-4 md:w-2/3 md:text-lg text-sm font-extralight font-droid text-white opacity-60">
               "የዱሮውን ዘመን አስብ፥ የብዙ ትውልድንም ዓመታት አስተውል፤ አባትህን ጠይቅ፥ ያስታውቅህማል፤
