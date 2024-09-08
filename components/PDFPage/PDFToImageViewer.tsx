@@ -3,10 +3,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { pdfjs } from "react-pdf";
-// import workerSrc from "pdfjs-dist/legacy/build/pdf.worker.entry";
-
-// // Set the worker source for PDF.js
-// pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
 
 const PdfAsImages = ({ uri }: { uri: string }) => {
   const [images, setImages] = useState<string[]>([]);
@@ -27,10 +23,9 @@ const PdfAsImages = ({ uri }: { uri: string }) => {
     loadPdf();
   }, [uri]);
 
-  // Convert PDF pages to images and store them in the state
+  // Convert PDF pages to images one by one and display them as soon as they are ready
   useEffect(() => {
     const renderPdfAsImages = async () => {
-      const imagesList: string[] = [];
       const canvas = document.createElement("canvas");
 
       for (let i = 1; i <= pdf.numPages; i++) {
@@ -46,11 +41,13 @@ const PdfAsImages = ({ uri }: { uri: string }) => {
 
         await page.render(renderContext).promise;
         const img = canvas.toDataURL("image/png");
-        imagesList.push(img);
-      }
 
-      setImages(imagesList);
-      setTotalPages(pdf.numPages);
+        // Update state incrementally to display each image as soon as it's rendered
+        setImages((prevImages) => [...prevImages, img]);
+
+        // Optionally, update the totalPages as well
+        setTotalPages(pdf.numPages);
+      }
     };
 
     if (pdf) {
@@ -59,7 +56,7 @@ const PdfAsImages = ({ uri }: { uri: string }) => {
   }, [pdf]);
 
   return (
-    <div>
+    <div className="mb-16">
       {images.map((image, index) => (
         <div key={index} className="pdf-page-image">
           <Image
@@ -67,7 +64,7 @@ const PdfAsImages = ({ uri }: { uri: string }) => {
             height={1080}
             src={image}
             alt={`Page ${index + 1}`}
-            className="rounded-3xl shadow-md mb-4"
+            className="rounded-3xl shadow-md md:mb-4 mb-2"
           />
           {/* <div className="page-info">
             Page {index + 1} of {totalPages}

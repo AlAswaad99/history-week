@@ -352,7 +352,7 @@ function PDFComponent() {
 
               <div className="w-full  -mt-10 md:-mt-0">
                 {/* <Sample filename={pdfSource} />\ */}
-                {isIos ? (
+                {!isIos ? (
                   // Render the PDF as images on iOS devices
                   <PdfAsImages uri={pdfSource} />
                 ) : (
