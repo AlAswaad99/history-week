@@ -27,7 +27,7 @@ const maxWidth = 1800;
 
 type PDFFile = string | File | null;
 
-export default function Sample({ filename }: { filename: string }) {
+export default function PDFViewer({ filename }: { filename: string }) {
   const [file, setFile] = useState<PDFFile>(
     filename || "/early-history/introduction/1.pdf"
   );
@@ -79,7 +79,7 @@ export default function Sample({ filename }: { filename: string }) {
                     ? maxWidth
                     : containerWidth
                 }
-                className="bg-green-400 lg:mb-4 mb-2 rounded-3xl "
+                className="bg-green-400 lg:mb-4 mb-2 rounded-3xl shadow-md "
                 _className="rounded-3xl"
                 // _className="text-red"
               />
@@ -90,3 +90,130 @@ export default function Sample({ filename }: { filename: string }) {
     </div>
   );
 }
+
+// "use client";
+
+// import { useEffect, useState } from "react";
+// import { Document, Page, pdfjs } from "react-pdf";
+
+// import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+// import "react-pdf/dist/esm/Page/TextLayer.css";
+
+// import "./Sample.css";
+
+// // Set the PDF.js worker source
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//   "pdfjs-dist/legacy/build/pdf.worker.min.mjs",
+//   import.meta.url
+// ).toString();
+
+// const options = {
+//   cMapUrl: "/cmaps/",
+//   standardFontDataUrl: "/standard_fonts/",
+// };
+
+// const resizeObserverOptions = {};
+
+// const maxWidth = 1800;
+
+// const PDFViewer = ({ filename }: { filename: string }) => {
+//   const [file, setFile] = useState<PDFFile>(
+//     filename || "/early-history/introduction/1.pdf"
+//   );
+//   const [isIos, setIsIos] = useState(false);
+//   const [images, setImages] = useState<string[]>([]);
+//   const [renderAsImages, setRenderAsImages] = useState(false);
+//   const [pdf, setPdf] = useState<any>(null);
+//   const [totalPages, setTotalPages] = useState<number>(0);
+//   useEffect(() => {
+//     const platform = navigator.platform.toLowerCase();
+//     console.log('platform', platform)
+//     if (
+//       platform.includes("iphone") ||
+//       platform.includes("ipad") ||
+//       platform.includes("ipod")
+//     ) {
+//       setIsIos(true);
+//     } else if (platform.includes("android")) {
+//       setIsIos(false);
+//     } else {
+//       setIsIos(false);
+//     }
+//   }, []);
+
+//   // Function to handle fallback to image rendering in case of failure
+//   const fallbackToImageRendering = async () => {
+//     setRenderAsImages(true);
+//     try {
+//       const pdfDocument = await pdfjs.getDocument({ url: filename }).promise;
+//       setPdf(pdfDocument);
+//     } catch (error) {
+//       console.error("Error loading PDF for image rendering:", error);
+//     }
+//   };
+
+//   // Function to render PDF as images
+//   const renderPdfAsImages = async () => {
+//     const imagesList: string[] = [];
+//     const canvas = document.createElement("canvas");
+
+//     for (let i = 1; i <= pdf.numPages; i++) {
+//       const page = await pdf.getPage(i);
+//       const viewport = page.getViewport({ scale: 2 });
+//       canvas.height = viewport.height;
+//       canvas.width = viewport.width;
+
+//       const renderContext = {
+//         canvasContext: canvas.getContext("2d")!,
+//         viewport: viewport,
+//       };
+
+//       await page.render(renderContext).promise;
+//       const img = canvas.toDataURL("image/png");
+//       imagesList.push(img);
+//     }
+
+//     setImages(imagesList);
+//     setTotalPages(pdf.numPages);
+//   };
+
+//   useEffect(() => {
+//     if (renderAsImages && pdf) {
+//       renderPdfAsImages();
+//     }
+//   }, [renderAsImages, pdf]);
+
+//   return (
+//     <div className="pdf-viewer">
+//       {!renderAsImages && (
+//         <Document
+//           file={filename}
+//           onLoadSuccess={({ numPages }) => setTotalPages(numPages)}
+//           onLoadError={(error) => {
+//             console.error("Error loading PDF with react-pdf:", error);
+//             fallbackToImageRendering();
+//           }}
+//         >
+//           {Array.from({ length: totalPages }, (_, index) => (
+//             <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+//           ))}
+//         </Document>
+//       )}
+
+//       {renderAsImages && (
+//         <div>
+//           {images.map((image, index) => (
+//             <div key={index} className="pdf-page-image">
+//               <img src={image} alt={`Page ${index + 1}`} />
+//               <div className="page-info">
+//                 Page {index + 1} of {totalPages}
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default PDFViewer;

@@ -34,7 +34,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import Sample from "./PDFViewer";
+import PdfAsImages from "./PDFToImageViewer";
+import PDFViewer from "./PDFViewer";
 
 function PDFComponent() {
   const router = useRouter();
@@ -46,10 +47,10 @@ function PDFComponent() {
     id: string;
   }>();
 
-  console.log("history", history);
-  console.log("period", period);
-  console.log("section", section);
-  console.log("number", id);
+  // console.log("history", history);
+  // console.log("period", period);
+  // console.log("section", section);
+  // console.log("number", id);
   const currentHistory = jsonData.data.filter((h) =>
     h.url.includes(history)
   )[0];
@@ -61,6 +62,7 @@ function PDFComponent() {
   const folderName = period?.replace("/", "");
   const [isloading, setisLoading] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const [isIos, setIsIos] = useState(false);
 
   useEffect(() => {
     if (period && section) {
@@ -89,7 +91,7 @@ function PDFComponent() {
           return;
         }
 
-        console.log("tempPeriod", tempPeriod);
+        // console.log("tempPeriod", tempPeriod);
 
         setPeriodInfo(tempPeriod);
         setPeriodEvent(tempEvent);
@@ -100,6 +102,22 @@ function PDFComponent() {
       fetchData();
     }
   }, [period, section, id]);
+
+  useEffect(() => {
+    const platform = navigator.platform.toLowerCase();
+    console.log("platform", platform);
+    if (
+      platform.includes("iphone") ||
+      platform.includes("ipad") ||
+      platform.includes("ipod")
+    ) {
+      setIsIos(true);
+    } else if (platform.includes("android")) {
+      setIsIos(false);
+    } else {
+      setIsIos(false);
+    }
+  }, []);
 
   const handleDownloadAll = async (directory: string) => {
     setisLoading(true);
@@ -126,9 +144,9 @@ function PDFComponent() {
     }
   };
 
-  console.log("periodInfo", periodInfo);
-  console.log("periodEvent", periodEvent);
-  console.log("periodEventsPDFss", periodEventsPDFs);
+  // console.log("periodInfo", periodInfo);
+  // console.log("periodEvent", periodEvent);
+  // console.log("periodEventsPDFss", periodEventsPDFs);
   return (
     <>
       {periodInfo && periodEvent && periodEventsPDFs && (
@@ -192,7 +210,7 @@ function PDFComponent() {
           <div className="flex min-h-screen flex-col xl:flex-row w-full mx-auto  ">
             <div className="flex flex-col xl:flex-row w-full h-full xl:pt-0">
               <div className=" min-w-96 text-ellipsis xl:block xl:sticky xl:top-28 hidden xl:mr-4 xl:overflow-x-visible overflow-x-auto  items-stretch h-1/2 ">
-                <div className=" py-4 px-4 rounded-3xl bg-white">
+                <div className=" py-4 px-4 rounded-3xl bg-white shadow-md">
                   {periodEventsPDFs.map((card: any, index: number) => (
                     <div
                       key={index}
@@ -268,7 +286,7 @@ function PDFComponent() {
                   </div>
 
                   <DrawerTrigger className="py-2 px-10 flex items-center gap-x-1 bg-[#1e1b47] text-xs text-white rounded-full">
-                    <ListCollapse size={20}/>
+                    <ListCollapse size={20} />
                     ማውጫ
                   </DrawerTrigger>
                 </div>
@@ -333,7 +351,14 @@ function PDFComponent() {
               </Drawer>
 
               <div className="w-full  -mt-10 md:-mt-0">
-                <Sample filename={pdfSource} />
+                {/* <Sample filename={pdfSource} />\ */}
+                {isIos ? (
+                  // Render the PDF as images on iOS devices
+                  <PdfAsImages uri={pdfSource} />
+                ) : (
+                  // Render the PDF using React PDF on other devices
+                  <PDFViewer filename={pdfSource} />
+                )}
               </div>
             </div>
           </div>
