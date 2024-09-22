@@ -34,7 +34,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import PdfAsImages from "./PDFToImageViewer";
 import PDFViewer from "./PDFViewer";
 
 function PDFComponent() {
@@ -352,13 +351,15 @@ function PDFComponent() {
 
               <div className="w-full  -mt-10 md:-mt-0">
                 {/* <Sample filename={pdfSource} />\ */}
-                {!isIos ? (
+                {/* {!isIos ? (
                   // Render the PDF as images on iOS devices
                   <PdfAsImages uri={pdfSource} />
                 ) : (
                   // Render the PDF using React PDF on other devices
                   <PDFViewer filename={pdfSource} />
-                )}
+                )} */}
+                  <PDFViewer filename={pdfSource} />
+
               </div>
             </div>
           </div>
