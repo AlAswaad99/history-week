@@ -5,6 +5,10 @@ import { useParams } from "next/navigation";
 import { useState } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { useSwipeable } from "react-swipeable";
+import type { ComponentType } from "react";
+
+const ResponsiveMasonryComponent = ResponsiveMasonry as ComponentType<any>;
+const MasonryComponent = Masonry as ComponentType<any>;
 
 const StaggeredImagesComponent = () => {
   const { history } = useParams<{
@@ -109,8 +113,8 @@ const StaggeredImagesComponent = () => {
 
   return (
     <div className="md:pt-40 w-full pt-24 pb-4 px-4 max-w-screen-xl 2xl:max-w-screen-2xl mx-auto">
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-        <Masonry gutter="1rem" className="">
+      <ResponsiveMasonryComponent columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+        <MasonryComponent gutter="1rem" className="">
           {images.map((image, index) => (
             <div
               key={index}
@@ -129,8 +133,8 @@ const StaggeredImagesComponent = () => {
               />
             </div>
           ))}
-        </Masonry>
-      </ResponsiveMasonry>
+        </MasonryComponent>
+      </ResponsiveMasonryComponent>
 
       {currentIndex !== null && (
         <CustomGallery
