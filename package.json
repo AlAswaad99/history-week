@@ -15,6 +15,10 @@
     "email": "danny@me.com"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=18.18.0",
+    "yarn": ">=1.22.0"
+  },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
