@@ -14,6 +14,7 @@
  */
 export function isDevMode(): boolean {
   return false;
+  
   if (typeof window === 'undefined') {
     // Server-side: only check NODE_ENV
     return process.env.NODE_ENV === 'development'
