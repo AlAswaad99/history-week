@@ -18,11 +18,11 @@ export function isDevMode(): boolean {
     // Server-side: only check NODE_ENV
     return process.env.NODE_ENV === 'development'
   }
-  
+
   // Client-side: check both NODE_ENV and custom flag
   const isDevelopment = process.env.NODE_ENV === 'development'
   const devToolsEnabled = process.env.NEXT_PUBLIC_ENABLE_DEV_TOOLS === 'true'
-  
+
   // Enable if: development mode OR explicitly enabled via env var
   return isDevelopment || devToolsEnabled
 }

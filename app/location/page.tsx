@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState, useMemo } from "react";
+import React, { useRef, useEffect, useState, useMemo, useCallback } from "react";
 import { OrbitControls } from "@react-three/drei";
 import { PerspectiveCamera } from "@theatre/r3f";
 import { useFrame } from "@react-three/fiber";
@@ -22,6 +22,8 @@ import {
 } from "../../components/three";
 import type { CarouselItem } from "../../components/three";
 import { useEditMode } from "../../hooks/useEditMode";
+import { useKeyboardScroll } from "../../hooks/useKeyboardScroll";
+import { RSVPButton } from "../../components/RSVPButton";
 import { shouldShowEditMode, shouldShowDebugHelpers } from "../../lib/devMode";
 
 // ============================================================================
@@ -242,42 +244,43 @@ function HeroOverlay({ scrollProgress }: { scrollProgress: number }) {
       }}
     >
       <div className="text-center px-4 pointer-events-auto">
-        <h1 className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400 mb-4 drop-shadow-2xl">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-amber-200 to-amber-400 mb-2 sm:mb-4 drop-shadow-2xl">
           Bible Museum
         </h1>
-        <p className="text-2xl md:text-3xl text-amber-300/90 mb-2">
+        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-amber-300/90 mb-1 sm:mb-2">
           ከዘፍጥረት እስከ ራዕይ
         </p>
-        <p className="text-xl md:text-2xl text-gray-300/80 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-gray-300/80 max-w-2xl mx-auto px-2">
           Journey through the history of the world's most sacred text
         </p>
         
-        {/* Event Info Cards */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          <div className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-xl border border-amber-500/20">
-            <p className="text-amber-400 text-sm uppercase mb-2">When</p>
-            <p className="text-white text-lg font-bold">የካቲት 2017</p>
-            <p className="text-gray-400 text-sm">February 2025</p>
+        {/* Event Info Cards - hidden on very small screens */}
+        <div className="mt-6 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto px-2">
+          <div className="bg-gray-900/60 backdrop-blur-sm p-3 sm:p-6 rounded-xl border border-amber-500/20">
+            <p className="text-amber-400 text-xs sm:text-sm uppercase mb-1 sm:mb-2">When</p>
+            <p className="text-white text-sm sm:text-lg font-bold">የካቲት 2017</p>
+            <p className="text-gray-400 text-xs sm:text-sm">February 2025</p>
           </div>
           
-          <div className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-xl border border-amber-500/20">
-            <p className="text-amber-400 text-sm uppercase mb-2">Where</p>
-            <p className="text-white text-lg font-bold">Bethel Church</p>
-            <p className="text-gray-400 text-sm">Addis Ababa</p>
+          <div className="bg-gray-900/60 backdrop-blur-sm p-3 sm:p-6 rounded-xl border border-amber-500/20">
+            <p className="text-amber-400 text-xs sm:text-sm uppercase mb-1 sm:mb-2">Where</p>
+            <p className="text-white text-sm sm:text-lg font-bold">Bethel Church</p>
+            <p className="text-gray-400 text-xs sm:text-sm">Addis Ababa</p>
           </div>
           
-          <div className="bg-gray-900/60 backdrop-blur-sm p-6 rounded-xl border border-amber-500/20">
-            <p className="text-amber-400 text-sm uppercase mb-2">What</p>
-            <p className="text-white text-lg font-bold">Interactive Museum</p>
-            <p className="text-gray-400 text-sm">Authentic Replicas</p>
+          <div className="bg-gray-900/60 backdrop-blur-sm p-3 sm:p-6 rounded-xl border border-amber-500/20">
+            <p className="text-amber-400 text-xs sm:text-sm uppercase mb-1 sm:mb-2">What</p>
+            <p className="text-white text-sm sm:text-lg font-bold">Interactive Museum</p>
+            <p className="text-gray-400 text-xs sm:text-sm">Authentic Replicas</p>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce pointer-events-auto">
-        <span className="text-gray-400 text-sm mb-2">Scroll to explore</span>
-        <svg className="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      {/* Scroll indicator - show swipe on mobile */}
+      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce pointer-events-auto">
+        <span className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2 hidden sm:block">Scroll to explore</span>
+        <span className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2 sm:hidden">Swipe up to explore</span>
+        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
       </div>
@@ -336,7 +339,7 @@ function CTAOverlay({ scrollProgress }: { scrollProgress: number }) {
         pointerEvents: isVisible ? 'auto' : 'none',
       }}
     >
-      <div className="bg-gradient-to-br from-amber-900/60 to-amber-800/60 backdrop-blur-xl rounded-3xl p-8 border border-amber-400/30 text-center shadow-2xl">
+      <div className="bg-gradient-to-br from-amber-900/60 to-amber-800/60 backdrop-blur-xl rounded-3xl p-8 border border-amber-400/30 text-center shadow-2xl min-w-[320px]">
         <span className="text-5xl mb-4 block">🏛️</span>
         <h3 className="text-2xl font-bold text-white mb-2">Visit the Museum</h3>
         <p className="text-gray-300 text-sm mb-6 max-w-xs">
@@ -350,6 +353,11 @@ function CTAOverlay({ scrollProgress }: { scrollProgress: number }) {
         >
           Get Directions
         </a>
+
+        {/* RSVP Button - Centered below cards */}
+        <div className="mt-6 sm:mt-8">
+          <RSVPButton />
+        </div>
       </div>
     </section>
   );
@@ -373,13 +381,30 @@ export default function BibleMuseumTheatre() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Keyboard navigation for accessibility (Arrow keys, Space, Home/End)
+  useKeyboardScroll({
+    scrollProgress,
+    setScrollProgress: (newProgress) => {
+      setScrollProgress(newProgress);
+      // Also update Theatre.js directly
+      if (mainSheet?.sequence) {
+        mainSheet.sequence.position = newProgress * SEQUENCE_LENGTH;
+      }
+    },
+    scrollStep: 0.03, // 3% per key press
+    enabled: isPreviewMode,
+  });
+
   // Scroll handler - only active in preview mode
-  // Uses window-level wheel capture so scrolling works regardless of what element is hovered
+  // Uses window-level wheel + touch capture so scrolling works on all devices
   useEffect(() => {
     if (isEditMode) return;
 
     const container = scrollContainerRef.current;
     if (!container) return;
+
+    let touchStartY = 0;
+    let touchStartProgress = 0;
 
     const handleScroll = () => {
       const scrollTop = container.scrollTop;
@@ -392,20 +417,45 @@ export default function BibleMuseumTheatre() {
 
     // Global wheel handler - scrolls the container regardless of hover target
     const handleWheel = (e: WheelEvent) => {
-      // Scroll the container directly
       container.scrollTop += e.deltaY;
       handleScroll();
     };
 
+    // Touch handlers for mobile
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches && e.touches[0]) {
+        touchStartY = e.touches[0].clientY;
+        touchStartProgress = scrollProgress;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!e.touches || !e.touches[0]) return;
+      const touchY = e.touches[0].clientY;
+      const deltaY = touchStartY - touchY;
+      const sensitivity = 0.001; // Adjust for scroll speed
+      const newProgress = Math.min(Math.max(touchStartProgress + deltaY * sensitivity, 0), 1);
+      setScrollProgress(newProgress);
+      
+      // Update Theatre.js directly for smooth mobile animation
+      if (mainSheet?.sequence) {
+        mainSheet.sequence.position = newProgress * SEQUENCE_LENGTH;
+      }
+    };
+
     // Listen on window so scrolling works even when hovering fixed overlays
     window.addEventListener("wheel", handleWheel, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
     container.addEventListener("scroll", handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
       container.removeEventListener("scroll", handleScroll);
     };
-  }, [isEditMode]);
+  }, [isEditMode, scrollProgress]);
 
   // Manual scrubber control (for both modes)
   const handleScrubberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
