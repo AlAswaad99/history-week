@@ -121,9 +121,9 @@ export function RSVPButton({ className = '' }: RSVPButtonProps) {
             Registering...
           </span>
         )}
-        {state === 'success' && '✅ You\'re In!'}
-        {state === 'error' && '❌ Try Again'}
-        {state === 'idle' && '🎊 Count Me In!'}
+        {state === 'success' && 'You\'re In!'}
+        {state === 'error' && 'Try Again'}
+        {state === 'idle' && 'Count Me In!'}
       </button>
 
       {/* Error Message */}

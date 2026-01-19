@@ -395,6 +395,15 @@ export default function BibleMuseumTheatre() {
     enabled: isPreviewMode,
   });
 
+  // Refs for touch handling (avoids stale closure issues)
+  const touchStartRef = useRef({ y: 0, progress: 0 });
+  const scrollProgressRef = useRef(scrollProgress);
+  
+  // Keep ref in sync with state
+  useEffect(() => {
+    scrollProgressRef.current = scrollProgress;
+  }, [scrollProgress]);
+
   // Scroll handler - only active in preview mode
   // Uses window-level wheel + touch capture so scrolling works on all devices
   useEffect(() => {
@@ -402,9 +411,6 @@ export default function BibleMuseumTheatre() {
 
     const container = scrollContainerRef.current;
     if (!container) return;
-
-    let touchStartY = 0;
-    let touchStartProgress = 0;
 
     const handleScroll = () => {
       const scrollTop = container.scrollTop;
@@ -421,20 +427,35 @@ export default function BibleMuseumTheatre() {
       handleScroll();
     };
 
-    // Touch handlers for mobile
+    // Touch handlers for mobile - using refs to avoid stale closures
     const handleTouchStart = (e: TouchEvent) => {
       if (e.touches && e.touches[0]) {
-        touchStartY = e.touches[0].clientY;
-        touchStartProgress = scrollProgress;
+        touchStartRef.current = {
+          y: e.touches[0].clientY,
+          progress: scrollProgressRef.current
+        };
       }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       if (!e.touches || !e.touches[0]) return;
+      
+      // Prevent default browser scrolling/zooming
+      e.preventDefault();
+      
       const touchY = e.touches[0].clientY;
-      const deltaY = touchStartY - touchY;
-      const sensitivity = 0.001; // Adjust for scroll speed
-      const newProgress = Math.min(Math.max(touchStartProgress + deltaY * sensitivity, 0), 1);
+      const deltaY = touchStartRef.current.y - touchY;
+      
+      // Calculate sensitivity based on viewport height
+      // A full viewport swipe = ~50% scroll progress
+      const viewportHeight = window.innerHeight;
+      const sensitivity = 0.5 / viewportHeight; // Much higher sensitivity
+      
+      const newProgress = Math.min(
+        Math.max(touchStartRef.current.progress + deltaY * sensitivity, 0), 
+        1
+      );
+      
       setScrollProgress(newProgress);
       
       // Update Theatre.js directly for smooth mobile animation
@@ -443,19 +464,25 @@ export default function BibleMuseumTheatre() {
       }
     };
 
+    const handleTouchEnd = () => {
+      // Optional: could add momentum scrolling here
+    };
+
     // Listen on window so scrolling works even when hovering fixed overlays
     window.addEventListener("wheel", handleWheel, { passive: true });
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
     container.addEventListener("scroll", handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener("wheel", handleWheel);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
       container.removeEventListener("scroll", handleScroll);
     };
-  }, [isEditMode, scrollProgress]);
+  }, [isEditMode]);
 
   // Manual scrubber control (for both modes)
   const handleScrubberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -496,10 +523,12 @@ export default function BibleMuseumTheatre() {
       {/* Hidden scroll container - wheel events are captured globally */}
       <div
         ref={scrollContainerRef}
-        className="fixed inset-0 overflow-x-hidden scrollbar-hide pointer-events-none"
+        className="fixed inset-0 overflow-x-hidden scrollbar-hide"
         style={{ 
           overflowY: isEditMode ? 'hidden' : 'auto',
           zIndex: 10,
+          touchAction: 'none', // Prevent browser default touch handling
+          pointerEvents: 'none', // Allow clicks to pass through
         }}
       >
         <div style={{ height: "1200vh" }} />
