@@ -6,6 +6,7 @@ import {
   ListCollapse,
   Share2Icon,
 } from "lucide-react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -34,7 +35,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import PDFViewer from "./PDFViewer";
+import Spinner from "../Blocks/Spinner";
+
+// Dynamic import to avoid SSR issues
+const PDFViewer = dynamic(() => import("./PDFViewer"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex justify-center items-center min-h-[400px]">
+      <Spinner />
+    </div>
+  ),
+});
 
 function PDFComponent() {
   const router = useRouter();
@@ -149,219 +160,232 @@ function PDFComponent() {
   return (
     <>
       {periodInfo && periodEvent && periodEventsPDFs && (
-        <div className="w-full mt-28">
-          <Breadcrumb className="w-full flex justify-start md:mb-8 pl-4 md:pl-0">
-            <BreadcrumbList className="w-full">
-              <BreadcrumbItem className="sm:flex hidden">
-                {/* <BreadcrumbEllipsis /> */}
-                {isDesktop && (
-                  <BreadcrumbLink href="/">
-                    <Home />
-                  </BreadcrumbLink>
-                )}
-                {!isDesktop && <BreadcrumbEllipsis />}
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="sm:flex hidden" />
-              <BreadcrumbItem>
-                <BreadcrumbLink href={`/${history}`}>
-                  {/* {currentHistory?.name} */}
-                  {isDesktop && currentHistory?.name}
-                  {!isDesktop && <BreadcrumbEllipsis />}
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href={`/${history}/${period}`}>
-                  {periodInfo.title}
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                {/* <BreadcrumbPage>{periodEventsPDFs[id].name}</BreadcrumbPage> */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="flex items-center gap-1 text-ellipsis text-[#1e1b47]">
-                    {periodEventsPDFs[id].name}
-                    <ChevronDownIcon />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start">
-                    {periodEventsPDFs.map((card: any, index: number) => (
-                      <DropdownMenuItem
-                        key={index}
-                        onClick={() => {
-                          router.push(
-                            `/${history}/${period}/${section}/${index}`
-                          );
-                        }}
-                        className={
-                          card.name === periodEventsPDFs[id].name
-                            ? "text-[#1e1b47]"
-                            : ""
-                        }
-                      >
-                        {card.name}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-          <div className="flex min-h-screen flex-col xl:flex-row w-full mx-auto  ">
-            <div className="flex flex-col xl:flex-row w-full h-full xl:pt-0">
-              <div className=" min-w-96 text-ellipsis xl:block xl:sticky xl:top-28 hidden xl:mr-4 xl:overflow-x-visible overflow-x-auto  items-stretch h-1/2 ">
-                <div className=" py-4 px-4 rounded-3xl bg-white shadow-md">
-                  {periodEventsPDFs.map((card: any, index: number) => (
-                    <div
-                      key={index}
-                      className={` p-4 px-4 cursor-pointer flex justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
-                        index === currentIndex
-                          ? "bg-[#1e1b47]/20 hover:bg-[#1e1b47]/20"
-                          : "hover:bg-gray-200"
-                      }`}
-                      onClick={() => {
-                        router.replace(
-                          `/${history}/${period}/${section}/${index}`
-                        );
-                        setCurrentIndex(index);
-                        setPDFSource(
-                          `/${history}/${period}/${section}/${index}.pdf`
-                        );
-                      }}
-                    >
-                      <div className="font-sans">{card.name}</div>
-                      <Link
-                        id="download-button"
-                        className=" w-1/3 flex justify-end z-10 "
-                        href={`/${history}/${period}/${section}/${index}.pdf`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        download={`${card.name}.pdf`}
-                      >
-                        <div className="hover:bg-black/25 p-2 rounded-full">
-                          {/* <Image
-                        src="/downloads.png"
-                        alt="Download"
-                        width={20}
-                        height={20}
-                      /> */}
-                          <DownloadCloud />
-                        </div>
-                      </Link>
-                    </div>
-                  ))}
-                  <Button
-                    className="rounded-3xl w-full mt-4 mb-0 py-5 bg-[#1e1b47]"
-                    disabled={isloading}
-                    onClick={() => {
-                      handleDownloadAll(`/${history}/${period}/${section}`);
-                    }}
-                  >
-                    ሁሉንም አውርድ {isloading ? "..." : ""}
-                  </Button>
-                </div>
-              </div>
-              <Drawer>
-                <div className="xl:hidden sticky flex justify-between bottom-10 right-0 top-[calc(100vh-4rem)] z-50 w-full px-4 mb-2">
-                  <div className="flex justify-start w-full gap-1 ">
-                    <ShareButton />
-                    <Link
-                      id="download-button"
-                      className=" z-10 p-2 bg-[#1e1b47] text-white  rounded-full "
-                      href={`/${history}/${period}/${section}/${id}.pdf`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      download={`${periodEventsPDFs[id].name}.pdf`}
-                    >
-                      <div className="hover:bg-black/25 p-2 rounded-full text-xs">
-                        {/* <Image
-                        src="/downloads.png"
-                        alt="Download"
-                        width={20}
-                        height={20}
-                      /> */}
-                        <DownloadCloud size={20} />
-                      </div>
-                    </Link>
-                  </div>
-
-                  <DrawerTrigger className="py-2 px-10 flex items-center gap-x-1 bg-[#1e1b47] text-xs text-white rounded-full">
-                    <ListCollapse size={20} />
-                    ማውጫ
-                  </DrawerTrigger>
-                </div>
-                <DrawerContent>
-                  <DrawerHeader>
-                    {periodEventsPDFs.map((card: any, index: number) => (
-                      <div
-                        key={index}
-                        className={`p-4 px-8 cursor-pointer text-start flex flex-1 justify-between gap-x-5 xl:gap-x-0 font-semibold items-center whitespace-normal break-words flex-shrink-0 rounded-3xl ${
-                          index === currentIndex
-                            ? "bg-[#1e1b47]/20 hover:bg-[#1e1b47]/20"
-                            : "hover:bg-gray-200"
-                        }`}
-                        onClick={() => {
-                          router.replace(
-                            `/${history}/${period}/${section}/${index}`
-                          );
-                          setCurrentIndex(index);
-                          setPDFSource(
-                            `/${history}/${period}/${section}/${index}.pdf`
-                          );
-                        }}
-                      >
-                        <div className="font-sans w-full ">{card.name}</div>
-                        <Link
-                          id="download-button"
-                          className=" flex justify-end z-10 "
-                          href={`/${history}/${period}/${section}/${index}.pdf`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          download={`${card.name}.pdf`}
+        <div className="w-full min-h-screen bg-gray-50">
+          {/* Header Section with Breadcrumb */}
+          <div className="bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-4 sm:pb-6">
+            <div className="max-w-7xl mx-auto">
+              <Breadcrumb className="w-full mb-4 sm:mb-6">
+                <BreadcrumbList className="w-full">
+                  <BreadcrumbItem className="hidden sm:flex">
+                    <BreadcrumbLink href="/" className="hover:text-[#1e1b47] transition-colors">
+                      <Home size={18} />
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator className="hidden sm:flex" />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href={`/${history}`} className="hover:text-[#1e1b47] transition-colors">
+                      {isDesktop ? currentHistory?.name : <BreadcrumbEllipsis />}
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href={`/${history}/${period}`} className="hover:text-[#1e1b47] transition-colors">
+                      <span className="truncate max-w-[120px] sm:max-w-none">
+                        {periodInfo.title}
+                      </span>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger className="flex items-center gap-1 text-[#1e1b47] hover:text-[#1e1b47]/80 transition-colors">
+                        <span className="truncate max-w-[150px] sm:max-w-none">
+                          {periodEventsPDFs[id].name}
+                        </span>
+                        <ChevronDownIcon size={16} />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="start" className="w-64 sm:w-80">
+                        {periodEventsPDFs.map((card: any, index: number) => (
+                          <DropdownMenuItem
+                            key={index}
+                            onClick={() => {
+                              router.push(
+                                `/${history}/${period}/${section}/${index}`
+                              );
+                            }}
+                            className={
+                              card.name === periodEventsPDFs[id].name
+                                ? "text-[#1e1b47] bg-[#1e1b47]/5"
+                                : "hover:bg-gray-50"
+                            }
+                          >
+                            <span className="truncate">{card.name}</span>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+          </div>
+          {/* Main Content Area */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+              
+              {/* Desktop Sidebar */}
+              <div className="hidden lg:block lg:w-80 xl:w-96 flex-shrink-0">
+                <div className="sticky top-32">
+                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+                    <h3 className="text-lg font-semibold text-[#1e1b47] mb-4 border-b border-gray-100 pb-3">
+                      ማውጫ
+                    </h3>
+                    <div className="space-y-2 max-h-96 overflow-y-auto">
+                      {periodEventsPDFs.map((card: any, index: number) => (
+                        <div
+                          key={index}
+                          className={`group p-3 cursor-pointer flex justify-between items-center rounded-xl transition-all duration-200 ${
+                            index === currentIndex
+                              ? "bg-[#1e1b47] text-white shadow-md"
+                              : "hover:bg-gray-50 hover:shadow-sm"
+                          }`}
+                          onClick={() => {
+                            router.replace(
+                              `/${history}/${period}/${section}/${index}`
+                            );
+                            setCurrentIndex(index);
+                            setPDFSource(
+                              `/${history}/${period}/${section}/${index}.pdf`
+                            );
+                          }}
                         >
-                          <div className="hover:bg-black/25 p-2 rounded-full">
-                            {/* <Image
-                        src="/downloads.png"
-                        alt="Download"
-                        width={20}
-                        height={20}
-                      /> */}
-                            <DownloadCloud />
+                          <div className="font-medium text-sm flex-1 mr-3 leading-snug">
+                            {card.name}
                           </div>
-                        </Link>
-                      </div>
-                    ))}
-                    {/* <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                  <DrawerDescription>
-                    This action cannot be undone.
-                  </DrawerDescription> */}
-                  </DrawerHeader>
-                  <DrawerFooter>
+                          <Link
+                            id="download-button"
+                            className="flex-shrink-0 z-10"
+                            href={`/${history}/${period}/${section}/${index}.pdf`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download={`${card.name}.pdf`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <div className={`p-2 rounded-lg transition-colors ${
+                              index === currentIndex 
+                                ? "hover:bg-white/20 text-white" 
+                                : "hover:bg-gray-200 text-gray-600"
+                            }`}>
+                              <DownloadCloud size={16} />
+                            </div>
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                    
                     <Button
-                      className="rounded-3xl py-5 bg-[#1e1b47]"
+                      className="w-full mt-6 py-3 bg-[#1e1b47] hover:bg-[#1e1b47]/90 text-white rounded-xl font-medium transition-colors"
                       disabled={isloading}
                       onClick={() => {
                         handleDownloadAll(`/${history}/${period}/${section}`);
                       }}
                     >
-                      ሁሉንም አውርድ {isloading ? "..." : ""}
+                      {isloading ? "በመዘገየት ላይ..." : "ሁሉንም አውርድ"}
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              {/* Mobile Navigation */}
+              <Drawer>
+                {/* Fixed Mobile Action Bar */}
+                <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 px-4 py-3 shadow-lg">
+                  <div className="flex items-center justify-between max-w-md mx-auto">
+                    <div className="flex gap-2">
+                      <ShareButton />
+                      <Link
+                        id="download-button"
+                        className="flex items-center justify-center w-11 h-11 bg-[#1e1b47] text-white rounded-xl shadow-sm hover:bg-[#1e1b47]/90 transition-colors"
+                        href={`/${history}/${period}/${section}/${id}.pdf`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        download={`${periodEventsPDFs[id].name}.pdf`}
+                      >
+                        <DownloadCloud size={18} />
+                      </Link>
+                    </div>
+
+                    <DrawerTrigger className="flex items-center gap-2 px-4 py-2.5 bg-[#1e1b47] text-white text-sm font-medium rounded-xl shadow-sm hover:bg-[#1e1b47]/90 transition-colors">
+                      <ListCollapse size={18} />
+                      ማውጫ
+                    </DrawerTrigger>
+                  </div>
+                </div>
+                
+                {/* Mobile Drawer Content */}
+                <DrawerContent className="max-h-[80vh]">
+                  <DrawerHeader className="px-6 py-4 border-b border-gray-100">
+                    <h3 className="text-lg font-semibold text-[#1e1b47]">ማውጫ</h3>
+                  </DrawerHeader>
+                  
+                  <div className="px-6 py-4 overflow-y-auto max-h-96">
+                    <div className="space-y-3">
+                      {periodEventsPDFs.map((card: any, index: number) => (
+                        <div
+                          key={index}
+                          className={`p-4 cursor-pointer flex justify-between items-center rounded-xl transition-all ${
+                            index === currentIndex
+                              ? "bg-[#1e1b47] text-white shadow-md"
+                              : "bg-gray-50 hover:bg-gray-100"
+                          }`}
+                          onClick={() => {
+                            router.replace(
+                              `/${history}/${period}/${section}/${index}`
+                            );
+                            setCurrentIndex(index);
+                            setPDFSource(
+                              `/${history}/${period}/${section}/${index}.pdf`
+                            );
+                          }}
+                        >
+                          <div className="font-medium text-sm flex-1 mr-3 leading-snug">
+                            {card.name}
+                          </div>
+                          <Link
+                            id="download-button"
+                            className="flex-shrink-0 z-10"
+                            href={`/${history}/${period}/${section}/${index}.pdf`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download={`${card.name}.pdf`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <div className={`p-2 rounded-lg transition-colors ${
+                              index === currentIndex 
+                                ? "hover:bg-white/20 text-white" 
+                                : "hover:bg-gray-200 text-gray-600"
+                            }`}>
+                              <DownloadCloud size={16} />
+                            </div>
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <DrawerFooter className="px-6 py-4 border-t border-gray-100">
+                    <Button
+                      className="w-full py-3 bg-[#1e1b47] hover:bg-[#1e1b47]/90 text-white rounded-xl font-medium"
+                      disabled={isloading}
+                      onClick={() => {
+                        handleDownloadAll(`/${history}/${period}/${section}`);
+                      }}
+                    >
+                      {isloading ? "በመዘገየት ላይ..." : "ሁሉንም አውርድ"}
                     </Button>
                   </DrawerFooter>
                 </DrawerContent>
               </Drawer>
 
-              <div className="w-full  -mt-10 md:-mt-0">
-                {/* <Sample filename={pdfSource} />\ */}
-                {/* {!isIos ? (
-                  // Render the PDF as images on iOS devices
-                  <PdfAsImages uri={pdfSource} />
-                ) : (
-                  // Render the PDF using React PDF on other devices
+              {/* PDF Content Area */}
+              <div className="flex-1 lg:flex-shrink">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
                   <PDFViewer filename={pdfSource} />
-                )} */}
-                  <PDFViewer filename={pdfSource} />
-
+                </div>
               </div>
             </div>
+            
+            {/* Mobile bottom spacing to account for fixed action bar */}
+            <div className="lg:hidden h-20" />
           </div>
         </div>
       )}
@@ -404,16 +428,20 @@ const ShareButton = () => {
   };
 
   return (
-    <button
-      className="bg-[#1e1b47] text-white  py-2 px-4 rounded-full shadow-md flex items-center"
-      onClick={shareLink}
-    >
-      <Share2Icon size={20} />
-      {}
-    </button>
-    // {copySuccess && (
-    //   <span className="ml-4 text-green-500">{copySuccess}</span>
-    // )}
+    <div className="relative">
+      <button
+        className="flex items-center justify-center w-11 h-11 bg-[#1e1b47] text-white rounded-xl shadow-sm hover:bg-[#1e1b47]/90 transition-colors"
+        onClick={shareLink}
+        title="Share"
+      >
+        <Share2Icon size={18} />
+      </button>
+      {copySuccess && (
+        <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+          {copySuccess}
+        </div>
+      )}
+    </div>
   );
 };
 
