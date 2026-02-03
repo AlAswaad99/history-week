@@ -25,6 +25,7 @@ import { useEditMode } from "../../hooks/useEditMode";
 import { useKeyboardScroll } from "../../hooks/useKeyboardScroll";
 import { RSVPButton } from "../../components/RSVPButton";
 import { shouldShowEditMode, shouldShowDebugHelpers } from "../../lib/devMode";
+import { GroupBookingModal } from "../../components/GroupBookingModal";
 
 // ============================================================================
 // ANIMATION PHASES - These map scroll progress to animation state
@@ -323,7 +324,13 @@ function TransitionOverlay({ scrollProgress }: { scrollProgress: number }) {
 // ============================================================================
 // FINAL CTA OVERLAY
 // ============================================================================
-function CTAOverlay({ scrollProgress }: { scrollProgress: number }) {
+function CTAOverlay({ 
+  scrollProgress, 
+  onOpenGroupModal 
+}: { 
+  scrollProgress: number;
+  onOpenGroupModal: () => void;
+}) {
   // Show in FLYBY phase
   const isVisible = scrollProgress > PHASES.FLYBY.start + 0.15;
   const opacity = isVisible 
@@ -355,8 +362,8 @@ function CTAOverlay({ scrollProgress }: { scrollProgress: number }) {
         </a>
 
         {/* RSVP Button - Centered below cards */}
-        <div className="mt-6 sm:mt-8">
-          <RSVPButton />
+        <div className="mt-2 sm:mt-4">
+          <RSVPButton onOpenGroupModal={onOpenGroupModal} />
         </div>
       </div>
     </section>
@@ -374,6 +381,7 @@ export default function BibleMuseumTheatre() {
   
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isGroupModalOpen, setIsGroupModalOpen] = useState(false);
 
   // Mark as loaded after a short delay
   useEffect(() => {
@@ -517,7 +525,13 @@ export default function BibleMuseumTheatre() {
       {isPreviewMode && <TransitionOverlay scrollProgress={scrollProgress} />}
       
       {/* Final CTA */}
-      {isPreviewMode && <CTAOverlay scrollProgress={scrollProgress} />}
+      {isPreviewMode && <CTAOverlay scrollProgress={scrollProgress} onOpenGroupModal={() => setIsGroupModalOpen(true)} />}
+
+         {/* Group Booking Modal */}
+         <GroupBookingModal 
+        isOpen={isGroupModalOpen} 
+        onClose={() => setIsGroupModalOpen(false)} 
+      />
 
       {/* ========== SCROLL CONTAINER ========== */}
       {/* Hidden scroll container - wheel events are captured globally */}
