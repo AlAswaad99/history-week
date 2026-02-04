@@ -188,8 +188,8 @@ function HeroOverlay({ scrollProgress }: { scrollProgress: number }) {
           
           <div className="bg-gray-900/60 backdrop-blur-sm p-3 sm:p-6 rounded-xl border border-amber-500/20">
             <p className="text-amber-400 text-lg sm:text-xl uppercase mb-1 sm:mb-2">ምን</p>
-            <p className="text-white text-sm sm:text-lg font-bold">ተንቀሳቃሽ ሙዚየም</p>
-            <p className="text-gray-400 text-xs sm:text-sm">ታሪካዊ ቅርሶች እና ትርኢቶች</p>
+            <p className="text-white text-sm sm:text-lg font-bold">የመጽሐፍ ቅዱስ ሙዚየም</p>
+            <p className="text-gray-400 text-xs sm:text-sm">ታሪካዊ ቅርሶች</p>
           </div>
         </div>
       </div>
@@ -218,7 +218,7 @@ function TransitionOverlay({ scrollProgress }: { scrollProgress: number }) {
         <p className="text-lg md:text-xl text-amber-400 uppercase tracking-[0.3em] mb-4">ታሪክን ይመስክሩ</p>
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">ቃሉ ተገለጠ</h2>
         <p className="backdrop-blur-sm bg-clip-text text-gray-700 max-w-lg mx-auto">
-          ከጥንታውያን ብራናዎች እስከ ዘመናዊ ትርጉሞች፤ መጽሐፍ ቅዱስ ስልጣኔን ቀርጿል፣ በቢሊዮን የሚቆጠሩ ልቦችንም ነክቷል።
+          ከጥንታውያን ብራናዎች እስከ ዘመናዊ ትርጉሞች፤ መጽሐፍ ቅዱስ ስልጣኔን ቀርጿል፣ በቢሊዮን የሚቆጠሩ ልቦችንም ለውጡዋል።
         </p>
       </div>
     </section>
