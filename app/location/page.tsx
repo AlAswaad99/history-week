@@ -175,19 +175,19 @@ function HeroOverlay({ scrollProgress }: { scrollProgress: number }) {
         
         <div className="mt-6 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 max-w-4xl mx-auto px-2">
           <div className="bg-gray-900/60 backdrop-blur-sm p-3 sm:p-6 rounded-xl border border-amber-500/20">
-            <p className="text-amber-400 text-sm sm:text-sm uppercase mb-1 sm:mb-2">መቼ</p>
+            <p className="text-amber-400 text-lg sm:text-xl uppercase mb-1 sm:mb-2">መቼ</p>
             <p className="text-white text-sm sm:text-lg font-bold">የካቲት 1 - 30, 2018</p>
             <p className="text-gray-400 text-xs sm:text-sm">የካቲት 2026</p>
           </div>
           
           <div className="bg-gray-900/60 backdrop-blur-sm p-3 sm:p-6 rounded-xl border border-amber-500/20">
-            <p className="text-amber-400 text-sm sm:text-sm uppercase mb-1 sm:mb-2">የት</p>
+            <p className="text-amber-400 text-lg sm:text-xl uppercase mb-1 sm:mb-2">የት</p>
             <p className="text-white text-sm sm:text-lg font-bold">ቤቴል የዓለም ብርሃን መሰረተ ክርስቶስ ቤተክርስቲያን</p>
             <p className="text-gray-400 text-xs sm:text-sm">አዲስ አበባ</p>
           </div>
           
           <div className="bg-gray-900/60 backdrop-blur-sm p-3 sm:p-6 rounded-xl border border-amber-500/20">
-            <p className="text-amber-400 text-sm sm:text-sm uppercase mb-1 sm:mb-2">ምን</p>
+            <p className="text-amber-400 text-lg sm:text-xl uppercase mb-1 sm:mb-2">ምን</p>
             <p className="text-white text-sm sm:text-lg font-bold">ተንቀሳቃሽ ሙዚየም</p>
             <p className="text-gray-400 text-xs sm:text-sm">ታሪካዊ ቅርሶች እና ትርኢቶች</p>
           </div>
