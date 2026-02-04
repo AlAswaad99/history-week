@@ -17,32 +17,41 @@ interface GroupBookingModalProps {
 
 type GroupType = 'Fellowship' | 'choir' | 'Bible Study group' | 'Other';
 
-const DAYS = [
-  { value: 'Monday', label: 'Monday' },
-  { value: 'Tuesday', label: 'Tuesday' },
-  { value: 'Wednesday', label: 'Wednesday' },
-  { value: 'Thursday', label: 'Thursday' },
-  { value: 'Friday', label: 'Friday' },
-  { value: 'Saturday', label: 'Saturday' },
-  { value: 'Sunday', label: 'Sunday' },
-] as const;
+// Time slots available for all days
+const TIME_SLOTS_WEEKDAY = ['3:00 - 6:00 LT', '8:00 - 11:00 LT', '10:00 - 1:00 LT'];
+const TIME_SLOTS_SUNDAY = ['9:00 - 1:00 LT'];
 
-const TIME_SLOTS = {
-  Monday: ['3:00 - 6:00', '8:00 - 11:00', '10:00 - 1:00'],
-  Tuesday: ['3:00 - 6:00', '8:00 - 11:00', '10:00 - 1:00'],
-  Wednesday: ['3:00 - 6:00', '8:00 - 11:00', '10:00 - 1:00'],
-  Thursday: ['3:00 - 6:00', '8:00 - 11:00', '10:00 - 1:00'],
-  Friday: ['3:00 - 6:00', '8:00 - 11:00', '10:00 - 1:00'],
-  Saturday: ['3:00 - 6:00', '8:00 - 11:00', '10:00 - 1:00'],
-  Sunday: ['9:00 - 1:00'],
+// Helper function to get day name from date
+const getDayName = (dateString: string): string => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const dayIndex = date.getDay();
+  return days[dayIndex] || '';
+};
+
+// Helper function to format date for display
+const formatDate = (dateString: string): string => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', { 
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
 };
 
 // Function to send Telegram notification
 const sendTelegramNotification = async (formData: any, userIP: string) => {
+  const selectedDate = formData.selectedDate ? formatDate(formData.selectedDate) : formData.day || 'Not specified';
+  const dayName = formData.selectedDate ? getDayName(formData.selectedDate) : formData.day || '';
+  
   const message = `🎉 *New Group Booking*\n\n` +
                   `👥 *Group Name:* ${formData.groupName}\n` +
                   `📋 *Type:* ${formData.groupType}\n` +
-                  `📅 *Day:* ${formData.day}\n` +
+                  `📅 *Date:* ${selectedDate}\n` +
+                  `📆 *Day:* ${dayName}\n` +
                   `⏰ *Time:* ${formData.time}\n` +
                   `📞 *Contact Phone:* ${formData.contactPhone}\n` +
                   `🌐 *IP:* ${userIP}\n` +
@@ -81,7 +90,8 @@ export function GroupBookingModal({ isOpen, onClose }: GroupBookingModalProps) {
   const [formData, setFormData] = useState({
     groupName: '',
     groupType: '' as GroupType | '',
-    day: '',
+    selectedDate: '',
+    day: '', // Will be auto-calculated from selectedDate
     time: '',
     contactPhone: '',
   });
@@ -94,8 +104,9 @@ export function GroupBookingModal({ isOpen, onClose }: GroupBookingModalProps) {
   const handleInputChange = (field: keyof typeof formData, value: string) => {
     setFormData(prev => {
       const updated = { ...prev, [field]: value };
-      // Reset time when day changes
-      if (field === 'day') {
+      // When date changes, calculate day name and reset time
+      if (field === 'selectedDate') {
+        updated.day = getDayName(value);
         updated.time = '';
       }
       return updated;
@@ -105,7 +116,7 @@ export function GroupBookingModal({ isOpen, onClose }: GroupBookingModalProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.groupName || !formData.groupType || !formData.day || !formData.time || !formData.contactPhone) {
+    if (!formData.groupName || !formData.groupType || !formData.selectedDate || !formData.time || !formData.contactPhone) {
       setErrorMessage('Please fill in all fields');
       setSubmitState('error');
       return;
@@ -137,7 +148,9 @@ export function GroupBookingModal({ isOpen, onClose }: GroupBookingModalProps) {
           type: 'group',
           groupName: formData.groupName,
           groupType: formData.groupType,
-          day: formData.day,
+          selectedDate: formData.selectedDate,
+          date: formatDate(formData.selectedDate), // Formatted date for display
+          day: formData.day, // Day name (e.g., "Wednesday")
           time: formData.time,
           contactPhone: formData.contactPhone,
           ip: userIP,
@@ -154,6 +167,7 @@ export function GroupBookingModal({ isOpen, onClose }: GroupBookingModalProps) {
         setFormData({
           groupName: '',
           groupType: '',
+          selectedDate: '',
           day: '',
           time: '',
           contactPhone: '',
@@ -170,8 +184,6 @@ export function GroupBookingModal({ isOpen, onClose }: GroupBookingModalProps) {
       setIsSubmitting(false);
     }
   };
-
-  const availableTimeSlots = formData.day ? TIME_SLOTS[formData.day as keyof typeof TIME_SLOTS] || [] : [];
 
   return (
     <>
@@ -276,40 +288,38 @@ export function GroupBookingModal({ isOpen, onClose }: GroupBookingModalProps) {
               </div>
             </div>
 
-            {/* Day Selection */}
+            {/* Date Selection */}
             <div>
-              <label className="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
-                Select Day <span className="text-red-500">*</span>
+              <label htmlFor="selectedDate" className="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">
+                Select Date <span className="text-red-500">*</span>
               </label>
-              <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-2 sm:gap-3">
-                {DAYS.map((day) => (
-                  <button
-                    key={day.value}
-                    type="button"
-                    onClick={() => handleInputChange('day', day.value)}
-                    className={`
-                      px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg border-2 text-xs sm:text-sm font-medium transition-all
-                      ${formData.day === day.value
-                        ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 shadow-md'
-                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-purple-300 dark:hover:border-purple-600'
-                      }
-                    `}
-                  >
-                    <span className="hidden sm:inline">{day.label}</span>
-                    <span className="sm:hidden">{day.label.slice(0, 3)}</span>
-                  </button>
-                ))}
-              </div>
+              <input
+                id="selectedDate"
+                type="date"
+                value={formData.selectedDate}
+                onChange={(e) => handleInputChange('selectedDate', e.target.value)}
+                min={new Date().toISOString().split('T')[0]} // Prevent selecting past dates
+                className="w-full px-4 py-3 sm:py-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 text-sm sm:text-base"
+                required
+              />
+              {/* Display day name automatically */}
+              {formData.selectedDate && formData.day && (
+                <div className="mt-3 px-4 py-2 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg">
+                  <p className="text-purple-700 dark:text-purple-300 text-sm sm:text-base font-medium">
+                    📅 Selected: <span className="font-bold">{formatDate(formData.selectedDate)}</span>
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Time Selection */}
-            {formData.day && (
+            {formData.selectedDate && formData.day && (
               <div>
                 <label className="block text-sm sm:text-base font-semibold text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">
                   Select Time <span className="text-red-500">*</span>
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                  {availableTimeSlots.map((time) => (
+                  {(formData.day === 'Sunday' ? TIME_SLOTS_SUNDAY : TIME_SLOTS_WEEKDAY).map((time) => (
                     <button
                       key={time}
                       type="button"
