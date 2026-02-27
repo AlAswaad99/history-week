@@ -404,7 +404,7 @@ export default function MapPage() {
             BYB MKC Navigator
           </p>
           <p className="text-[10px] font-mono text-gray-600 tracking-wider mt-0.5">
-            MESERETE KRISTOS CHURCH · BETHEL
+            MESERETE KRISTOS CHURCH · BETHEL YEALEM BIRHAN
           </p>
         </div>
 
