@@ -107,7 +107,7 @@ export function RSVPButton({ className = '', onOpenGroupModal }: RSVPButtonProps
             active:scale-95 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-gray-900
           "
         >
-          👥 Book Tour as a Group
+          👥 Book a tour as a group
         </button>
 
          {/* RSVP Button */}

@@ -444,7 +444,7 @@ function CTAOverlay({ scrollProgress, onOpenGroupModal }: {
               ሙዚየሙን ይጎብኙ
             </h3>
             <p className="text-gray-400 text-sm mb-6 max-w-[220px] mx-auto leading-relaxed">
-              ሙሉ ጉዞውን በሙዚየማችን በዝርዝር ይመልከቱ።
+              ሙሉ ጉዞውን በዝርዝር ይመልከቱ።
             </p>
 
             {/* Directions CTA */}

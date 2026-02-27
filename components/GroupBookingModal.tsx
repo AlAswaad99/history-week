@@ -216,7 +216,7 @@ export function GroupBookingModal({ isOpen, onClose }: GroupBookingModalProps) {
         {/* Sticky Header - Full Width */}
         <div className="w-full bg-gradient-to-r from-purple-600 to-purple-700 px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex items-center justify-between flex-shrink-0 shadow-lg">
           <div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">Book Tour as a Group</h2>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">Book a tour as a group</h2>
             <p className="text-purple-100 text-xs sm:text-sm mt-1">Fill in the details below</p>
           </div>
           <button
