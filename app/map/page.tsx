@@ -742,7 +742,7 @@ export default function MapPage() {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Bethel MKC Church Location"
+            title="BYBMKC Church Location"
           />
 
           {/* Location badge — bottom left */}
@@ -760,7 +760,7 @@ export default function MapPage() {
               className="w-1.5 h-1.5 rounded-full"
               style={{ background: "#f59e0b" }}
             />
-            Bethel MKC · Addis Ababa
+            BYBMKC · Addis Ababa
           </div>
 
           {/* Map hint — top right */}

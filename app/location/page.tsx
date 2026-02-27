@@ -27,6 +27,7 @@ import { useAssetPreloader } from "../../hooks/useAssetPreloader";
 import { RSVPButton } from "../../components/RSVPButton";
 import { shouldShowEditMode, shouldShowDebugHelpers } from "../../lib/devMode";
 import { GroupBookingModal } from "../../components/GroupBookingModal";
+import PageScroller from "../../components/Blocks/PageScroller";
 
 // ============================================================================
 // ANIMATION PHASES
@@ -209,7 +210,7 @@ function HeroOverlay({ scrollProgress }: { scrollProgress: number }) {
           className="text-xs sm:text-sm uppercase tracking-[0.4em] text-amber-400/80 mb-3 sm:mb-5 font-light"
           style={{ animation: 'fade-in-up 0.8s 0.1s ease-out both' }}
         >
-          ቤቴል ቤተክርስቲያን · 2018
+          ቤቴል የአለም ብርሃን መሠረተ ክርስቶስ ቤተክርስቲያን · 2018
         </p>
 
         {/* Main title — Habesha serif for Amharic beauty */}
@@ -240,7 +241,7 @@ function HeroOverlay({ scrollProgress }: { scrollProgress: number }) {
           className="text-sm sm:text-base md:text-lg text-gray-400/90 max-w-xl mx-auto px-2"
           style={{ animation: 'fade-in-up 0.9s 0.45s ease-out both' }}
         >
-          በዓለም ላይ እጅግ የተቀደሰውን መጽሐፍ ታሪክ አብረን እንመርምር
+          የእግዚአብሔር እስትንፋስ የሆነውን ቅዱስ ቃሉን አብረን እንጎብኝ
         </p>
 
         {/* Info cards */}
@@ -249,8 +250,8 @@ function HeroOverlay({ scrollProgress }: { scrollProgress: number }) {
           style={{ animation: 'fade-in-up 1s 0.6s ease-out both' }}
         >
           {[
-            { label: 'መቼ', value: 'የካቲት 1–30, 2018', sub: 'የካቲት 2026' },
-            { label: 'የት', value: 'ቤቴል ዓለም ብርሃን ቤተክርስቲያን', sub: 'አዲስ አበባ' },
+            { label: 'መቼ', value: 'የካቲት 1 - መጋቢት 11, 2018', sub: 'Feb/March 2026' },
+            { label: 'የት', value: 'ቤቴል የዓለም ብርሃን መሠረተ ክርስቶስ ቤተክርስቲያን', sub: 'አዲስ አበባ' },
             { label: 'ምን', value: 'የመጽሐፍ ቅዱስ ሙዚየም', sub: 'ታሪካዊ ቅርሶች' },
           ].map(({ label, value, sub }) => (
             <div
@@ -275,21 +276,24 @@ function HeroOverlay({ scrollProgress }: { scrollProgress: number }) {
         className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
         style={{ animation: 'fade-in-up 1s 1s ease-out both' }}
       >
-        <span className="text-gray-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] hidden sm:block">
+        {/* <span className="text-gray-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] hidden sm:block">
           ወደ ታች ይውረዱ
         </span>
         <span className="text-gray-500 text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:hidden">
           ወደ ላይ ይግፉ
         </span>
+        */}
         {/* Pulsing rings */}
-        <div className="relative w-8 h-8 flex items-center justify-center">
+        {/* <div className="relative w-8 h-8 flex items-center justify-center">
           <div className="absolute inset-0 rounded-full border border-amber-400/40 animate-ping" />
           <div className="absolute inset-1 rounded-full border border-amber-400/20 animate-ping" style={{ animationDelay: '0.3s' }} />
           <svg className="w-4 h-4 text-amber-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
-        </div>
-      </div>
+        </div> */}
+
+      <PageScroller direction="down" next="histories" variant="shimmer" />
+      </div>  
     </section>
   );
 }
@@ -319,7 +323,14 @@ function TransitionOverlay({ scrollProgress }: { scrollProgress: number }) {
         <div className="flex-1 h-px bg-gradient-to-l from-transparent to-amber-500/50" />
       </div>
 
-      <div className="text-center px-4">
+      <div className="text-center p-4"
+            style={{
+              background: 'rgba(10, 8, 20, 0.4)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(251,191,36,0.15)',
+              borderRadius: '30px',
+              opacity: opacity * Math.max(0, fadeOut), transition: 'opacity 0.15s ease' 
+            }}>
         {/* Eyebrow */}
         <p className="text-xs sm:text-sm uppercase tracking-[0.5em] text-amber-400/70 mb-5 font-light">
           ታሪክን ይመስክሩ
@@ -329,7 +340,6 @@ function TransitionOverlay({ scrollProgress }: { scrollProgress: number }) {
         <h2
           className="font-habesha-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6"
           style={{
-            textShadow: '0 0 60px rgba(251,191,36,0.35), 0 0 120px rgba(251,191,36,0.1)',
             letterSpacing: '0.02em',
           }}
         >
@@ -338,8 +348,8 @@ function TransitionOverlay({ scrollProgress }: { scrollProgress: number }) {
 
         {/* Body text with subtle backdrop */}
         <p
-          className="text-sm sm:text-base md:text-lg text-gray-400/90 max-w-md mx-auto leading-relaxed px-4"
-          style={{ backdropFilter: 'blur(2px)' }}
+          className="text-sm sm:text-base md:text-lg text-gray-200/90 max-w-md mx-auto leading-relaxed font-thin px-4"
+         
         >
           ከጥንታውያን ብራናዎች እስከ ዘመናዊ ትርጉሞች፤ መጽሐፍ ቅዱስ ስልጣኔን ቀርጿል፣ በቢሊዮን የሚቆጠሩ ልቦችንም ለውጡዋል።
         </p>
@@ -526,7 +536,7 @@ function LoadingScreen({ progress }: { progress: number }) {
         className="absolute bottom-8 text-gray-700 text-[10px] tracking-[0.3em] uppercase"
         style={{ animation: 'fade-in-up 1s 0.5s ease-out both' }}
       >
-        Bible Museum · Bethel Church
+        Bible Museum · BYBMK
       </p>
     </div>
   );
