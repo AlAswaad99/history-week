@@ -416,7 +416,7 @@ function CTAOverlay({ scrollProgress, onOpenGroupModal }: {
 
             {/* Directions CTA */}
             <a
-              href="https://maps.app.goo.gl/ZQN3dpjtG6dom8Fj7"
+              href="/map"
               target="_blank"
               rel="noopener noreferrer"
               className="location-btn-shimmer inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-sm text-gray-900 transition-all duration-300 shadow-lg hover:shadow-amber-500/25 hover:scale-[1.03] active:scale-95"

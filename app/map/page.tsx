@@ -137,7 +137,7 @@ export default function MapPage() {
     if (typeof window === "undefined" || leafletMapRef.current) return;
 
     import("leaflet").then((L) => {
-      import("leaflet/dist/leaflet.css");
+      // Leaflet CSS is loaded via app/globals.css for prod/Vercel build compatibility
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const map = (L as any).map(mapContainerRef.current!, {

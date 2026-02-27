@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Leaflet map styles (used by /map page) */
+@import "leaflet/dist/leaflet.css";
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
