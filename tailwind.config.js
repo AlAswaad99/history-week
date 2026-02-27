@@ -28,6 +28,7 @@ export const theme = {
     fontFamily: {
       sans: ['var(--font-nokia-bold)', ...fontFamily.sans],
       'nokia-light': ['var(--font-nokia-light)'],
+      'nokia-ultra-light': ['var(--font-nokia-ultra-light)'],
       droid: ['var(--font-droid)'],
       yanon: ['var(--font-yanon)'],
       klavika: ['var(--font-klavika)'],

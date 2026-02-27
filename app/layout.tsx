@@ -29,6 +29,12 @@ const nokiaLight = localFont({
   src: "../public/fonts/nokia-pure-headline.otf",
 });
 
+const nokiaUltraLight = localFont({
+  weight: "100",
+  variable: "--font-nokia-ultra-light",
+  src: "./fonts/nokia-ultra-light.otf",
+});
+
 const droid = localFont({
   weight: "400", // Adjust weight if necessary
   variable: "--font-droid",
@@ -99,7 +105,7 @@ export default function RootLayout({
   return (
     <html lang="en-US">
       <body
-        className={`${nokiaBold.variable} ${nokiaLight.variable} ${droid.variable} ${yanon.variable} ${klavika.variable} ${habeshaDistort.variable} ${habeshaBlack.variable} ${habeshaBold.variable} ${habeshalight.variable} ${habeshaOutline.variable} ${habeshaRegular.variable} ${habeshaThin.variable} ${habeshaTypewriter.variable} font-sans`}
+        className={`${nokiaBold.variable} ${nokiaLight.variable} ${nokiaUltraLight.variable} ${droid.variable} ${yanon.variable} ${klavika.variable} ${habeshaDistort.variable} ${habeshaBlack.variable} ${habeshaBold.variable} ${habeshalight.variable} ${habeshaOutline.variable} ${habeshaRegular.variable} ${habeshaThin.variable} ${habeshaTypewriter.variable} font-sans`}
       >
         <Navbar />
         <Toaster />

@@ -35,7 +35,7 @@ import PageScroller from "../../components/Blocks/PageScroller";
 const PHASES = {
   HERO: { start: 0, end: 0.15 },
   REVEAL: { start: 0.15, end: 0.30 },
-  CENTERED: { start: 0.30, end: 0.45 },
+  CENTERED: { start: 0.30, end: 0.75 },
   ORBIT: { start: 0.10, end: 1 },
   FLYBY: { start: 0.60, end: 1.0 },
 };
@@ -332,28 +332,51 @@ function TransitionOverlay({ scrollProgress }: { scrollProgress: number }) {
               opacity: opacity * Math.max(0, fadeOut), transition: 'opacity 0.15s ease' 
             }}>
         {/* Eyebrow */}
-        <p className="text-xs sm:text-sm uppercase tracking-[0.5em] text-amber-400/70 mb-5 font-light">
-          ታሪክን ይመስክሩ
+        <p className="text-xs sm:text-sm uppercase tracking-[0.5em] text-amber-400/70 mb-5 font-light m-5px">
+        ቃሉ ተገለጠ
         </p>
 
         {/* Main heading with text glow */}
-        <h2
+        <div className="flex justify-center items-center bg-image-url('/books-all-point-to-me.png') bg-cover bg-center w-full h-full"
+          style={{
+            backgroundImage: 'url(/books-all-point-to-me.png)',
+            backgroundSize: 'contain',
+            backgroundPosition: 'center',
+            width: 'auto',
+            height: '80px',
+            backgroundRepeat: 'no-repeat',
+            margin: '16px',
+            marginTop: '8px',
+          }}>
+        </div>
+        {/* <h2
           className="font-habesha-bold text-4xl md:text-6xl lg:text-7xl text-white mb-6"
           style={{
             letterSpacing: '0.02em',
           }}
         >
-          ቃሉ ተገለጠ
-        </h2>
+          
+        </h2> */}
 
         {/* Body text with subtle backdrop */}
         <p
           className="text-sm sm:text-base md:text-lg text-gray-200/90 max-w-md mx-auto leading-relaxed font-thin px-4"
-         
-        >
-          ከጥንታውያን ብራናዎች እስከ ዘመናዊ ትርጉሞች፤ መጽሐፍ ቅዱስ ስልጣኔን ቀርጿል፣ በቢሊዮን የሚቆጠሩ ልቦችንም ለውጡዋል።
+          style={{
+            lineHeight: '23px',
+          }}>
+          እናንተ በመጻሕፍት የዘላለም ሕይወት እንዳላችሁ ይመስላችኋልና እነርሱን ትመረምራላችሁ፤ <span style={{
+            background: 'linear-gradient(135deg, #f59e0b 0%, #fde68a 30%, #d97706 55%, #fbbf24 75%, #f59e0b 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            backgroundSize: '200% auto',
+            animation: 'shimmer-gradient 5s ease-in-out infinite, fade-in-up 0.9s 0.2s ease-out both',
+            textShadow: 'none',
+            filter: 'drop-shadow(0 0 40px rgba(251,191,36,0.25))',
+          }}>እነርሱም ስለ እኔ የሚመሰክሩ ናቸው</span>
+           <p className="text-xs sm:text-sm uppercase tracking-[0.5em]  mb-5 font-light m-5px mt-[15px]">ዮሐ 5:39</p>
         </p>
-      </div>
+      </div>  
 
       {/* Bottom rule */}
       <div
