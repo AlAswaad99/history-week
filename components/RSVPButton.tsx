@@ -140,7 +140,7 @@ export function RSVPButton({ className = '', onOpenGroupModal }: RSVPButtonProps
           )}
           {state === 'success' && 'You\'re In!'}
           {state === 'error' && 'Try Again'}
-          {state === 'idle' && 'Count Me In!'}
+          {state === 'idle' && 'እመጣለው!'}
         </button>
 
         {/* Error Message */}

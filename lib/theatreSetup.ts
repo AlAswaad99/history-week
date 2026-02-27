@@ -25,7 +25,7 @@ export const project = getProject('Bible Museum',
 export const mainSheet = project.sheet('Main Animation')
 
 // Helper to get sequence length
-export const SEQUENCE_LENGTH = 40 // 35second animation driven by scroll
+export const SEQUENCE_LENGTH = 80 // 35second animation driven by scroll
 
 // Export studio for conditional UI hiding
 export { studio }

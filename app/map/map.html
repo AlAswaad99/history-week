@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --tactical-orange: #ff8c00;
+            --tech-blue: #00bcd4;
+            --deep-bg: #0a1929;
+            --main-bg: #f2f4f7;
+            --glass-white: rgba(255, 255, 255, 0.95);
+        }
+
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background: var(--main-bg);
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- TRENDING HEADER --- */
+        .trending-header {
+            width: 100%;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--deep-bg) 0%, #002b36 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 4px solid var(--tactical-orange);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 10;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .church-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            background: #fff;
+            object-fit: contain;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .title-group { text-align: left; }
+
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin: 0;
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--tech-blue);
+            text-shadow: 3px 3px var(--tactical-orange);
+            letter-spacing: 4px;
+        }
+
+        .secondary-title {
+            font-size: 0.9rem;
+            color: #fff;
+            margin: 5px 0 0 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 300;
+            max-width: 450px;
+        }
+
+        .geez-graphic {
+            margin-top: 25px;
+            height: 70px;
+            filter: drop-shadow(0 0 8px var(--tech-blue)) brightness(1.2);
+            z-index: 10;
+        }
+
+        /* --- RADAR NAVIGATION SECTION --- */
+        .navigation-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        #hud-top {
+            width: 90%; max-width: 450px; height: 65px;
+            background: var(--glass-white); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 140, 0, 0.3); border-radius: 12px;
+            display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .telemetry-box { text-align: center; font-family: 'Roboto Mono', monospace; }
+        .t-label { font-size: 0.55rem; color: #888; letter-spacing: 2px; }
+        .t-val { font-size: 1.1rem; color: var(--tactical-orange); font-weight: 700; }
+
+        #radar-wrapper {
+            position: relative; width: 85vw; height: 85vw; max-width: 420px; max-height: 420px;
+            border-radius: 50%; border: 8px solid #fff;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+            overflow: hidden; background: #ebebeb;
+        }
+
+        #map { height: 100%; width: 100%; }
+
+        .user-dot {
+            width: 14px; height: 14px; background: var(--tactical-orange);
+            border: 2px solid #fff; border-radius: 50%;
+            box-shadow: 0 0 15px var(--tactical-orange);
+            position: relative;
+        }
+        .user-dot::after {
+            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px solid var(--tactical-orange); border-radius: 50%;
+            animation: sonar-pulse 1.8s infinite; opacity: 0;
+        }
+        @keyframes sonar-pulse {
+            0% { transform: scale(0.6); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+
+        .leaflet-popup, .leaflet-routing-container, .leaflet-control-attribution { display: none !important; }
+
+        .controls { margin-top: 30px; }
+        .btn-launch {
+            background: var(--tactical-orange); color: #fff; border: none;
+            padding: 14px 45px; border-radius: 50px; font-family: 'Orbitron'; font-size: 0.75rem;
+            letter-spacing: 2px; cursor: pointer; font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3); transition: 0.2s;
+        }
+        .btn-launch:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+<header class="trending-header">
+    <div class="brand-container">
+        <img src="logo.png" alt="Church Logo" class="church-logo">
+        
+        <div class="title-group">
+            <h1 class="main-title">BYB MKC</h1>
+            <p class="secondary-title">Meserete Kristos Church Bethel Yealem Birhan</p>
+        </div>
+    </div>
+
+</header>
+
+<main class="navigation-section">
+    <div id="hud-top">
+        <div class="telemetry-box"><div class="t-label">VELOCITY</div><div id="speed" class="t-val">0.0</div></div>
+        <div class="telemetry-box"><div class="t-label">DISTANCE</div><div id="distance" class="t-val">---</div></div>
+    </div>
+
+    <div id="radar-wrapper">
+        <div id="map"></div>
+    </div>
+
+    <div class="controls">
+        <button onclick="startAudio()" id="audio-btn" class="btn-launch">ACTIVATE SONAR</button>
+    </div>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+<script>
+let audioCtx = null;
+const SETTINGS = { target: [9.005098, 38.679236], smoothing: 0.18, zoom: 17 };
+
+const map = L.map('map', { 
+    zoomControl: false, attributionControl: false, 
+    dragging: false, scrollWheelZoom: false,
+    doubleClickZoom: false, boxZoom: false,
+    closePopupOnClick: true
+}).setView(SETTINGS.target, SETTINGS.zoom);
+
+map.on('popupopen', () => map.closePopup());
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png').addTo(map);
+
+const userIcon = L.divIcon({
+    className: 'custom-icon',
+    html: `<div class="user-dot"></div>`,
+    iconSize: [20, 20],
+    iconAnchor: [10, 10]
+});
+
+let userMarker = null, routeLine = null, lastCoord = null;
+
+function playSonarBeep() {
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(1100, audioCtx.currentTime); 
+    osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.3);
+    gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.3);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.3);
+}
+
+function startAudio() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    document.getElementById('audio-btn').innerText = "SYSTEM ARMED";
+}
+
+function onLocationUpdate(pos) {
+    const { latitude, longitude, speed } = pos.coords;
+    let currentLatLng = L.latLng(latitude, longitude);
+    const destination = L.latLng(SETTINGS.target);
+
+    if (lastCoord) {
+        currentLatLng = L.latLng(
+            lastCoord.lat + (latitude - lastCoord.lat) * SETTINGS.smoothing,
+            lastCoord.lng + (longitude - lastCoord.lng) * SETTINGS.smoothing
+        );
+    }
+    lastCoord = currentLatLng;
+
+    if (!userMarker) userMarker = L.marker(currentLatLng, {icon: userIcon}).addTo(map);
+    else userMarker.setLatLng(currentLatLng);
+
+    map.panTo(currentLatLng);
+    document.getElementById("distance").innerText = Math.floor(currentLatLng.distanceTo(destination)) + "M";
+    document.getElementById("speed").innerText = (speed * 3.6 || 0).toFixed(1);
+    
+    if (!routeLine) {
+        routeLine = L.Routing.control({
+            waypoints: [currentLatLng, destination],
+            createMarker: () => null,
+            addWaypoints: false, draggableWaypoints: false, show: false,
+            lineOptions: { styles: [{color: '#ff8c00', opacity: 0.8, weight: 6}] }
+        }).addTo(map);
+    } else {
+        routeLine.setWaypoints([currentLatLng, destination]);
+    }
+    playSonarBeep();
+}
+
+if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(onLocationUpdate, null, { enableHighAccuracy: true });
+}
+</script>
+</body>
+</html>

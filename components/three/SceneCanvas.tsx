@@ -26,8 +26,10 @@ function SceneBackground() {
     if (!sheet) return null
     
     return sheet.object('SceneBackground', {
-      topColor: types.rgba({ r: 0.02, g: 0.02, b: 0.05, a: 1 }), // Deep dark blue
-      bottomColor: types.rgba({ r: 0.08, g: 0.06, b: 0.12, a: 1 }), // Dark purple
+      // topColor: #101d26 (R:16,G:29,B:38)
+      topColor: types.rgba({ r: 16/255, g: 29/255, b: 38/255, a: 1 }),
+      // bottomColor: #060211 (R:6,G:2,B:17)
+      bottomColor: types.rgba({ r: 6/255, g: 2/255, b: 17/255, a: 1 }),
       enabled: types.boolean(true),
     })
   }, [sheet])
