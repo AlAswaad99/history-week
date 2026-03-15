@@ -28,7 +28,7 @@ export default function HistoryCard({
             alt={title}
             width={1200}
             height={1200}
-            className="w-full transition-transform duration-300 transform hover:scale-110 "
+            className="w-full transition-transform duration-300 transform max-h-72 hover:scale-110 "
           />
         </div>
         <div className="px-6 py-4 items-end h-full">
