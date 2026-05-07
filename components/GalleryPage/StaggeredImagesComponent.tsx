@@ -2,10 +2,10 @@
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import type { ComponentType } from "react";
 import { useState } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { useSwipeable } from "react-swipeable";
-import type { ComponentType } from "react";
 
 const ResponsiveMasonryComponent = ResponsiveMasonry as ComponentType<any>;
 const MasonryComponent = Masonry as ComponentType<any>;
@@ -47,7 +47,6 @@ const StaggeredImagesComponent = () => {
     "/gallery/church-history/photo_2024-08-11_00-39-22.jpg",
     "/gallery/church-history/photo_2024-08-11_00-40-05.jpg",
   ];
-  
 
   const bibleHistoryImageUrls = [
     "/gallery/bible-history/photo_1_2024-08-06_04-59-32.jpg",
@@ -83,11 +82,36 @@ const StaggeredImagesComponent = () => {
     "/gallery/bible-history/photo_2024-08-10_23-32-52.jpg",
     "/gallery/bible-history/photo_2024-08-10_23-34-48.jpg",
   ];
-  
+
+  const bibleMuseumImageUrls = [
+    "/gallery/bible-museum/collage.jpg",
+    "/gallery/bible-museum/photo_4_2026-03-15_12-25-28.jpg",
+    "/gallery/bible-museum/photo_11_2026-03-15_12-25-28.jpg",
+    "/gallery/bible-museum/photo_14_2026-03-15_12-25-28.jpg",
+    "/gallery/bible-museum/photo_18_2026-03-15_12-25-28.jpg",
+    "/gallery/bible-museum/photo_27_2026-03-15_12-25-28.jpg",
+    "/gallery/bible-museum/photo_33_2026-03-15_12-25-28.jpg",
+    "/gallery/bible-museum/photo_39_2026-03-15_12-25-28.jpg",
+    "/gallery/bible-museum/photo_41_2026-03-15_12-25-28.jpg",
+    "/gallery/bible-museum/photo_44_2026-03-15_12-25-28.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-26-52.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-27-07.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-27-15.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-27-27.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-27-30.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-27-33.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-27-39.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-28-04.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-28-12.jpg",
+    "/gallery/bible-museum/photo_2026-03-15_12-28-28.jpg",
+  ];
+
   const images =
     history === "church-history"
       ? churchHistoryImageUrls
-      : bibleHistoryImageUrls;
+      : history === "bible-museum"
+        ? bibleMuseumImageUrls
+        : bibleHistoryImageUrls;
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
@@ -101,19 +125,21 @@ const StaggeredImagesComponent = () => {
 
   const nextImage = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === null || prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === null || prevIndex === images.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
   const prevImage = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === null || prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === null || prevIndex === 0 ? images.length - 1 : prevIndex - 1,
     );
   };
 
   return (
     <div className="md:pt-40 w-full pt-24 pb-4 px-4 max-w-screen-xl 2xl:max-w-screen-2xl mx-auto">
-      <ResponsiveMasonryComponent columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+      <ResponsiveMasonryComponent
+        columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+      >
         <MasonryComponent gutter="1rem" className="">
           {images.map((image, index) => (
             <div
@@ -182,7 +208,7 @@ const CustomGallery = ({
             className="absolute top-32 right-4 z-40 text-white text-5xl cursor-pointer"
             onClick={closeImage}
           >
-            <X size={30}/>
+            <X size={30} />
           </span>
           <div className="relative z-40 h-3/4 w-[90%] max-h-screen max-w-screen">
             <Image
