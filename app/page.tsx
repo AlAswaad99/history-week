@@ -1,5 +1,6 @@
 import type { EmblaOptionsType } from "embla-carousel";
 import GallerySection from "../components/LandingPage/GallerySection";
+import GenealogySection from "../components/LandingPage/GenealogySection";
 import HistoriesSection from "../components/LandingPage/HistoriesSection";
 import LandingSection from "../components/LandingPage/LandingSection";
 import jsonData from '../public/data.json';
@@ -18,6 +19,7 @@ export default function Page() {
     <div className="min-h-screen">
       <LandingSection slides={SLIDES} options={OPTIONS} />
       <HistoriesSection slides={slides}/>
+      <GenealogySection />
       <GallerySection slides={slides}/>
     </div>
   );

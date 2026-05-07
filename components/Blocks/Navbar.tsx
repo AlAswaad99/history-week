@@ -1,6 +1,6 @@
  "use client";
 
-import { Images, InfoIcon } from "lucide-react";
+import { GitBranch, Images, InfoIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -24,6 +24,9 @@ export default function Navbar() {
         <div className="flex gap-6 flex-row-reverse items-center">
         <Link href="/gallery">
           <Images size={30} />
+        </Link>
+        <Link href="/genealogy" aria-label="Biblical Genealogy">
+          <GitBranch size={30} />
         </Link>
         <Link href="/about">
           <InfoIcon size={30} />

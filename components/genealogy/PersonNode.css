@@ -1,0 +1,194 @@
+.genealogy-scope .person-node {
+  background: white;
+  border: 3px solid var(--gen-primary-gold);
+  border-radius: 15px;
+  padding: 15px;
+  width: 240px;
+  min-height: 120px;
+  font-family: 'Crimson Text', serif;
+  box-shadow: 0 5px 15px var(--gen-shadow);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.genealogy-scope .print-selection-marker {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #3b82f6;
+  box-shadow: 0 0 0 2px white, 0 1px 3px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+.genealogy-scope .person-node::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gen-primary-gold) 0%, var(--gen-light-gold) 50%, var(--gen-primary-gold) 100%);
+  border-radius: 15px 15px 0 0;
+}
+
+.genealogy-scope .person-node:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px var(--gen-shadow);
+}
+
+.genealogy-scope .person-node.messianic {
+  border: 4px solid var(--gen-messianic-gold);
+  background: linear-gradient(135deg, #fff9e6 0%, #fef3c7 100%);
+  box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+}
+
+.genealogy-scope .person-node.messianic::before {
+  background: linear-gradient(90deg, var(--gen-messianic-gold) 0%, var(--gen-light-gold) 50%, var(--gen-messianic-gold) 100%);
+  height: 5px;
+}
+
+.genealogy-scope .person-node.messianic .name {
+  color: var(--gen-deep-red);
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.genealogy-scope .person-node.major {
+  border: 4px solid var(--gen-royal-blue);
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.genealogy-scope .person-node.female {
+  border: 3px solid #ec4899;
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+}
+
+.genealogy-scope .person-node.female::before {
+  background: linear-gradient(90deg, #ec4899 0%, #f472b6 50%, #ec4899 100%);
+}
+
+.genealogy-scope .node-content {
+  text-align: center;
+}
+
+.genealogy-scope .name-section {
+  margin-bottom: 10px;
+}
+
+.genealogy-scope .name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4em;
+  font-weight: 700;
+  color: var(--gen-dark-brown);
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+
+.genealogy-scope .amharic-name {
+  font-family: 'Noto Sans Ethiopic', sans-serif;
+  font-size: 1.2em;
+  color: var(--gen-primary-gold);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.genealogy-scope .class-icon {
+  margin: 6px auto;
+  display: block;
+}
+
+.genealogy-scope .class-icon.crown {
+  color: var(--gen-messianic-gold);
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.8));
+}
+
+.genealogy-scope .class-icon.star {
+  color: var(--gen-royal-blue);
+  filter: drop-shadow(0 0 4px rgba(30, 58, 138, 0.6));
+}
+
+.genealogy-scope .life-span {
+  font-size: 0.9em;
+  color: var(--gen-royal-blue);
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.genealogy-scope .spouse {
+  font-style: italic;
+  color: var(--gen-deep-red);
+  margin: 8px 0;
+  font-size: 0.9em;
+}
+
+.genealogy-scope .details {
+  margin-top: 10px;
+  font-size: 0.85em;
+  color: #6b7280;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.genealogy-scope .children-indicator {
+  margin-top: 10px;
+  font-size: 0.8em;
+  color: var(--gen-primary-gold);
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.genealogy-scope .handle-top, .genealogy-scope .handle-bottom {
+  width: 10px;
+  height: 10px;
+  background: var(--gen-primary-gold);
+  border: 2px solid white;
+}
+
+.genealogy-scope .person-node.messianic .handle-top,
+.genealogy-scope .person-node.messianic .handle-bottom {
+  background: var(--gen-messianic-gold);
+}
+
+.genealogy-scope .person-node.major .handle-top,
+.genealogy-scope .person-node.major .handle-bottom {
+  background: var(--gen-royal-blue);
+}
+
+.genealogy-scope .person-node.female .handle-top,
+.genealogy-scope .person-node.female .handle-bottom {
+  background: #ec4899;
+}
+
+.genealogy-scope .person-node.selected {
+  border: 3px solid var(--gen-primary-gold);
+  box-shadow: 0 0 0 2px var(--gen-primary-gold), 0 8px 20px rgba(245, 158, 11, 0.4);
+  transform: scale(1.02);
+  z-index: 100;
+}
+
+.genealogy-scope .person-node.multi-selected {
+  border: 3px solid #3b82f6;
+  box-shadow: 0 0 0 2px #3b82f6, 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+@media (max-width: 768px) {
+  .genealogy-scope .person-node {
+    width: 200px;
+    padding: 12px;
+    min-height: 100px;
+  }
+
+  .genealogy-scope .name {
+    font-size: 1.2em;
+  }
+
+  .genealogy-scope .amharic-name {
+    font-size: 1.1em;
+  }
+}
